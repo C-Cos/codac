@@ -71,7 +71,7 @@ export default class Login extends React.Component {
     render(){
         return (
             <div className="container">
-                <h3 style={{marginTop: 30, marginLeft: 50}} >Please Sign in :</h3>
+                <h3 style={{marginTop: 30, marginLeft: 50}} >Please  :</h3>
                 <p>{this.state.wrong}</p>
                 <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
                     <form onSubmit={this.onSubmit}>
