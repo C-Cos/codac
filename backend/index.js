@@ -10,7 +10,7 @@ var cors = require('cors');
 app.use(cors());
 
 // Mongoose DB connection
-mongoose.connect("mongodb://localhost:27042/Epitech");
+mongoose.connect("mongodb://localhost:27042/Epitech",{useCreateIndex: true,useNewUrlParser:true});
 let db = mongoose.connection;
 
 //Check connection
@@ -25,22 +25,25 @@ db.on('error', function(err){
 
 // Template
 app.set('view engine', 'pug');
-app.use(session({secret: 'ssshhhhh'}));
+app.use(session({
+    secret: 'ssshhhhh',
+    resave: true,
+    saveUninitialized: true}));
 
 
 // MiddleWare
-app.use(bodyParser.urlencoded({ extend: true}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 /// Routes
 let usersRouter = require('./Routes/users');
-let articlesRouter = require('./Routes/article');
-let followsRouter = require('./Routes/follow');
-let banRouter = require('./Routes/ban');
+// let articlesRouter = require('./Routes/article');
+// let followsRouter = require('./Routes/follow');
+// let banRouter = require('./Routes/ban');
 app.use('/', usersRouter);
-app.use('/', articlesRouter);
-app.use('/', followsRouter);
-app.use('/', banRouter);
+// app.use('/', articlesRouter);
+// app.use('/', followsRouter);
+// app.use('/', banRouter);
 
 app.listen(4242);
 module.exports = app;
