@@ -12,7 +12,7 @@ import home from "./components/Home/home";
 function App() {
   return (
     <Router>
-        <Route path="/" component={home}/>
+        <Route exact path="/" component={home}/>
         <Route path="/login" component={login}/>
         <Route path="/register" component={register}/>
     </Router>
