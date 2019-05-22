@@ -1,7 +1,9 @@
 import React from 'react';
-import pic from "../../img/kristopher-roller-188180-unsplash.jpg";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import pic1 from "../../img/kristopher-roller-188180-unsplash.jpg";
+import pic2 from "../../img/katie-moum-1382626-unsplash.jpg";
+import pic3 from "../../img/sahil-sorathiya-1495158-unsplash.jpg";
+
+import Carousel from 'nuka-carousel';
 
 
 
@@ -36,21 +38,16 @@ export default class Home extends React.Component {
                         </p>
                     </div>
                 </div>
-                
-                <Carousel>
-                    <div>
-                        <img src={pic} alt="" style={{width:"100px", height:"100px"}} />
-                        <p className="legend">Legend 1</p>
-                    </div>
-                    <div>
-                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
-                        <p className="legend">Legend 2</p>
-                    </div>
-                    <div>
-                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
-                        <p className="legend">Legend 3</p>
-                    </div>
-                </Carousel>
+                <div style={{width:"100%", height: '400px'}}>
+                    <Carousel 
+                        autoplay={true}
+                        //autoplayReverse={true}
+                        speed={400}>
+                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic1} alt="" />
+                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic2} alt=""/>
+                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic3} alt=""/>
+                    </Carousel>
+                </div>
             </div>  
         )
     }
