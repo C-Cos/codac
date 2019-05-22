@@ -13,7 +13,6 @@ export default class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            wrong: '',
             cred: ''
         }
     }
@@ -38,25 +37,25 @@ export default class Login extends React.Component {
         login(user)
         .then((response) => {
             // console.log(response.data.name)
+            console.log(response);
             if(response.data.message === "Successful")
             {
                 localStorage.setItem('usertoken', response.data.token)
-                // console.log(response.data);
+                alert('Connection réussie !')
                 this.setState({
                     wrong: '',
-                    cred: response.data.name,
+                    //cred: response.data.name,
                     fireRedirect: true
                 });
             }
             else
             {
-                this.setState({
-                    wrong: response.data.message
-                });
+                alert("Oops, nous n'avons pas pu vous identifier. Email ou mot de passe incorrect.")
                 console.log(response.data);
             }
         })
         .catch((error) => {
+            alert("Oops, nous n'avons pas pu vous identifier. Email ou mot de passe incorrect.")
             console.error(error);
         });
 
@@ -71,20 +70,19 @@ export default class Login extends React.Component {
     render(){
         return (
             <div className="container">
-                <h3 style={{marginTop: 30, marginLeft: 50}} >Please Sign in :</h3>
-                <p>{this.state.wrong}</p>
+                <h3 style={{marginTop: 30, marginLeft: 50}} > Connection :</h3>
                 <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Email: </label>
-                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail}/>
+                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
-                            <label>Password: </label>
-                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword}/>
+                            <label>Mot de Passe: </label>
+                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Login" className="btn btn-primary"/>
+                            <input type="submit" value="Connection" className="btn btn-primary"/>
                         </div>
                     </form>
                 </div>

@@ -3,10 +3,11 @@ import axios from 'axios'
 export const register = newUser => {
     return axios
         .post('http://localhost:4242/users/register', {
-            name : newUser.name,
+            username : newUser.username,
             email : newUser.email,
             password : newUser.password,
-            confPass : newUser.confPass
+            confpass : newUser.confpass,
+            association : newUser.association
         })
         
 }
