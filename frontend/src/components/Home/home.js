@@ -1,5 +1,5 @@
 import React from 'react';
-/*import { Redirect } from 'react-router';*/
+import pic from "../../img/kristopher-roller-188180-unsplash.jpg"
 
 
 
@@ -27,7 +27,7 @@ export default class Home extends React.Component {
                         Your browser does not support the video tag.
                     </video>
                     <div style={{width: '70%', height: "20%", position: "absolute", justifyContent: "center"}}>
-                        <p style={{textAlign: "center", color: "black", fontWeight: "bold", fontStyle: "italic", justifyContent: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        <p style={{textAlign: "center", color: "black", fontSize:"20px", fontWeight: "bold", fontStyle: "italic", justifyContent: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                             Vivamus sit amet quam lorem. Vestibulum eleifend sapien dui, tincidunt maximus libero convallis a. 
                             Cras non lorem varius, dapibus purus sed, iaculis massa. Mauris iaculis dignissim semper. 
                         </p>
@@ -35,10 +35,29 @@ export default class Home extends React.Component {
                 </div>
                 
                 <div style={{textAlign: "center", width: '100%', height: '300px', overflow: 'hidden'}}>
-                        <h1 className="text-centered">Here will be the carroussel</h1>
+                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div className="carousel-item active">
+                                <img className="d-block w-100" src={pic} alt="First slide"/>
+                            </div>
+                            <div className="carousel-item">
+                                <img className="d-block w-100" src={pic} alt="Second slide"/>
+                            </div>
+                            <div className="carousel-item">
+                                <img className="d-block w-100" src={pic} alt="Third slide"/>
+                            </div>
+                        </div>
+                        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
+            </div>  
         )
     }
 }
