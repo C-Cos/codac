@@ -9,7 +9,7 @@ process.env.SECRET_KEY = 'secret';
 //REGISTER
 router.post('/users/register', (request, response) => {
     
-    let name = request.body.username
+    let username = request.body.username
     let email = request.body.email
     let password = request.body.password
     let confpass = request.body.confpass
@@ -18,12 +18,12 @@ router.post('/users/register', (request, response) => {
 
     /// create hash password
     const hash = crypto.createHash('sha1');
-    let pass_hash = hash.update(password+salt, 'utf-8');
+    let pass_hash = hash.update(salt+password, 'utf-8');
     gen_hash= pass_hash.digest('hex');
 
     //////// Insert params into mongo ///////////
     var newUser = new user({
-        username:name,
+        username:username,
         email:email,
         password:gen_hash,
         creation_date: new Date(),
@@ -52,48 +52,42 @@ router.post('/users/login', (request, response) => {
     let email = request.body.email;
     let password = request.body.password;
     let salt = 'pepper';
-
     /// create login hash password
     const hash = crypto.createHash('sha1');
-    let pass_hash = hash.update(password+salt, 'utf-8');
-    new_hash= pass_hash.digest('hex');
-    var query = { email: email };
+    let pass_hash = hash.update(salt+password, 'utf-8');
+    check_hash= pass_hash.digest('hex');
 
-    user.findOne(query, function(err, user){
-        //console.log(user);
+    user.findOne({email:email}, function(err, user){
         if (err) {
-            response.send(JSON.stringify({
-                //extra: data,
+            response.status(400).send(JSON.stringify({
                 message: 'Failed to login.'
             }));
         }
         else if (user === null) 
         {
-            response.send(JSON.stringify({
-                //extra: data,
+            response.status(200).send(JSON.stringify({
                 message: 'Failed to login. User does not exist'
             }));
         }
         else
         {
-            str_name = JSON.stringify(user.login);
-            if(user.password != new_hash){
-                response.send(JSON.stringify({
+            //str_name = JSON.stringify(user.username);
+            if(user.password != check_hash){
+                response.status(400).send(JSON.stringify({
                     message: 'Failed to login. Wrong password'
                 }));
             }
             else{
                 const payload = {
                     _id: user._id,
-                    login: user.login,
+                    username: user.username,
                     email: user.email
                 }
                 let token = jwt.sign(payload, process.env.SECRET_KEY, {
                     expiresIn:1440
                 })
-                response.send(
+                response.status(200).send(
                     JSON.stringify({
-                        name: user.login,
                         message: 'Successful', 
                         token: token
                 }));
