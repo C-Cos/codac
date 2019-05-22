@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import {register} from './UserFunctions';
+import Zipinput from './Zipinput';
+require('vicopo');
 
 function validate(user) {
     if (user.name.length < 5 || user.name.length > 20) {
@@ -19,6 +21,7 @@ export default class Register extends React.Component {
 
     constructor(props) {
         super(props);
+        this.onChangeZipcode = this.onChangeZipcode.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -27,6 +30,8 @@ export default class Register extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            zipcode: '',
+            city: '',
             name: '',
             email: '',
             password: '',
@@ -69,6 +74,33 @@ export default class Register extends React.Component {
             confPass: e.target.value
         });
     }
+
+    onChangeZipcode(e) {
+        this.setState({
+            zipcode: e.target.value
+        });
+
+        if (e.target.value.length === 5) {
+        
+            fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
+            {
+                "method": "GET",
+                
+            })
+            .then(response => response.json())
+            .then(responseData => {
+            this.setState({city : responseData.cities[0].city});
+            
+            }).catch(function() {
+                console.log("no city found");
+            });
+            
+
+        }else{
+            this.setState({city : ''});
+        }
+    }
+
     onSubmit(e) {
         e.preventDefault();
         console.log(`name is ${this.state.name} , email is ${this.state.email}, password is ${this.state.password}, confpass is ${this.state.confPass}`);
@@ -76,6 +108,8 @@ export default class Register extends React.Component {
         const user = {
             name: this.state.name,
             email: this.state.email,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
             password: this.state.password,
             confPass: this.state.confPass,
         }
@@ -109,6 +143,8 @@ export default class Register extends React.Component {
             this.setState({
             name: '',
             email: '',
+            zipcode: '',
+            city: '',
             password: '',
             confPass: ''
             })
@@ -141,6 +177,14 @@ export default class Register extends React.Component {
                         <div className="form-group">
                             <label>Email : </label>
                             <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Code postal: </label>
+                            <Zipinput className="form-control" value={this.state.zipcode} onChangeZipcode={this.onChangeZipcode}/>                        
+                        </div>
+                        <div className="form-group">
+                            <label>Ville : </label>
+                            <input className="form-control" value={this.state.city}/>
                         </div>
                         <div className="form-group">
                             <label>Mot de Passe : </label>
