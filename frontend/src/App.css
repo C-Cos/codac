@@ -31,3 +31,7 @@
     transform: rotate(360deg);
   }
 }
+
+.AssociationInput {
+  margin: 10px;
+}
