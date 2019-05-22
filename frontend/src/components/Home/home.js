@@ -1,6 +1,8 @@
 import React from 'react';
 import pic from "../../img/kristopher-roller-188180-unsplash.jpg";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+
 
 
 
