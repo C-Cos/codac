@@ -38,6 +38,7 @@ export default class Login extends React.Component {
         login(user)
         .then((response) => {
             // console.log(response.data.name)
+            console.log(response);
             if(response.data.message === "Successful")
             {
                 localStorage.setItem('usertoken', response.data.token)
