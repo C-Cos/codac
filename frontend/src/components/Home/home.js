@@ -1,5 +1,6 @@
 import React from 'react';
-import pic from "../../img/kristopher-roller-188180-unsplash.jpg"
+import pic from "../../img/kristopher-roller-188180-unsplash.jpg";
+import { Carousel } from 'react-responsive-carousel';
 
 
 
@@ -34,29 +35,20 @@ export default class Home extends React.Component {
                     </div>
                 </div>
                 
-                <div style={{textAlign: "center", width: '100%', height: '300px', overflow: 'hidden'}}>
-                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div className="carousel-item active">
-                                <img className="d-block w-100" src={pic} alt="First slide"/>
-                            </div>
-                            <div className="carousel-item">
-                                <img className="d-block w-100" src={pic} alt="Second slide"/>
-                            </div>
-                            <div className="carousel-item">
-                                <img className="d-block w-100" src={pic} alt="Third slide"/>
-                            </div>
-                        </div>
-                        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span className="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span className="sr-only">Next</span>
-                        </a>
+                <Carousel>
+                    <div>
+                        <img src={pic} alt=""/>
+                        <p className="legend">Legend 1</p>
                     </div>
-                </div>
+                    <div>
+                        <img src={pic} alt=""/>
+                        <p className="legend">Legend 2</p>
+                    </div>
+                    <div>
+                        <img src={pic} alt=""/>
+                        <p className="legend">Legend 3</p>
+                    </div>
+                </Carousel>
             </div>  
         )
     }
