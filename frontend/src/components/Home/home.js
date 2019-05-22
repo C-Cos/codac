@@ -1,6 +1,8 @@
 import React from 'react';
 import pic from "../../img/kristopher-roller-188180-unsplash.jpg";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+
 
 
 
@@ -37,15 +39,15 @@ export default class Home extends React.Component {
                 
                 <Carousel>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}} />
                         <p className="legend">Legend 1</p>
                     </div>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
                         <p className="legend">Legend 2</p>
                     </div>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
                         <p className="legend">Legend 3</p>
                     </div>
                 </Carousel>
