@@ -10,7 +10,7 @@ var cors = require('cors');
 app.use(cors());
 
 // Mongoose DB connection
-mongoose.connect("mongodb://localhost:27042/Epitech",{useCreateIndex: true,useNewUrlParser:true});
+mongoose.connect("mongodb://localhost:27042/sportDB",{useCreateIndex: true,useNewUrlParser:true});
 let db = mongoose.connection;
 
 //Check connection

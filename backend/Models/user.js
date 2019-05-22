@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let User = new Schema({
+let user = new Schema({
 
     username: {
         type: String,
@@ -20,7 +20,7 @@ let User = new Schema({
     },
     image: {
         type: String,
-        required: true
+        required: false
     },
     creation_date: {
         type: Date,
@@ -33,7 +33,11 @@ let User = new Schema({
     admin: {
         type: Boolean,
         required: true
+    },
+    association: {
+        type: Boolean,
+        required: true
     }
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('user', user, 'user');
