@@ -37,15 +37,15 @@ export default class Home extends React.Component {
                 
                 <Carousel>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}} />
                         <p className="legend">Legend 1</p>
                     </div>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
                         <p className="legend">Legend 2</p>
                     </div>
                     <div>
-                        <img src={pic} alt=""/>
+                        <img src={pic} alt="" style={{width:"100px", height:"100px"}}/>
                         <p className="legend">Legend 3</p>
                     </div>
                 </Carousel>
