@@ -32,6 +32,10 @@
   }
 }
 
+.AssociationInput {
+  margin: 10px;
+}
+
 #navContainer {
   background-color: #0a83a4 !important;
 }

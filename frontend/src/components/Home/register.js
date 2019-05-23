@@ -1,21 +1,19 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import {register} from './UserFunctions';
+import Zipinput from './Zipinput';
+require('vicopo');
 
-function validate(register) {
-    // we are going to store errors for all fields
-    // in a signle array
-    const errors = [];
-  
-    if (register.name.length < 5 || register.name.length > 20) {
-      errors.push("Name must be between 5 and 20 characters");
+function validate(user) {
+    if (user.name.length < 5 || user.name.length > 20) {
+      alert("Votre nom ou le nom de votre Association doit contenir entre 5 et 20 caractère.");
+      return true;
     }
   
-    if (register.password !== register.confPass) {
-      errors.push("Password did not match confirmation");
+    if (user.password !== user.confPass) {
+      alert("Le mot de passe entré ne correspond pas à la confirmation.");
+      return true
     }
-  
-    return errors;
   }
 
 
@@ -23,20 +21,38 @@ export default class Register extends React.Component {
 
     constructor(props) {
         super(props);
+        this.onChangeZipcode = this.onChangeZipcode.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeConfPass = this.onChangeConfPass.bind(this);
+        this.onChangeAsso = this.onChangeAsso.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
+            zipcode: '',
+            city: '',
             name: '',
             email: '',
             password: '',
             confPass: '',
+            asso: false,
             errors: [], 
             wrong: ''
         }
+    }
+    onChangeAsso(e){
+        if(this.state.asso === false){
+            this.setState({
+                asso: true
+            });
+        }
+        else{
+            this.setState({
+                asso: false
+            }); 
+        }
+            
     }
     onChangeName(e) {
         this.setState({
@@ -58,6 +74,33 @@ export default class Register extends React.Component {
             confPass: e.target.value
         });
     }
+
+    onChangeZipcode(e) {
+        this.setState({
+            zipcode: e.target.value
+        });
+
+        if (e.target.value.length === 5) {
+        
+            fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
+            {
+                "method": "GET",
+                
+            })
+            .then(response => response.json())
+            .then(responseData => {
+            this.setState({city : responseData.cities[0].city});
+            
+            }).catch(function() {
+                console.log("no city found");
+            });
+            
+
+        }else{
+            this.setState({city : ''});
+        }
+    }
+
     onSubmit(e) {
         e.preventDefault();
         console.log(`name is ${this.state.name} , email is ${this.state.email}, password is ${this.state.password}, confpass is ${this.state.confPass}`);
@@ -65,13 +108,14 @@ export default class Register extends React.Component {
         const user = {
             name: this.state.name,
             email: this.state.email,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
             password: this.state.password,
             confPass: this.state.confPass,
         }
-        const errors = validate(register);
-        if (errors.length > 0) {
-            this.setState({ errors });
-            return;
+        if(validate(user) === true)
+        {
+            return true
         }
         else
         {
@@ -79,68 +123,79 @@ export default class Register extends React.Component {
             .then((response) => {
             if(response.data.message === "Successful")
             {
-                /* this.props.authenticate({
-                    name: this.state.name,
-                    email: this.state.email,
-                    isLoggedIn: true
-                }); */
+                alert("Votre compte a été enregistré avec succès !");
                 this.setState({
-                    wrong: '',
                     fireRedirect: true
                 });
             }
             else
             {
-                this.setState({
-                    wrong: response.data.message
-                });
+                alert("Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants.");
                 console.log(response.data);
             }
             })
             .catch((error) => {
-            console.error(error);
+                alert("Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants.");
+                console.error(error);
             });
 
 
             this.setState({
             name: '',
             email: '',
+            zipcode: '',
+            city: '',
             password: '',
             confPass: ''
             })
-        } 
+        }
     }
 
 
     render(){
-        const { errors } = this.state;
         return (
             <div className="container">
-                <h3 style={{marginTop: 30, marginLeft: 50}} >Please Register :</h3>
-                <p>{this.state.wrong}</p>
+                <h3 style={{marginTop: 30, marginLeft: 50}} >Créer un compte Sport E-vents :</h3>
                 <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
                     <form onSubmit={this.onSubmit}>
-                        {errors.map(error => (
-                        <p key={error}>Error: {error}</p>
-                            ))}  
                         <div className="form-group">
-                            <label>Name:  </label>
-                            <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName}/>
+                                <label>
+                                    Association
+                                <input
+                                    className="AssociationInput"
+                                    name="asso"
+                                    type="checkbox"
+                                    checked={this.state.asso}
+                                    onChange={this.onChangeAsso} />
+                                </label>
+                            <br />
                         </div>
                         <div className="form-group">
-                            <label>Email: </label>
-                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail}/>
+                            <label>Nom d'utilisateur / Nom de l'Association :  </label>
+                            <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
                         </div>
                         <div className="form-group">
-                            <label>Password: </label>
-                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword}/>
+                            <label>Email : </label>
+                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
-                            <label>Confirm Password: </label>
-                            <input type="password" className="form-control"value={this.state.confPass} onChange={this.onChangeConfPass}/>
+                            <label>Code postal: </label>
+                            <Zipinput className="form-control" value={this.state.zipcode} onChangeZipcode={this.onChangeZipcode}/>                        
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Register" className="btn btn-primary"/>
+                            <label>Ville : </label>
+                            <input className="form-control" value={this.state.city}/>
+                        </div>
+                        <div className="form-group">
+                            <label>Mot de Passe : </label>
+                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Confirmation du mot de passe : </label>
+                            <input type="password" className="form-control"value={this.state.confPass} onChange={this.onChangeConfPass} required/>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Enregistrer" className="btn btn-primary"/>
                         </div>
                     </form>
                 </div>

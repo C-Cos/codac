@@ -9,11 +9,13 @@ import login from "./components/Home/login";
 import register from './components/Home/register';
 import Navbar from "./components/Home/navbar";
 import Footer from "./components/Home/footer";
+import home from "./components/Home/home";
 
 function App() {
   return (
     <Router>
         <Navbar/>
+        <Route exact path="/" component={home}/>
         <Route path="/login" component={login}/>
         <Route path="/register" component={register}/>
         <Footer/>
