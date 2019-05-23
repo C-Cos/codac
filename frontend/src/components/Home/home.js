@@ -23,7 +23,7 @@ export default class Home extends React.Component {
     render () {
         return (
             <div>
-                <div className="mb-4 mt-4" style={{width: '100%', height: '500px', overflow: 'hidden', position: "relative", zindex:0, display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div className="mb-4" style={{width: '100%', height: '500px', overflow: 'hidden', position: "relative", zindex:0, display: "flex", justifyContent: "center", alignItems: "center"}}>
                     <video id="background-video" loop autoPlay style={{
                             objectFit: 'cover',
                             width: '100%',
