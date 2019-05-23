@@ -28,37 +28,23 @@ export default class Login extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        console.log("test");
-        // console.log(`email is ${this.state.email}, password is ${this.state.password}`);
         
         const user = {
             email: this.state.email,
             password: this.state.password,
         }
+
         login(user)
         .then((response) => {
-            // console.log(response.data.name)
-            
-            console.log(response.data);
-            if(response.data.message === "Successful")
-            {
                 localStorage.setItem('usertoken', response.data.token)
                 alert('Connection réussie !')
                 this.setState({
                     wrong: '',
-                    //cred: response.data.name,
                     fireRedirect: true
                 });
-            }
-            else
-            {
-                alert("Oops, nous n'avons pas pu vous identifier. Email ou mot de passe incorrect.")
-                //console.log(response.data);
-            }
         })
         .catch((error) => {
-            alert("Oops, nous n'avons pas pu vous identifier. Email ou mot de passe incorrect.")
-            //console.error(error);
+            alert(error.response.data.message);
         });
 
 

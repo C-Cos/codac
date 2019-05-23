@@ -65,16 +65,15 @@ router.post('/users/login', (request, response) => {
         }
         else if (user === null) 
         {
-            response.status(200).send(JSON.stringify({
-                message: 'Failed to login. User does not exist'
+            response.status(401).send(JSON.stringify({
+                message: 'Failed to login. User does not exist.'
             }));
         }
         else
         {
-            //str_name = JSON.stringify(user.username);
             if(user.password != check_hash){
-                response.status(400).send(JSON.stringify({
-                    message: 'Failed to login. Wrong password'
+                response.status(401).send(JSON.stringify({
+                    message: 'Failed to login. Wrong password.'
                 }));
             }
             else{

@@ -76,10 +76,22 @@ export default class Register extends React.Component {
     }
 
     onChangeZipcode(e) {
+
+        //let regex = /[0-9]|\./;
+        let regex = /([0-8][0-9]|9[0-8])[0-9]{3}/;
+
+        if(regex.test(e.target.value)){
+            console.log("test ok");
+        }
+        else{
+            console.log("test failed");
+        }
+
         this.setState({
             zipcode: e.target.value
         });
-
+        // console.log(e.target.value);
+        // console.log(this.state.zipcode);
         if (e.target.value.length === 5) {
         
             fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
@@ -92,7 +104,7 @@ export default class Register extends React.Component {
             this.setState({city : responseData.cities[0].city});
             
             }).catch(function() {
-                console.log("no city found");
+                alert("Aucun ville ne correspond à votre recherche");
             });
             
 
