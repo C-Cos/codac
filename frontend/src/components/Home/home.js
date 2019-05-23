@@ -1,7 +1,7 @@
 import React from 'react';
 import pic1 from "../../img/kristopher-roller-188180-unsplash.jpg";
-import pic2 from "../../img/katie-moum-1382626-unsplash.jpg";
-import pic3 from "../../img/sahil-sorathiya-1495158-unsplash.jpg";
+import pic2 from "../../img/danielle-macinnes-222441-unsplash.jpg";
+import pic3 from "../../img/eric-muhr-643638-unsplash.jpg";
 
 import Carousel from 'nuka-carousel';
 
