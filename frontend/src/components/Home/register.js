@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import {register} from './UserFunctions';
+//import {register} from './UserFunctions';
 import Zipinput from './Zipinput';
+import axios from 'axios';
 require('vicopo');
 
 function validate(user) {
@@ -76,62 +77,55 @@ export default class Register extends React.Component {
     }
 
     onChangeZipcode(e) {
-
-        //let regex = /[0-9]|\./;
-        let regex = /([0-8][0-9]|9[0-8])[0-9]{3}/;
-
-        if(regex.test(e.target.value)){
-            console.log("test ok");
-        }
-        else{
-            console.log("test failed");
-        }
-
         this.setState({
             zipcode: e.target.value
         });
-        // console.log(e.target.value);
-        // console.log(this.state.zipcode);
         if (e.target.value.length === 5) {
-        
-            fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
-            {
-                "method": "GET",
-                
-            })
-            .then(response => response.json())
-            .then(responseData => {
-            this.setState({city : responseData.cities[0].city});
-            
-            }).catch(function() {
-                alert("Aucun ville ne correspond à votre recherche");
-            });
-            
 
-        }else{
+                fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
+                    {
+                        "method": "GET",
+                    
+                    })
+                .then(response => response.json())
+                .then(responseData => {
+                    this.setState({city : responseData.cities[0].city});
+                
+                    })
+                .catch(function(err) {
+                    alert("Aucun ville ne correspond à votre recherche");
+                    console.log(err);
+                });
+        }
+        else
+        {
             this.setState({city : ''});
         }
     }
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(`name is ${this.state.name} , email is ${this.state.email}, password is ${this.state.password}, confpass is ${this.state.confPass}`);
-        
+        //console.log(`name is ${this.state.name} , email is ${this.state.email}, password is ${this.state.password}, confpass is ${this.state.confPass}`);
+        //console.log("city: " + this.state.city);
+        //console.log("zipcode : " + this.state.zipcode);
+
         const user = {
             name: this.state.name,
             email: this.state.email,
             zipcode: this.state.zipcode,
             city: this.state.city,
             password: this.state.password,
-            confPass: this.state.confPass,
+            association: this.state.asso
         }
+        //console.log(user);
         if(validate(user) === true)
         {
             return true
         }
         else
         {
-            register(user)
+            //register(user)
+            axios.post('http://localhost:4242/users/register', user)
             .then((response) => {
             if(response.data.message === "Successful")
             {

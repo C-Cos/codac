@@ -8,12 +8,15 @@ process.env.SECRET_KEY = 'secret';
 
 //REGISTER
 router.post('/users/register', (request, response) => {
+    console.log(request.body);
     
-    let username = request.body.username
+    let username = request.body.name
     let email = request.body.email
     let password = request.body.password
-    let confpass = request.body.confpass
     let association = request.body.association
+    let postcode = request.body.zipcode
+    let city = request.body.city
+
     let salt = 'pepper'
 
     /// create hash password
@@ -29,7 +32,9 @@ router.post('/users/register', (request, response) => {
         creation_date: new Date(),
         edition_date: new Date(),
         admin:false,
-        association: association
+        association: association,
+        postcode: postcode,
+        city: city
         });
 
     newUser.save((err)=> {

@@ -1,16 +1,17 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const register = newUser => {
+/* export const register = newUser => {
     return axios
         .post('http://localhost:4242/users/register', {
             username : newUser.username,
             email : newUser.email,
             password : newUser.password,
-            confpass : newUser.confpass,
-            association : newUser.association
+            association : newUser.association,
+            postcode : newUser.postcode,
+            city: newUser.city
         })
         
-}
+} */
 
 
 export const login = user => {
