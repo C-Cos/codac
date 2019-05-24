@@ -49,6 +49,10 @@
   }
 }
 
+#form{
+  min-height: 70vh;
+}
+
 .AssociationInput {
   margin: 10px;
 }
