@@ -38,8 +38,18 @@
 
 }
 
+.typologinregister{
+  font-family: "Ubuntu-M";
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 .App {
   text-align: center;
+}
+
+#background-video{
+  margin-bottom: 50px;
 }
 
 .App-logo {
