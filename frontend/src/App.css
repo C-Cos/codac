@@ -99,8 +99,8 @@ width: 100%;
 border-bottom: 1px solid #CCCCCC;
 border-top: 1px solid #DDDDDD;
   background: #00003E; 
-  background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
-  background: linear-gradient(to right, #31BDE6, #00003E);     
+  background: -webkit-linear-gradient(to right, #31BDE6, #0c0c68);  
+  background: linear-gradient(to right, #31BDE6, #0c0c68);     
 }
 
 .footer {
@@ -112,8 +112,8 @@ border-top: 1px solid #DDDDDD;
   border-bottom: 1px solid #CCCCCC;
   border-top: 1px solid #DDDDDD;
     background: #00003E; 
-    background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
-    background: linear-gradient(to right, #31BDE6, #00003E);     
+    background: -webkit-linear-gradient(to right, #328ee5, #00003E);  
+    background: linear-gradient(to right, #328ee5, #00003E);     
   }
 
 .footer h3 {
