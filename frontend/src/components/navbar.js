@@ -13,7 +13,7 @@ class Navbar extends Component {
 
     logOut(e) {
         e.preventDefault();
-        localStorage.removeItem('userToken');
+        localStorage.removeItem('usertoken');
         this.props.history.push('/');
     }
 
@@ -47,7 +47,7 @@ class Navbar extends Component {
                 </Link>
 
                 <ul className="nav navbar-nav ml-auto">
-                    {localStorage.userToken ? userLink : loginRegLink}
+                    {localStorage.usertoken ? userLink : loginRegLink}
                 </ul>
                
             </nav>
