@@ -37,6 +37,10 @@ src: url('./components/font/Ubuntu-M.tff') format("truetype");
   }
 }
 
+#form{
+  min-height: 70vh;
+}
+
 .AssociationInput {
   margin: 10px;
 }
