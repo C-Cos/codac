@@ -1,7 +1,19 @@
-/* @font-face{
-  font-family: "Ubuntu-M";
-src: url('./components/font/Ubuntu-M.tff') format("truetype");
-} */
+@font-face{
+  font-family:"Ubuntu-M";
+  src: url('/components/font/Ubuntu-M.tff') format("truetype");
+}
+@font-face{
+  font-family:'blanch';
+  src: url('/components/font/blanch.tff') format("truetype");
+}
+
+.paragraphe{
+  color: white;
+  font-family: "arial";
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
 
 .App {
   text-align: center;
@@ -42,7 +54,6 @@ src: url('./components/font/Ubuntu-M.tff') format("truetype");
 }
 
 #navContainer {
-  /* background-color: #0a83a4 !important; */
   background-color: #ffffff !important;
 }
 
@@ -53,7 +64,8 @@ src: url('./components/font/Ubuntu-M.tff') format("truetype");
 }
 
 .nav-link, .navbar-brand {
-  /* font-family: 'Ubuntu-M'; */
+  /* font-family: "Ubuntu-M"!important; */
+  /* font-family: 'blanch'!important; */
   color: white !important;
   color: black !important;
 }
@@ -90,6 +102,19 @@ border-top: 1px solid #DDDDDD;
   background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
   background: linear-gradient(to right, #31BDE6, #00003E);     
 }
+
+.footer {
+  height: auto;
+  padding-bottom: 5px;
+  position: relative;
+  width: 100%;
+    color:#fff;
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #DDDDDD;
+    background: #00003E; 
+    background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
+    background: linear-gradient(to right, #31BDE6, #00003E);     
+  }
 
 .footer h3 {
 border-bottom: 1px solid #BAC1C8;
