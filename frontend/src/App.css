@@ -221,3 +221,34 @@ color: #EDEFF1 !important;
 button:focus{
   outline: none!important;
 }
+.card-img-top{
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.container-img-card{
+  height: 450px!important;
+  overflow: hidden;
+}
+.slider-control-bottomcenter{
+  bottom: -50px!important;
+}
+.title-event{
+  height: 55px;
+  line-height: 55px;
+  background-color: rgb(231, 231, 231);
+  color: rgb(52, 57, 64);
+  text-align: center;
+  margin-top: 80px;
+  font-size: 18px;
+}
+.carousel{
+  margin-bottom: 120px;
+}
+.btn-dark{
+  width: 100%;
+  background-color: #000!important;
+}
+.footer{
+  padding: 30px 0;
+}
