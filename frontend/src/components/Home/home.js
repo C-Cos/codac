@@ -57,8 +57,9 @@ export default class Home extends React.Component {
                         speed={400}
                         slidesToShow={4} 
                         cellSpacing={0}>
+                        
                         <div className="card">
-                            <img className="card-img-top" src={pic1} alt="Card image cap"/>
+                            <img className="card-img-top" src="https://images.unsplash.com/photo-1537204760139-44e68c37bec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
