@@ -1,3 +1,8 @@
+@font-face{
+  font-family: "Ubuntu-M";
+src: url('./components/font/Ubuntu-M.tff') format("truetype");
+}
+
 .App {
   text-align: center;
 }
