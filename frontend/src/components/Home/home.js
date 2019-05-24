@@ -41,18 +41,28 @@ export default class Home extends React.Component {
                 </div>
                 <div style={{width:"100%", height: '400px'}}>
                     <Carousel 
+                        renderCenterLeftControls={({ previousSlide }) => (
+                            <button onClick={previousSlide}>
+                                <i className="fa fa-arrow-left" />
+                            </button>
+                            )}
+                            renderCenterRightControls={({ nextSlide }) => (
+                            <button onClick={nextSlide}>
+                                <i className="fa fa-arrow-right"/>
+                            </button>
+                            )}
                         autoplay={true}
-                        //autoplayReverse={true}
+                        wrapAround={true}
                         speed={400}
                         slidesToShow={4} 
                         cellSpacing={0}>
                         <img style={{width:"100%", height: '400px'}} src={pic1} alt="" />
                         <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
                         <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic1} alt="" />
+                        <img style={{width:"100%", height: '400px'}} src={pic1} alt=""/>
                         <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
+                        <img style={{width:"100%", height: '400px'}} src={pic3} alt="" />
+                        <img style={{width:"100%", height: '400px'}} src={pic1} alt=""/>
                     </Carousel>
                 </div>
             </div>  
