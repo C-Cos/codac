@@ -1,7 +1,7 @@
-@font-face{
+/* @font-face{
   font-family: "Ubuntu-M";
 src: url('./components/font/Ubuntu-M.tff') format("truetype");
-}
+} */
 
 .App {
   text-align: center;
@@ -53,6 +53,7 @@ src: url('./components/font/Ubuntu-M.tff') format("truetype");
 }
 
 .nav-link, .navbar-brand {
+  /* font-family: 'Ubuntu-M'; */
   color: white !important;
   color: black !important;
 }
