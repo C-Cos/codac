@@ -63,7 +63,7 @@ export default class Login extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Email: </label>
-                            <input id="logemail" type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
+                            <input id="logemail" type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
                             <label>Mot de Passe: </label>

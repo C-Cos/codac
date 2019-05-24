@@ -28,7 +28,9 @@ class Navbar extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.3">Créer un évènement <ion-icon name="add-circle-outline"></ion-icon></NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#" onClick={this.logOut}>Logout</Nav.Link>
+                <Nav.Link href="#" onClick={this.logOut}><img alt="Logo"
+                        src={require('../img/logout.jpg')}
+                        width="80"/></Nav.Link>
             </Nav>
         );
         const loginRegLink = (
@@ -48,6 +50,8 @@ class Navbar extends Component {
             </ul>
         );
         return (
+
+            
             <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light" style={{borderBottom: "1px solid #d8d5d5"}}>
                 <Link to="/" className="navbar-brand">
                     <img alt="Sportevent"
