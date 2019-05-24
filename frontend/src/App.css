@@ -13,7 +13,6 @@
   font-weight: bold;
   font-size: 20px;
   letter-spacing: 2px;
-  
 }
 
 .App {
@@ -103,6 +102,19 @@ border-top: 1px solid #DDDDDD;
   background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
   background: linear-gradient(to right, #31BDE6, #00003E);     
 }
+
+.footer {
+  height: auto;
+  padding-bottom: 5px;
+  position: relative;
+  width: 100%;
+    color:#fff;
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #DDDDDD;
+    background: #00003E; 
+    background: -webkit-linear-gradient(to right, #31BDE6, #00003E);  
+    background: linear-gradient(to right, #31BDE6, #00003E);     
+  }
 
 .footer h3 {
 border-bottom: 1px solid #BAC1C8;
