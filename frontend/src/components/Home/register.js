@@ -11,7 +11,7 @@ function validate(user) {
       return true;
     }
   
-    if (user.password !== user.confPass) {
+    if (user.password !== user.confpass) {
       alert("Le mot de passe entré ne correspond pas à la confirmation.");
       return true
     }
@@ -72,7 +72,7 @@ export default class Register extends React.Component {
     }
     onChangeConfPass(e) {
         this.setState({
-            confPass: e.target.value
+            confpass: e.target.value
         });
     }
 
@@ -115,6 +115,7 @@ export default class Register extends React.Component {
             zipcode: this.state.zipcode,
             city: this.state.city,
             password: this.state.password,
+            confpass: this.state.confpass,
             association: this.state.asso
         }
         //console.log(user);
@@ -198,7 +199,7 @@ export default class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Confirmation du mot de passe : </label>
-                            <input type="password" className="form-control"value={this.state.confPass} onChange={this.onChangeConfPass} required/>
+                            <input type="password" className="form-control"value={this.state.confpass} onChange={this.onChangeConfPass} required/>
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Enregistrer" className="btn btn-primary"/>

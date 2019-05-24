@@ -71,14 +71,14 @@ router.post('/users/login', (request, response) => {
         else if (user === null) 
         {
             response.status(401).send(JSON.stringify({
-                message: 'Failed to login. User does not exist.'
+                message: "Cet utilisateur n'existe pas"
             }));
         }
         else
         {
             if(user.password != check_hash){
                 response.status(401).send(JSON.stringify({
-                    message: 'Failed to login. Wrong password.'
+                    message: "Le mot de passe ne correspond pas"
                 }));
             }
             else{
