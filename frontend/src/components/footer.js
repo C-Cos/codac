@@ -15,6 +15,7 @@ export default class Navbar extends Component {
                       <li> <a href="#"> Contact </a> </li>
                       <li> <a href="#"> Mentions légales </a> </li>
                       {/* <li> <a href="#"> Charte de protection des données personnelles </a> </li> */}
+                      
                     </ul>
                   </div>
                   <div className="col-lg-4  col-md-4 col-sm-4 col-xs-4">

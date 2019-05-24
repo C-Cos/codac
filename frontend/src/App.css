@@ -37,12 +37,13 @@
 }
 
 #navContainer {
-  background-color: #0a83a4 !important;
+  /* background-color: #0a83a4 !important; */
+  background-color: #ffffff !important;
 }
 
 #navContainer .navbar-nav>.active>a{
   color: #b78f33 !important;
-  background-color: #043645;
+  background-color: #5ea8be;
   background-image: none;
 }
 
