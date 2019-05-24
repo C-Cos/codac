@@ -51,6 +51,8 @@
 
 #form{
   min-height: 70vh;
+  width: 40%;
+  padding-top: 30px;
 }
 
 .AssociationInput {

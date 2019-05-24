@@ -161,9 +161,9 @@ export default class Register extends React.Component {
 
     render(){
         return (
-            <div className="container">
-                <h3 style={{marginTop: 30, marginLeft: 50}} >Créer un compte Sport E-vents :</h3>
-                <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
+            <div className="container formregister" style={{paddingTop: 30, width: "40%", paddingBottom: 60}}>
+                <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un compte Sport E-vents</h3>
+                <div style={{marginTop: 50}}>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                                 <label>
@@ -178,7 +178,7 @@ export default class Register extends React.Component {
                             <br />
                         </div>
                         <div className="form-group">
-                            <label>Nom d'utilisateur / Nom de l'Association :  </label>
+                            <label>Nom d'utilisateur / Nom de l'Association : </label>
                             <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
                         </div>
                         <div className="form-group">
@@ -202,7 +202,7 @@ export default class Register extends React.Component {
                             <input id="confPassRegister" type="password" className="form-control"value={this.state.confpass} onChange={this.onChangeConfPass} required/>
                         </div>
                         <div className="form-group">
-                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-primary"/>
+                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark"/>
                         </div>
                     </form>
                 </div>
