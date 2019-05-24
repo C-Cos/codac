@@ -1,10 +1,10 @@
 @font-face{
   font-family:"Ubuntu-M";
-  src: url('/components/font/Ubuntu-M.tff') format("truetype");
+  src: url('/font/Ubuntu-M.tff') format("truetype");
 }
 @font-face{
   font-family:'blanch';
-  src: url('/components/font/blanch.tff') format("truetype");
+  src: url('/font/blanch.tff') format("truetype");
 }
 
 .paragraphe{
@@ -58,6 +58,7 @@
 }
 
 #navContainer {
+  text-align: center;
   background-color: #ffffff !important;
 }
 
@@ -115,9 +116,12 @@ border-top: 1px solid #DDDDDD;
     color:#fff;
   border-bottom: 1px solid #CCCCCC;
   border-top: 1px solid #DDDDDD;
-    background: #00003E; 
-    background: -webkit-linear-gradient(to right, #328ee5, #00003E);  
-    background: linear-gradient(to right, #328ee5, #00003E);     
+    /* background: #00003E;  */
+    background: black; 
+    /* background: -webkit-linear-gradient(to right, #328ee5, #00003E);  
+    background: linear-gradient(to right, #328ee5, #00003E);   */
+        /* background: -webkit-linear-gradient(to right, #black, #black);  
+    background: linear-gradient(to right, #black, #black);     */
   }
 
 .footer h3 {
