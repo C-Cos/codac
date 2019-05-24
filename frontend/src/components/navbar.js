@@ -38,13 +38,23 @@ class Navbar extends Component {
         return (
             <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link to="/" className="navbar-brand">
-                    <img alt="Logo"
-                        src={require('../logopng.png')}
-                        width="200"
-                        height="30"
+                    <img alt="Sportevent"
+                        src={require('../img/sportevent.png')}
+                        width="180"
+                        // height="30"
                         className="d-inline-block align-top"
                     />
                 </Link>
+
+                <Link to="/" className="navbar-brand">
+                    <img alt="Logo"
+                        src={require('../img/logo.png')}
+                        width="100"
+                        // height="30"
+                        className="d-inline-block align-top"
+                    />
+                </Link>
+
 
                 <ul className="nav navbar-nav ml-auto">
                     {localStorage.userToken ? userLink : loginRegLink}
