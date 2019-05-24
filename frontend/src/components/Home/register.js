@@ -173,17 +173,18 @@ export default class Register extends React.Component {
                                     name="asso"
                                     type="checkbox"
                                     checked={this.state.asso}
-                                    onChange={this.onChangeAsso} />
+                                    onChange={this.onChangeAsso}
+                                    id="asso" />
                                 </label>
                             <br />
                         </div>
                         <div className="form-group">
                             <label>Nom d'utilisateur / Nom de l'Association :  </label>
-                            <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
+                            <input id="nameRegister" type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
                         </div>
                         <div className="form-group">
                             <label>Email : </label>
-                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
+                            <input id="emailRegister" type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
                             <label>Code postal: </label>
@@ -195,7 +196,7 @@ export default class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Mot de Passe : </label>
-                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
+                            <input id="passwordRegister" type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
                         </div>
                         <div className="form-group">
                             <label>Confirmation du mot de passe : </label>
