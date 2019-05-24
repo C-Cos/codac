@@ -49,6 +49,7 @@
 
 .nav-link, .navbar-brand {
   color: white !important;
+  color: black !important;
 }
 
 .text-primary {
