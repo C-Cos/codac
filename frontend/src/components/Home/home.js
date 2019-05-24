@@ -32,7 +32,11 @@ export default class Home extends React.Component {
                         Your browser does not support the video tag.
                     </video>
                     <div style={{width: '70%', height: "20%", position: "absolute", justifyContent: "center"}}>
-                        <p style={{textAlign: "center", color: "black", fontSize:"20px", fontWeight: "bold", fontStyle: "italic", justifyContent: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        {/* <p style={{textAlign: "center", color: "black", fontSize:"20px", fontWeight: "bold", fontStyle: "italic", justifyContent: "center"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Vivamus sit amet quam lorem. Vestibulum eleifend sapien dui, tincidunt maximus libero convallis a. 
+                            Cras non lorem varius, dapibus purus sed, iaculis massa. Mauris iaculis dignissim semper. 
+                        </p> */}
+                        <p className="paragraphe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                             Vivamus sit amet quam lorem. Vestibulum eleifend sapien dui, tincidunt maximus libero convallis a. 
                             Cras non lorem varius, dapibus purus sed, iaculis massa. Mauris iaculis dignissim semper. 
                         </p>
