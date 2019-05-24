@@ -57,7 +57,7 @@ export default class Home extends React.Component {
                             </button>
                             )}
                         autoplay={true}
-                        //autoplayReverse={true}
+                        wrapAround={true}
                         speed={400}
                         slidesToShow={4} 
                         cellSpacing={0}>
