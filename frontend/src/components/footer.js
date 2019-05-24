@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                   </div>
                   
                   <div className="col-lg-4  col-md-4 col-sm-4 col-xs-4 ">
-                    <h3> Suivre-nous</h3>
+                    <h3> Suivez-nous</h3>
                     <ul className="social">
                       <li> <a href="#"> <ion-icon name="logo-facebook"></ion-icon> </a> </li>
                       <li> <a href="#"> <ion-icon name="logo-twitter"></ion-icon> </a> </li>

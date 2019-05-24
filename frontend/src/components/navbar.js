@@ -39,7 +39,7 @@ class Navbar extends Component {
             <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link to="/" className="navbar-brand">
                     <img alt="Logo"
-                        src={require('../../logopng.png')}
+                        src={require('../logopng.png')}
                         width="200"
                         height="30"
                         className="d-inline-block align-top"
