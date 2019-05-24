@@ -36,7 +36,7 @@ class Navbar extends Component {
             </ul>
         );
         return (
-            <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light" style={{borderBottom: "1px solid #d8d5d5"}}>
                 <Link to="/" className="navbar-brand">
                     <img alt="Sportevent"
                         src={require('../img/sportevent.png')}
@@ -46,7 +46,7 @@ class Navbar extends Component {
                     />
                 </Link>
 
-                <Link to="/" className="navbar-brand">
+                <Link to="/" className="navbar-brand" style={{margin : "0 auto"}}>
                     <img alt="Logo"
                         src={require('../img/logo.png')}
                         width="100"
@@ -56,7 +56,7 @@ class Navbar extends Component {
                 </Link>
 
 
-                <ul className="nav navbar-nav ml-auto">
+                <ul className="nav navbar-nav">
                     {localStorage.usertoken ? userLink : loginRegLink}
                 </ul>
                

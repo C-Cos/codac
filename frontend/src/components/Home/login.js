@@ -58,8 +58,8 @@ export default class Login extends React.Component {
     render(){
         return (
             <div id="form" className="container">
-                <h3 style={{marginTop: 30, marginLeft: 50}} > Connection :</h3>
-                <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
+                <h3 style={{marginTop: 30, textAlign: "center"}} > Connection</h3>
+                <div style={{marginTop: 50}}>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Email: </label>
@@ -70,7 +70,7 @@ export default class Login extends React.Component {
                             <input id="logpassword" type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
                         </div>
                         <div className="form-group">
-                            <input id="logsubmit" type="submit" value="Connection" className="btn btn-primary"/>
+                            <input type="submit" value="Connection" className="btn btn-dark"/>
                         </div>
                     </form>
                 </div>
