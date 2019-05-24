@@ -43,10 +43,16 @@ export default class Home extends React.Component {
                     <Carousel 
                         autoplay={true}
                         //autoplayReverse={true}
-                        speed={400}>
-                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic1} alt="" />
-                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic2} alt=""/>
-                        <img style={{width:"50%", marginLeft: '25%', marginRight: '5%', height: '400px'}} src={pic3} alt=""/>
+                        speed={400}
+                        slidesToShow={4} 
+                        cellSpacing={0}>
+                        <img style={{width:"100%", height: '400px'}} src={pic1} alt="" />
+                        <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
+                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
+                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
+                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
+                        <img style={{width:"100%", height: '400px'}} src={pic1} alt="" />
+                        <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
                     </Carousel>
                 </div>
             </div>  
