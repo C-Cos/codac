@@ -8,7 +8,7 @@ process.env.SECRET_KEY = 'secret';
 
 //REGISTER
 router.post('/users/register', (request, response) => {
-    console.log(request.body);
+    //console.log(request.body);
     
     let username = request.body.name
     let email = request.body.email
