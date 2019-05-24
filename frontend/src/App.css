@@ -203,9 +203,13 @@ color: #EDEFF1 !important;
   background: #40E0D0;
   background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
   background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
-border-top: 1px solid #DDDDDD;
-padding-top: 10px;
-padding-bottom: 5px;
+  border-top: 1px solid #DDDDDD;
+  padding-top: 10px;
+  padding-bottom: 5px;
   color:#fff;
   text-align: center;
+}
+
+button:focus{
+  outline: none!important;
 }

@@ -4,6 +4,9 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 
 import login from "./components/Home/login";
 import register from './components/Home/register';
