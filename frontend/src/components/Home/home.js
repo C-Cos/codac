@@ -4,7 +4,8 @@ import pic2 from "../../img/danielle-macinnes-222441-unsplash.jpg";
 import pic3 from "../../img/eric-muhr-643638-unsplash.jpg";
 
 import Carousel from 'nuka-carousel';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretSquareRight, faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -39,16 +40,16 @@ export default class Home extends React.Component {
                         </p>
                     </div>
                 </div>
-                <div style={{width:"100%", height: '400px'}}>
+                <div style={{width:"100%", height: '450px'}}>
                     <Carousel 
                         renderCenterLeftControls={({ previousSlide }) => (
-                            <button onClick={previousSlide}>
-                                <i className="fa fa-arrow-left" />
+                            <button onClick={previousSlide} style={{backgroundColor: "transparent", border: "none"}}>
+                                <FontAwesomeIcon icon={faCaretSquareLeft} style={{fontSize:"40px", color:"black", paddingLeft: "10px"}}/>
                             </button>
                             )}
-                            renderCenterRightControls={({ nextSlide }) => (
-                            <button onClick={nextSlide}>
-                                <i className="fa fa-arrow-right"/>
+                        renderCenterRightControls={({ nextSlide }) => (
+                            <button onClick={nextSlide} style={{backgroundColor: "transparent", border: "none"}}>
+                                <FontAwesomeIcon icon={faCaretSquareRight} style={{fontSize:"40px", color:"black", paddingRight: "10px"}}/>
                             </button>
                             )}
                         autoplay={true}
@@ -56,13 +57,70 @@ export default class Home extends React.Component {
                         speed={400}
                         slidesToShow={4} 
                         cellSpacing={0}>
-                        <img style={{width:"100%", height: '400px'}} src={pic1} alt="" />
-                        <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic3} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic1} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic2} alt=""/>
-                        <img style={{width:"100%", height: '400px'}} src={pic3} alt="" />
-                        <img style={{width:"100%", height: '400px'}} src={pic1} alt=""/>
+                        <div className="card">
+                            <img className="card-img-top" src={pic1} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic2} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic3} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic1} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic2} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic3} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic1} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <img className="card-img-top" src={pic2} alt="Card image cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
                     </Carousel>
                 </div>
             </div>  
