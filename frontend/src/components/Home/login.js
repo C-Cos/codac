@@ -63,14 +63,14 @@ export default class Login extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Email: </label>
-                            <input type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
+                            <input id="logemail" type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
                             <label>Mot de Passe: </label>
-                            <input type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
+                            <input id="logpassword" type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Connection" className="btn btn-primary"/>
+                            <input id="logsubmit" type="submit" value="Connection" className="btn btn-primary"/>
                         </div>
                     </form>
                 </div>

@@ -118,28 +118,19 @@ export default class Register extends React.Component {
             confpass: this.state.confpass,
             association: this.state.asso
         }
-        //console.log(user);
+       
         if(validate(user) === true)
         {
             return true
         }
         else
         {
-            //register(user)
             axios.post('http://localhost:4242/users/register', user)
             .then((response) => {
-            if(response.data.message === "Successful")
-            {
                 alert("Votre compte a été enregistré avec succès !");
                 this.setState({
                     fireRedirect: true
                 });
-            }
-            else
-            {
-                alert("Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants.");
-                console.log(response.data);
-            }
             })
             .catch((error) => {
                 alert("Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants.");
