@@ -1,10 +1,10 @@
 @font-face{
   font-family:"Ubuntu-M";
-  src: url('/font/Ubuntu-M.tff') format("truetype");
+  src: url('/components/font/Ubuntu-M.tff') format("truetype");
 }
 @font-face{
   font-family:'blanch';
-  src: url('/font/blanch.tff') format("truetype");
+  src: url('/components/font/blanch.tff') format("truetype");
 }
 
 .paragraphe{
@@ -58,7 +58,6 @@
 }
 
 #navContainer {
-  text-align: center;
   background-color: #ffffff !important;
 }
 
