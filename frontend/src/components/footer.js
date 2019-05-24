@@ -14,7 +14,7 @@ export default class Navbar extends Component {
                     <ul>
                       <li> <a href="#"> Contact </a> </li>
                       <li> <a href="#"> Mentions légales </a> </li>
-                      <li> <a href="#"> Charte de protection des données personnelles </a> </li>
+                      {/* <li> <a href="#"> Charte de protection des données personnelles </a> </li> */}
                     </ul>
                   </div>
                   <div className="col-lg-4  col-md-4 col-sm-4 col-xs-4">
@@ -22,7 +22,7 @@ export default class Navbar extends Component {
                     <ul>
                       <li> <a href="#"> Plan du site </a> </li>
                       <li> <a href="#"> FAQ </a> </li>
-                      <li> <a href="#"> Accessibilité </a> </li>
+                      {/* <li> <a href="#"> Accessibilité </a> </li> */}
                     </ul>
                   </div>
                   
@@ -41,11 +41,11 @@ export default class Navbar extends Component {
          
             </div>
            
-            <div className="footer-bottom">
+            {/* <div className="footer-bottom">
               <div className="container">
                 <p className="pull-left"> Sport -eVent 2019 </p>
               </div>
-            </div>
+            </div> */}
     
           </footer>
         )
