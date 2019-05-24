@@ -199,10 +199,10 @@ export default class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Confirmation du mot de passe : </label>
-                            <input type="password" className="form-control"value={this.state.confpass} onChange={this.onChangeConfPass} required/>
+                            <input id="confPassRegister" type="password" className="form-control"value={this.state.confpass} onChange={this.onChangeConfPass} required/>
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Enregistrer" className="btn btn-primary"/>
+                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-primary"/>
                         </div>
                     </form>
                 </div>
