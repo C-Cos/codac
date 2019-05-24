@@ -57,7 +57,7 @@ export default class Login extends React.Component {
 
     render(){
         return (
-            <div className="container">
+            <div id="form" className="container">
                 <h3 style={{marginTop: 30, marginLeft: 50}} > Connection :</h3>
                 <div style={{marginTop: 50, marginLeft: 300, marginRight:300}}>
                     <form onSubmit={this.onSubmit}>
