@@ -34,9 +34,9 @@ export default class Home extends React.Component {
                         Your browser does not support the video tag.
                     </video>
                     <div style={{width: '70%', height: "20%", position: "absolute", justifyContent: "center"}}>
-                        <p style={{textAlign: "center", color: "white", fontSize:"50px", textTransform: "uppercase", fontWeight: "bold", justifyContent: "center"}}>Lorem ipsum dolor sit amet. 
+                        <p className="paragraphe" style={{textAlign: "center", color: "white", fontSize:"50px", textTransform: "uppercase", fontWeight: "bold", justifyContent: "center"}}>Lorem ipsum dolor sit amet 
                         </p>
-                        <p style={{textAlign: "center", color: "white", fontSize:"20px", justifyContent: "center"}}>Lorem ipsum dolor sit amet. 
+                        <p  className="paragraphedeux" style={{textAlign: "center", color: "white", fontSize:"20px", justifyContent: "center"}}>Lorem ipsum dolor sit amet
                         </p>
                     </div>
                 </div>

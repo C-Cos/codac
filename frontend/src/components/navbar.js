@@ -28,10 +28,16 @@ class Navbar extends Component {
         const loginRegLink = (
             <ul id="flex-container" className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                    <Link id="login" to="/login" className="nav-link">Login</Link>
+                    {/* <Link id="login" to="/login" className="nav-link">Login</Link> */}
+                    <Link id="login" to="/login" className="nav-link"><img alt="Logo"
+                        src={require('../img/login.jpg')}
+                        width="80"/></Link>
                 </li>
                 <li className="navbar-item">
-                    <Link id="register" to="/register" className="nav-link">Register</Link>
+                    {/* <Link id="register" to="/register" className="nav-link">Register</Link> */}
+                    <Link id="register" to="/register" className="nav-link"><img alt="Logo"
+                        src={require('../img/register.jpg')}
+                        width="110"/></Link>
                 </li>
             </ul>
         );
@@ -39,8 +45,9 @@ class Navbar extends Component {
             <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light" style={{borderBottom: "1px solid #d8d5d5"}}>
                 <Link to="/" className="navbar-brand">
                     <img alt="Sportevent"
-                        src={require('../img/sportevent.png')}
-                        width="180"
+                        src={require('../img/sportevent.jpg')}
+                        width="230"
+
                         // height="30"
                         className="d-inline-block align-top"
                         id="homeLogo"
@@ -49,8 +56,9 @@ class Navbar extends Component {
 
                 <Link to="/" className="navbar-brand" style={{margin : "0 auto"}}>
                     <img alt="Logo"
-                        src={require('../img/logo.png')}
-                        width="100"
+                        src={require('../img/logo.jpg')}
+                        width="60"
+                        marginRight="80"
                         // height="30"
                         className="d-inline-block align-top"
                     />

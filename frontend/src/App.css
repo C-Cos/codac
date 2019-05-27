@@ -1,18 +1,40 @@
 @font-face{
   font-family:"Ubuntu-M";
-  src: url('/font/Ubuntu-M.tff') format("truetype");
+  src: url('/components/font/Ubuntu-M.tff') format("truetype");
 }
-@font-face{
-  font-family:'blanch';
-  src: url('/font/blanch.tff') format("truetype");
+
+
+#login{
+  font-family: "Ubuntu-M";
+  font-family: "arial";
+  letter-spacing: 1px;
+  font-size: 20px;
+  margin: 0 10px;
+}
+#register{
+  font-family: "Ubuntu-M";
+  font-family: "arial";
+  letter-spacing: 1px;
+  font-size: 20px;
+  margin: 0 10px;
 }
 
 .paragraphe{
   color: white;
-  font-family: "arial";
+  font-family: "Ubuntu-M";
+    font-family: "arial";
   font-weight: bold;
   font-size: 20px;
   letter-spacing: 2px;
+}
+.paragraphedeux{
+  color: white;
+  font-family: "Ubuntu-M";
+  font-family: "arial";
+  font-weight: bold;
+  font-size: 5px;
+  letter-spacing: 2px;
+
 }
 
 .App {
@@ -60,7 +82,10 @@
 }
 
 #navContainer {
+  display: flex;
+  align-items: flex-end;
   text-align: center;
+  padding-Bottom: 0 px!important;
   background-color: #ffffff !important;
 }
 
