@@ -48,12 +48,12 @@ export default class Home extends React.Component {
                     <Carousel 
                         renderCenterLeftControls={({ previousSlide }) => (
                             <button onClick={previousSlide} style={{backgroundColor: "transparent", border: "none"}}>
-                                <FontAwesomeIcon icon={faCaretSquareLeft} style={{fontSize:"40px", color:"black", paddingLeft: "10px"}}/>
+                                <FontAwesomeIcon id="carouselLeft" icon={faCaretSquareLeft} style={{fontSize:"40px", color:"black", paddingLeft: "10px"}}/>
                             </button>
                             )}
                         renderCenterRightControls={({ nextSlide }) => (
                             <button onClick={nextSlide} style={{backgroundColor: "transparent", border: "none"}}>
-                                <FontAwesomeIcon icon={faCaretSquareRight} style={{fontSize:"40px", color:"black", paddingRight: "10px"}}/>
+                                <FontAwesomeIcon id="carouselRight" icon={faCaretSquareRight} style={{fontSize:"40px", color:"black", paddingRight: "10px"}}/>
                             </button>
                             )}
                         autoplay={true}

@@ -70,7 +70,7 @@ export default class Login extends React.Component {
                             <input id="logpassword" type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
                         </div>
                         <div className="form-group">
-                            <input type="logsubmit" value="Connection" className="btn btn-dark"/>
+                            <input id="logsubmit" type="submit" value="Connection" className="btn btn-dark"/>
                         </div>
                     </form>
                 </div>

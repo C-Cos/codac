@@ -43,6 +43,7 @@ class Navbar extends Component {
                         width="180"
                         // height="30"
                         className="d-inline-block align-top"
+                        id="homeLogo"
                     />
                 </Link>
 
