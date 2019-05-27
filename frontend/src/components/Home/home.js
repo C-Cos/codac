@@ -1,7 +1,4 @@
 import React from 'react';
-import pic1 from "../../img/kristopher-roller-188180-unsplash.jpg";
-import pic2 from "../../img/danielle-macinnes-222441-unsplash.jpg";
-import pic3 from "../../img/eric-muhr-643638-unsplash.jpg";
 
 import Carousel from 'nuka-carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +12,6 @@ export default class Home extends React.Component {
 
         this.state = {
             //videoURL: "https://www.istockphoto.com/fr/vid%C3%A9o/athl%C3%A8tes-masculins-propulsant-un-cr%C3%A2ne-de-quad-sur-un-lac-avec-le-soleil-en-arri%C3%A8re-gm843060762-139582203"
-            //videoURL: "../../run.mp4"
             videoURL: 'https://media.gettyimages.com/videos/let-the-road-guide-me-when-im-running-video-id962123092'
             //videoURL: 'http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4'
         }

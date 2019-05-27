@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -13,6 +12,11 @@ import register from './components/Home/register';
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import home from "./components/Home/home";
+import UserProfile from "./components/profile/UserProfile";
+import addEvent from "./components/Event/AddEvent";
+import events from "./components/Event/DisplayEvents";
+import event from "./components/Event/DisplayOneEvent";
+
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
         <Route exact path="/" component={home}/>
         <Route path="/login" component={login}/>
         <Route path="/register" component={register}/>
+        <Route path="/profile" component={UserProfile}/>
+        <Route path="/addevent" component={addEvent}/>
+        <Route path="/events" component={events}/>
+        <Route path="/event/" component={event}/>
         <Footer/>
     </Router>
   )
