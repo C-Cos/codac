@@ -12,7 +12,7 @@ import register from './components/Home/register';
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import home from "./components/Home/home";
-import UserProfile from "./components/profile/UserProfile";
+import UserProfile from "./components/Profile/UserProfile";
 import addEvent from "./components/Event/AddEvent";
 import events from "./components/Event/DisplayEvents";
 import event from "./components/Event/DisplayOneEvent";
