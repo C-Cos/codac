@@ -3,6 +3,7 @@ const router = express.Router();
 let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 user = require('../Models/user');
+const hashPassword = require('../Functions/usersfunctions.js');
 
 process.env.SECRET_KEY = 'secret';
 
@@ -17,18 +18,13 @@ router.post('/users/register', (request, response) => {
     let postcode = request.body.zipcode
     let city = request.body.city
 
-    let salt = 'pepper'
-
-    /// create hash password
-    const hash = crypto.createHash('sha1');
-    let pass_hash = hash.update(salt+password, 'utf-8');
-    gen_hash= pass_hash.digest('hex');
-
+    let passwordhash = hashPassword(password);
+    
     //////// Insert params into mongo ///////////
     var newUser = new user({
         username:username,
         email:email,
-        password:gen_hash,
+        password:passwordhash,
         creation_date: new Date(),
         edition_date: new Date(),
         admin:false,
