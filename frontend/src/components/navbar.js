@@ -2,7 +2,6 @@
 
 import React, {Component} from 'react';
 import {Link, withRouter} from "react-router-dom";
-import { NavDropdown, Nav } from 'react-bootstrap';
 
 //import Logo from "../Home/components/LOGO2.png";
 
@@ -20,16 +19,11 @@ class Navbar extends Component {
 
     render() {
         const userLink = (
-            <Nav className="mr-auto" id="mainNavbar" >
-                <NavDropdown title="Menu" className="nav-dropdown"> 
-                    <NavDropdown.Item href="#action/3.1">Profil Utilisateur <ion-icon name="person"></ion-icon></NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.2">Liste des évènements <ion-icon name="list"></ion-icon></NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.3">Créer un évènement <ion-icon name="add-circle-outline"></ion-icon></NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link href="#" onClick={this.logOut}>Logout</Nav.Link>
-            </Nav>
+            <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                    <a href="#" onClick={this.logOut} className="nav-link">Logout</a>
+                </li>
+            </ul>
         );
         const loginRegLink = (
             <ul id="flex-container" className="navbar-nav mr-auto">
