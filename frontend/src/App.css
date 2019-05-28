@@ -81,6 +81,10 @@
   margin: 10px;
 }
 
+.nav-dropdown{
+  margin-right: 70px;
+}
+
 #navContainer {
   display: flex;
   align-items: flex-end;
