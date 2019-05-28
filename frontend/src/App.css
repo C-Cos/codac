@@ -113,10 +113,6 @@ body{
   background-image: none;
 }
 
-.nav-dropdown{
-  margin-right: 80px;
-}
-
 .nav-link, .navbar-brand {
   /* font-family: "Ubuntu-M"!important; */
   /* font-family: 'blanch'!important; */
@@ -292,7 +288,7 @@ button:focus{
   background-color: rgb(231, 231, 231);
   color: rgb(52, 57, 64);
   text-align: center;
-  margin-top: 40px;
+  margin-top: 80px;
   font-size: 18px;
 }
 .carousel{
