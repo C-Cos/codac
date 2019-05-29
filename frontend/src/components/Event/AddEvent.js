@@ -169,6 +169,16 @@ export default class AddEvent extends React.Component {
             sport: e.target.value
         });
     }
+    onChangeParticipant(e) {
+        this.setState({
+            participant: e.target.value
+        });
+    }
+    onChangeHelp(e) {
+        this.setState({
+            help: e.target.value
+        });
+    }
     componentDidMount(){
         if(localStorage.usertoken===undefined) {
             this.props.history.push("/");
