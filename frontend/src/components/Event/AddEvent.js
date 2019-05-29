@@ -62,6 +62,8 @@ export default class AddEvent extends React.Component {
         this.onChangeHrStart = this.onChangeHrStart.bind(this);
         this.onChangeHrEnd = this.onChangeHrEnd.bind(this);
         this.onChangeSport = this.onChangeSport.bind(this);
+        this.onChangeHelp = this.onChangeHelp.bind(this);
+        this.onChangeParticipant = this.onChangeParticipant.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -75,7 +77,9 @@ export default class AddEvent extends React.Component {
             endDate: "",
             fulldate: "",
             curdate: "",
-            curHour:""
+            curHour:"",
+            help:"",
+            participant: ""
         }
     }
     onChangeEndDate(e) {
@@ -113,6 +117,16 @@ export default class AddEvent extends React.Component {
             sport: e.target.value
         });
     }
+    onChangeParticipant(e) {
+        this.setState({
+            participant: e.target.value
+        });
+    }
+    onChangeHelp(e) {
+        this.setState({
+            help: e.target.value
+        });
+    }
     componentDidMount(){
         const token = localStorage.usertoken;
         if(!token){
@@ -136,8 +150,19 @@ export default class AddEvent extends React.Component {
         e.preventDefault();
         
         const newEvent = {
+            username: this.state.username,
+            name: this.state.nameEvent,
+            desc: this.state.descEvent,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+            startHr: this.state.HourStart,
+            endHr: this.state.HourEnd,
+            sport: this.state.sport,
+            help: this.state.help,
+            participants: this.state.participant
         }
-        axios.post('http://localhost:4242/article/add', newEvent)
+        console.log(newEvent);
+        /* axios.post('http://localhost:4242/article/add', newEvent)
         .then((response) => {
             console.log(response.data)
             if(response.data.message === "Successful")
@@ -157,7 +182,7 @@ export default class AddEvent extends React.Component {
         })
         .catch((error) => {
             console.error(error);
-        });
+        }); */
     }
 
 
@@ -186,6 +211,7 @@ export default class AddEvent extends React.Component {
                             <input type="date" id="startDate" name="startDate"
                                 defaultValue={this.state.curdate}
                                 onChange={this.onChangeStartDate}
+                                required
                                 ></input>
                             <br/>
                             <label>Heure de début: </label>
@@ -199,6 +225,7 @@ export default class AddEvent extends React.Component {
                             <input type="date" id="endDate" name="endDate"
                                 defaultValue={this.state.curdate}
                                 onChange={this.onChangeEndDate}
+                                required
                                 ></input>
                             <br/>
                             <label>Heure de Fin: </label>
@@ -207,7 +234,15 @@ export default class AddEvent extends React.Component {
                                 defaultValue= {this.state.curHour} onChange={this.onChangeHrEnd} required></input>
                         </div>
                         <div>
-                            <Select></Select>
+                            <Select value={this.state.sport} onChangeSport={this.onChangeSport}></Select>
+                        </div>
+                        <div className="form-group">
+                            <label>Participants souhaité pour l'évènement : </label>
+                            <input id="participantEvent" type="textarea" className="form-control" value={this.state.participant} onChange={this.onChangeParticipant} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Aide souhaitée pour l'évènement : </label>
+                            <input id="helpEvent" type="textarea" className="form-control" value={this.state.help} onChange={this.onChangeHelp} required/>
                         </div>
                         
                         <div className="form-group">
