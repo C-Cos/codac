@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-let crypto = require('crypto');
+//let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-// user = require('../Models/user');
-const hashPassword = require('../Functions/usersfunctions.js');
+const user = require('../Models/user');
+//const hashPassword = require('../Functions/usersfunctions.js');
 const createUser = require('../Functions/usersfunctions.js');
 const verifyPassword = require('../Functions/usersfunctions.js');
 
@@ -12,7 +12,15 @@ process.env.SECRET_KEY = 'secret';
 //REGISTER
 router.post('/users/register', (request, response) => {
     
-    var newUser=createUser(request.body.name,request.body.email,request.body.password,request.body.association,request.body.zipcode,request.body.city);
+    let temp = createUser.createUser(
+        request.body.name,
+        request.body.email,
+        request.body.password,
+        request.body.association,
+        request.body.zipcode,
+        request.body.city);
+
+    var newUser = new user(temp);
 
     newUser.save((err)=> {
         if(err){
@@ -30,7 +38,6 @@ router.post('/users/register', (request, response) => {
 
 //LOGIN
 router.post('/users/login', (request, response) => {
-
     user.findOne({email:request.body.email}, function(err, user){
         if (err) {
             response.status(400).send(JSON.stringify({
@@ -45,7 +52,7 @@ router.post('/users/login', (request, response) => {
         }
         else
         {
-            if(!verifyPassword(request.body.password,user.password)){
+            if(!verifyPassword.verifyPassword(request.body.password,user.password)){
                 response.status(401).send(JSON.stringify({
                     message: "Le mot de passe ne correspond pas"
                 }));
@@ -79,6 +86,26 @@ router.get('/users/findAllUsers', (request, response) => {
         }    
     });
 })
+
+/* //DELETE USER
+router.delete('/users/delete', (request, response) => {
+     let param = request.query.email;
+     user.findByIdAndRemove(param, function(err){
+         if(err) 
+         {   
+            response.status(401).send(JSON.stringify({
+                message: "Nous n'avons pas pu supprimer votre compte."
+            }));
+         }
+
+         else {
+            response.status(200).send(
+                JSON.stringify({
+                    message: 'Successful',
+            }));
+         }
+     }); 
+ }) */
 
 // //FIND USER BY EMAIL
 // router.get('/users/findUsers', (request, response) => {
@@ -153,28 +180,7 @@ router.get('/users/findAllUsers', (request, response) => {
 //     }); 
 // })
 
-// //DELETE USER
-// router.delete('/users/delete', (request, response) => {
-//     let param = request.query.id;
-//     //var query = { _id: request.body.id };
-//     //console.log(query);
-//     //////// Insert params into mongo ///////////
-//     user.findByIdAndRemove(param, function(err){
-//         if(err) 
-//         {   
-//             response.send(JSON.stringify({
-//             message: 'Oops, Something went wrong. We cannot delete your account.'
-//             }));
-//             console.log(err)
-//         }
-
-//         else {
-//             response.send(JSON.stringify({
-//             message: 'Successful'
-//             }));
-//         }
-//     }); 
-// })
+// 
 
 
 

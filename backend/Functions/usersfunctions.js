@@ -1,5 +1,5 @@
 let crypto = require('crypto');
-user = require('../Models/user');
+//user = require('../Models/user');
 
 function hashPassword(password){
     let salt='pepper';
@@ -9,17 +9,18 @@ function hashPassword(password){
 }
 
 function createUser(username,email,password,association,postcode,city){
-    var newUser= new user({
+    
+    var newUser = {
         username:username,
         email:email,
-        password:hashPassword(password),
+        password: hashPassword(password),
         creation_date: new Date(),
         edition_date: new Date(),
         admin: false,
         association: association,
         postcode: postcode,
         city: city
-    });
+    }
 
     return newUser;
 }
