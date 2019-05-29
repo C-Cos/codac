@@ -69,7 +69,7 @@ router.put('/events', (request, response) => {
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
-                message: "Error registration"
+                message: "Error event registration"
             }));
         }
         else {
