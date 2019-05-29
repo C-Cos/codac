@@ -38,11 +38,11 @@ app.use(bodyParser.json());
 /// Routes
 let usersRouter = require('./Routes/users');
 let categoryRouter = require('./Routes/category');
-// let followsRouter = require('./Routes/follow');
+let eventsRouter = require('./Routes/event');
 // let banRouter = require('./Routes/ban');
 app.use('/', usersRouter);
 app.use('/', categoryRouter);
-// app.use('/', followsRouter);
+app.use('/', eventsRouter);
 // app.use('/', banRouter);
 
 app.listen(4242);

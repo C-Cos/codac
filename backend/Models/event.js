@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 
 let event = new Schema({
 
-    creator_name: {
+    username: {
         type: String,
         required: true
     },
-    title: {
+    name: {
         type: String,
         required: true
     },
-    description: {
+    desc: {
         type: String,
         required: true
     },
@@ -29,24 +29,24 @@ let event = new Schema({
     },
     city: {
         type: String,
-        required: false
-    },
-    start_at: {
-        type: Date,
         required: true
     },
-    end_at: {
-        type: Date,
+    start_date: {
+        type: String,
         required: true
     },
-    need_help: {
-        type: Boolean,
+    end_date: {
+        type: String,
         required: true
     },
-    need_players: {
-        type: Boolean,
+    start_time: {
+        type: String,
+        required: true
+    },
+    end_time: {
+        type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('event', event);
+module.exports = mongoose.model('event', event, 'event');
