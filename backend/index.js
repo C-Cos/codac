@@ -37,11 +37,11 @@ app.use(bodyParser.json());
 
 /// Routes
 let usersRouter = require('./Routes/users');
-// let articlesRouter = require('./Routes/article');
+let categoryRouter = require('./Routes/category');
 // let followsRouter = require('./Routes/follow');
 // let banRouter = require('./Routes/ban');
 app.use('/', usersRouter);
-// app.use('/', articlesRouter);
+app.use('/', categoryRouter);
 // app.use('/', followsRouter);
 // app.use('/', banRouter);
 

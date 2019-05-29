@@ -2,7 +2,55 @@ import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import jwt_decode from 'jwt-decode';
+import Select from "./SelectSport"
 //import Select from 'react-select';
+
+function myDate(){
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var strM = JSON.stringify(month);
+    var strD = JSON.stringify(date);
+    if(strM.length < 2 && strD.length < 2)
+    {
+        return (year + "-0" + month + "-0" + date);
+    }
+    else if(strD.length < 2)
+    {
+        return(year + "-" + month + "-0" + date);
+    }
+    else if(strM.length < 2)
+    {
+        return(year + "-0" + month + "-" + date);
+    }
+    else
+    {
+        return(year + "-" + month + "-" + date);
+    }
+}
+
+function myHour(){
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var strH = JSON.stringify(hours);
+    var strM = JSON.stringify(min);
+    if(strH < 2 && strM <2)
+    {
+        return ("0" + hours + ":0" + min)
+    }
+    else if(strH < 2)
+    {
+        return ("0" + hours + ":" + min)
+    }
+    else if(strM < 2)
+    {
+        return (hours + ":0" + min)
+    }
+    else
+    {
+        return (hours + ":" + min)
+    }
+}
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -32,12 +80,12 @@ export default class AddEvent extends React.Component {
     }
     onChangeEndDate(e) {
         this.setState({
-            endDate : this.state.curdate
+            endDate : e.target.defaultValue
         });
     }
     onChangeStartDate(e) {
         this.setState({
-            startDate : this.state.curdate
+            startDate : e.target.defaultValue
         });
     }
     onChangeNameEvent(e) {
@@ -52,12 +100,12 @@ export default class AddEvent extends React.Component {
     }
     onChangeHrEnd(e) {
         this.setState({
-            HourEnd: this.state.curHour
+            HourEnd: e.target.defaultValue
         });
     }
     onChangeHrStart(e) {
         this.setState({
-            HourStart: this.state.curHour
+            HourStart: e.target.defaultValue
         });
     }
     onChangeSport(e) {
@@ -76,19 +124,12 @@ export default class AddEvent extends React.Component {
                 username : decoded.username,
             })
         }
-        var date = new Date().getDate(); //Current Date
-        var month = new Date().getMonth() + 1; //Current Month
-        var year = new Date().getFullYear(); //Current Year
-        this.setState({ curdate: year + "-0" + month + "-" + date});
-
-        var hours = new Date().getHours(); //Current Hours
-        var min = new Date().getMinutes(); //Current Minutes
-        console.log(hours);
-        console.log(min);
-        var test = hours + ":" + min;
-        console.log(test);
-        this.setState({ curHour: hours + ":" + min });
-        //console.log(this.state.curHour);
+        this.setState({
+            curdate: myDate()
+        })
+        this.setState({
+            curHour: myHour()
+        })
     }
 
     onSubmit(e) {
@@ -119,6 +160,8 @@ export default class AddEvent extends React.Component {
         });
     }
 
+
+
       render() {
         return (
             <div className="container formregister" style={{paddingTop: 30, width: "40%", paddingBottom: 60}}>
@@ -141,39 +184,31 @@ export default class AddEvent extends React.Component {
                             <label>Date de début: </label>
                             <br/>
                             <input type="date" id="startDate" name="startDate"
-                                value= {this.state.curdate}
-                                min="2019-01-01" max="2019-12-31"
+                                defaultValue={this.state.curdate}
                                 onChange={this.onChangeStartDate}
                                 ></input>
                             <br/>
                             <label>Heure de début: </label>
                             <br/>
                             <input type="time" id="HrStart" name="HrStart"
-                                min="5:00" max="22:00" value={this.state.HourStart} required onChange={this.onChangeHrStart}></input>
+                                defaultValue={this.state.curHour} onChange={this.onChangeHrStart} required></input>
                         </div>
                         <div className="form-group">
                             <label>Date de Fin: </label>
                             <br/>
                             <input type="date" id="endDate" name="endDate"
-                                value={this.state.curdate}
+                                defaultValue={this.state.curdate}
                                 onChange={this.onChangeEndDate}
                                 ></input>
                             <br/>
                             <label>Heure de Fin: </label>
                             <br/>
                             <input type="time" id="HrEnd" name="HrEnd"
-                                min="5:00" max="22:00" value= {this.state.HourEnd} onChange={this.onChangeHrEnd}></input>
+                                defaultValue= {this.state.curHour} onChange={this.onChangeHrEnd} required></input>
                         </div>
-                        <div className="form-group">
-                            <label>Choisir la category "Sport" de l'évènement : </label>
-                            <select
-                                option= "vallue 1"
-                                value={this.state.sport}
-                                autosize
-                                onChange={this.onChangeSport}
-                                placeholder="Select Values"
-                            />
-                            </div>
+                        <div>
+                            <Select></Select>
+                        </div>
                         
                         <div className="form-group">
                             <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark"/>

@@ -60,70 +60,70 @@ export default class Home extends React.Component {
                         
                         <div className="card">
                             <div className="container-img-card">
-                                <img className="card-img-top img-responsive" src="https://images.unsplash.com/photo-1537204760139-44e68c37bec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
+                                <img className="card-img-top img-responsive" src="https://images.unsplash.com/photo-1537204760139-44e68c37bec8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""/>
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                         
                         
                         <div className="card">
                             <div className="container-img-card">
-                                <img className="card-img-top" src="https://images.unsplash.com/photo-1540910728803-3ad8a6679702?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Card image cap"/>
+                                <img className="card-img-top" src="https://images.unsplash.com/photo-1540910728803-3ad8a6679702?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt=""/>
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                         
                         <div className="card">
                             <div className="container-img-card">
-                                <img className="card-img-top" src="https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=683&q=80" alt="Card image cap"/>
+                                <img className="card-img-top" src="https://images.unsplash.com/photo-1470468969717-61d5d54fd036?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=683&q=80" alt=""/>
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
-                            </div>
-                        </div>
-                        
-                        
-                        <div className="card">
-                            <div className="container-img-card">
-                                <img className="card-img-top" src="https://images.unsplash.com/photo-1498484502070-2165cb42d504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="Card image cap"/>
-                            </div>
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                         
                         
                         <div className="card">
                             <div className="container-img-card">
-                                <img className="card-img-top" src="https://images.unsplash.com/photo-1552064578-5892872ab7c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
+                                <img className="card-img-top" src="https://images.unsplash.com/photo-1498484502070-2165cb42d504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt=""/>
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
+                            </div>
+                        </div>
+                        
+                        
+                        <div className="card">
+                            <div className="container-img-card">
+                                <img className="card-img-top" src="https://images.unsplash.com/photo-1552064578-5892872ab7c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""/>
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                         
                         <div className="card">
                             <div className="container-img-card">
-                                <img className="card-img-top" src="https://images.unsplash.com/photo-1536007364907-ffbbce98e2d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Card image cap"/>
+                                <img className="card-img-top" src="https://images.unsplash.com/photo-1536007364907-ffbbce98e2d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt=""/>
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" className="btn btn-dark">Go somewhere</a>
+                                <a href="/" className="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                         
