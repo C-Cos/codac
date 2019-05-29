@@ -7,7 +7,7 @@ process.env.SECRET_KEY = 'secret';
 
 router.get('/category', (request, response) => {
     category.find(function(err, category){
-        console.log(category);
+        //console.log(category);
         if(err) console.log(err);
         else{
             response.status(200).json(category);
