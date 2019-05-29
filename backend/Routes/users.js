@@ -2,40 +2,20 @@ const express = require('express');
 const router = express.Router();
 let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-user = require('../Models/user');
+// user = require('../Models/user');
 const hashPassword = require('../Functions/usersfunctions.js');
+const createUser = require('../Functions/usersfunctions.js');
+const verifyPassword = require('../Functions/usersfunctions.js');
 
 process.env.SECRET_KEY = 'secret';
 
 //REGISTER
 router.post('/users/register', (request, response) => {
-    //console.log(request.body);
     
-    let username = request.body.name
-    let email = request.body.email
-    let password = request.body.password
-    let association = request.body.association
-    let postcode = request.body.zipcode
-    let city = request.body.city
-
-    let passwordhash = hashPassword(password);
-    
-    //////// Insert params into mongo ///////////
-    var newUser = new user({
-        username:username,
-        email:email,
-        password:passwordhash,
-        creation_date: new Date(),
-        edition_date: new Date(),
-        admin:false,
-        association: association,
-        postcode: postcode,
-        city: city
-        });
+    var newUser=createUser(request.body.name,request.body.email,request.body.password,request.body.association,request.body.zipcode,request.body.city);
 
     newUser.save((err)=> {
         if(err){
-            console.log(err);
             response.status(400).send(JSON.stringify({
                 message: "Error registration"
             }));
@@ -50,15 +30,8 @@ router.post('/users/register', (request, response) => {
 
 //LOGIN
 router.post('/users/login', (request, response) => {
-    let email = request.body.email;
-    let password = request.body.password;
-    let salt = 'pepper';
-    /// create login hash password
-    const hash = crypto.createHash('sha1');
-    let pass_hash = hash.update(salt+password, 'utf-8');
-    check_hash= pass_hash.digest('hex');
 
-    user.findOne({email:email}, function(err, user){
+    user.findOne({email:request.body.email}, function(err, user){
         if (err) {
             response.status(400).send(JSON.stringify({
                 message: 'Failed to login.'
@@ -72,7 +45,7 @@ router.post('/users/login', (request, response) => {
         }
         else
         {
-            if(user.password != check_hash){
+            if(!verifyPassword(request.body.password,user.password)){
                 response.status(401).send(JSON.stringify({
                     message: "Le mot de passe ne correspond pas"
                 }));
@@ -96,16 +69,16 @@ router.post('/users/login', (request, response) => {
     });
 });
 
-// //FIND ALL USERS
-// router.get('/users/findAllUsers', (request, response) => {
-//     user.find( function(err, users){
-//         console.log(users);
-//         if(err) console.log(err);
-//         else{
-//             response.status(200).json(users);
-//         }    
-//     });
-// })
+//FIND ALL USERS
+router.get('/users/findAllUsers', (request, response) => {
+    user.find( function(err, users){
+        //console.log(users);
+        if(err) console.log(err);
+        else{
+            response.status(200).json(users);
+        }    
+    });
+})
 
 // //FIND USER BY EMAIL
 // router.get('/users/findUsers', (request, response) => {
