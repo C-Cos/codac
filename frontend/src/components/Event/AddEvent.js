@@ -90,6 +90,50 @@ export default class AddEvent extends React.Component {
             file: e.target.files[0]
         })
     }
+    onChangeStartDate(e) {
+        var newD = mySplit(e.target.value);
+        var start = mySplit(this.state.startDate);
+        if (newD[0] >= start[0]) {
+            if(newD[1] > start[1]) {
+                if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
+                    this.setState({
+                        startDate : e.target.value
+                    });
+                }
+                else {
+                    alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+                    this.setState({
+                        startDate : myDate()
+                    });
+                }   
+            }
+            else if(newD[1] === start[1]) {
+                if(newD[2] >= start[2]) {
+                    this.setState({
+                        startDate : e.target.value
+                    });
+                } 
+                else {
+                    alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+                    this.setState({
+                        startDate : myDate()
+                    });
+                }    
+            }
+            else  {
+                alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+                this.setState({
+                    startDate : myDate()
+                });
+            }
+        }
+        else  {
+            alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+            this.setState({
+                startDate : myDate()
+            });
+        }
+    }
 
     onChangeEndDate(e) {
         var newD = mySplit(e.target.value);
@@ -223,14 +267,9 @@ export default class AddEvent extends React.Component {
             console.error("Failed");
         });
     }
-
-
-
       render() {
         return (
-<div className="traitnoir">
-
-
+        <div className="traitnoir">
             <div className="container formregister" style={{paddingTop: 30, width: 400, paddingBottom: 60}}>
                 <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un évènement :</h3><br/>
                 <div style={{marginTop: 50}}>
@@ -312,13 +351,12 @@ export default class AddEvent extends React.Component {
                             <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark" style={{width: 150}}/>
                         </div>
 
-
+                    </div>
                     </form>
                 </div>
                 {this.state.fireRedirect && <Redirect to='/login' push={true} />}
             </div>
-
-</div>
+        </div>
         )
     }
 }

@@ -33,7 +33,7 @@ let event = new Schema({
     },
     city: {
         type: String,
-        required: true
+        required: false
     },
     start_date: {
         type: String,
