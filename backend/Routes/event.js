@@ -3,8 +3,6 @@ const router = express.Router();
 let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 event = require('../Models/event');
-const path = require("path");
-const multer = require("multer");
 
 process.env.SECRET_KEY = 'secret';
 
@@ -53,18 +51,54 @@ router.post('/events/addevent',(request, response) => {
     }); 
 })
 
-router.get('/events/findAll', (request, response) => {
-    event.find( function(err, events){
+//EDIT AN EVENT
+router.put('/events', (request, response) => {
+    let title = request.body.title
+    let description = request.body.description
+    let category = request.body.category
+    let address = request.body.address
+    let zipcode = request.body.zipcode
+    let city = request.body.city
+    let start_at = request.body.start_at
+    let end_at = request.body.end_at
+    let need_help = request.body.help
+    let need_players = request.body.need_players
+
+    event.findOneAndUpdate({}, function(err, event){
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
-                message: "Get events failed"
+                message: "Error registration"
             }));
         }
-        else{
-            response.status(200).json(events);
-        }    
-    });
+        else {
+            response.status(200).send(JSON.stringify({
+                message: "Successful"
+            }));
+        }
+    }) 
 })
+
+//DELETE AN EVENT
+
+//GET AN EVENT
+router.get('/events', (request, response) => {
+    event.find(function(err, events){
+        if(err){
+            console.log(err);
+            response.status(400).send(JSON.stringify({
+                message: "Error"
+            }));
+        }
+        else {
+            response.status(200).send(JSON.stringify({
+                message: "Successful",
+                events: events
+            }));
+        }
+    }); 
+})
+
+
 
 module.exports = router;
