@@ -62,8 +62,6 @@ export default class AddEvent extends React.Component {
         this.onChangeHrStart = this.onChangeHrStart.bind(this);
         this.onChangeHrEnd = this.onChangeHrEnd.bind(this);
         this.onChangeSport = this.onChangeSport.bind(this);
-        this.onChangeHelp = this.onChangeHelp.bind(this);
-        this.onChangeParticipant = this.onChangeParticipant.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -84,12 +82,22 @@ export default class AddEvent extends React.Component {
     }
     onChangeEndDate(e) {
         this.setState({
-            endDate : e.target.defaultValue
+            endDate : e.target.value
         });
     }
     onChangeStartDate(e) {
         this.setState({
-            startDate : e.target.defaultValue
+            startDate : e.target.value
+        });
+    }
+    onChangeHrEnd(e) {
+        this.setState({
+            HourEnd: e.target.value
+        });
+    }
+    onChangeHrStart(e) {
+        this.setState({
+            HourStart: e.target.value
         });
     }
     onChangeNameEvent(e) {
@@ -102,29 +110,9 @@ export default class AddEvent extends React.Component {
             descEvent: e.target.value
         });
     }
-    onChangeHrEnd(e) {
-        this.setState({
-            HourEnd: e.target.defaultValue
-        });
-    }
-    onChangeHrStart(e) {
-        this.setState({
-            HourStart: e.target.defaultValue
-        });
-    }
     onChangeSport(e) {
         this.setState({
             sport: e.target.value
-        });
-    }
-    onChangeParticipant(e) {
-        this.setState({
-            participant: e.target.value
-        });
-    }
-    onChangeHelp(e) {
-        this.setState({
-            help: e.target.value
         });
     }
     componentDidMount(){
@@ -139,10 +127,16 @@ export default class AddEvent extends React.Component {
             })
         }
         this.setState({
-            curdate: myDate()
+            endDate: myDate()
         })
         this.setState({
-            curHour: myHour()
+            startDate: myDate()
+        })
+        this.setState({
+            HourEnd: myHour()
+        })
+        this.setState({
+            HourStart: myHour()
         })
     }
 
@@ -157,8 +151,6 @@ export default class AddEvent extends React.Component {
             endDate: this.state.endDate,
             startHr: this.state.HourStart,
             endHr: this.state.HourEnd,
-            sport: this.state.sport,
-            help: this.state.help,
             participants: this.state.participant
         }
         console.log(newEvent);
@@ -209,7 +201,7 @@ export default class AddEvent extends React.Component {
                             <label>Date de début: </label>
                             <br/>
                             <input type="date" id="startDate" name="startDate"
-                                defaultValue={this.state.curdate}
+                                value={this.state.startDate}
                                 onChange={this.onChangeStartDate}
                                 required
                                 ></input>
@@ -217,13 +209,13 @@ export default class AddEvent extends React.Component {
                             <label>Heure de début: </label>
                             <br/>
                             <input type="time" id="HrStart" name="HrStart"
-                                defaultValue={this.state.curHour} onChange={this.onChangeHrStart} required></input>
+                                value={this.state.HourStart} onChange={this.onChangeHrStart} required></input>
                         </div>
                         <div className="form-group">
                             <label>Date de Fin: </label>
                             <br/>
                             <input type="date" id="endDate" name="endDate"
-                                defaultValue={this.state.curdate}
+                                value={this.state.endDate}
                                 onChange={this.onChangeEndDate}
                                 required
                                 ></input>
@@ -231,18 +223,10 @@ export default class AddEvent extends React.Component {
                             <label>Heure de Fin: </label>
                             <br/>
                             <input type="time" id="HrEnd" name="HrEnd"
-                                defaultValue= {this.state.curHour} onChange={this.onChangeHrEnd} required></input>
+                               value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required></input>
                         </div>
                         <div>
                             <Select value={this.state.sport} onChangeSport={this.onChangeSport}></Select>
-                        </div>
-                        <div className="form-group">
-                            <label>Participants souhaité pour l'évènement : </label>
-                            <input id="participantEvent" type="textarea" className="form-control" value={this.state.participant} onChange={this.onChangeParticipant} required/>
-                        </div>
-                        <div className="form-group">
-                            <label>Aide souhaitée pour l'évènement : </label>
-                            <input id="helpEvent" type="textarea" className="form-control" value={this.state.help} onChange={this.onChangeHelp} required/>
                         </div>
                         
                         <div className="form-group">
