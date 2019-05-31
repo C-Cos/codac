@@ -21,7 +21,7 @@ router.post('/events/addevent', (request, response) => {
         start_time: request.body.startHr,
         end_time: request.body.endHr,
         start_date: request.body.startDate,
-        end_date: request.body.endDate,
+        end_date: request.body.endDate
         // need_help: request.body.help,
         // need_players: request.body.participants
         });
