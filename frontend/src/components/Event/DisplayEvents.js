@@ -13,13 +13,15 @@ export default class DisplayEvents extends Component{
 
     componentDidMount(){
         
-        axios.get('http://localhost:4242/getevents/'
+        axios.get('http://localhost:4242/events/findAll')
         .then(response => {
-            this.setState({events: response.data});
+            console.log(response.data.events);
+            this.setState({events: response.data.events});
+            
 
         })
-        .catch(function(error){
-            console.log(error);
+        .catch(function(err){
+            console.log(err);
         })
            
     }
@@ -27,9 +29,9 @@ export default class DisplayEvents extends Component{
     render() {
         return(
             <div className="jumbotron">
-                <h3 className="welcomehome mb-5 text-center">Events</h3>
+                <h3 className="welcomehome mb-5 text-center">Liste des évènements</h3>
                 <hr />
-                    <div class="row">
+                    <div className="row">
                     {
                             this.state.events.map(function(currentEvent, i){
                                 return(<EventContent events={currentEvent} key={i} />)

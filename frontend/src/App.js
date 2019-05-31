@@ -25,7 +25,7 @@ function App() {
         <Route path="/profile" component={userProfile}/>
         <Route path="/addevent" component={addEvent}/>
         <Route path="/events" component={events}/>
-        <Route path="/event/" component={event}/>
+        <Route path="/event/:id" component={event}/>
         <Footer/>
     </Router>
   )

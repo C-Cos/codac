@@ -100,7 +100,7 @@ router.delete('/events', (request, response) => {
 }); 
 
 //GET AN EVENT
-router.get('/events', (request, response) => {
+router.get('/events/findAll', (request, response) => {
     event.find(function(err, events){
         if(err){
             console.log(err);
