@@ -53,18 +53,19 @@ router.post('/events/addevent',(request, response) => {
 
 //EDIT AN EVENT
 router.put('/events', (request, response) => {
-    let title = request.body.title
-    let description = request.body.description
-    let category = request.body.category
-    let address = request.body.address
-    let zipcode = request.body.zipcode
-    let city = request.body.city
-    let start_at = request.body.start_at
-    let end_at = request.body.end_at
-    let need_help = request.body.help
-    let need_players = request.body.need_players
+    var query = { _id: request.body.id };
 
-    event.findOneAndUpdate({}, function(err, event){
+    var update = {
+        title: request.body.title,
+        description: request.body.description,
+        category: request.body.category,
+        address: request.body.address,
+        zipcode: request.body.zipcode,
+        city: request.body.city,
+        start_at: request.body.start_at,
+        end_at: request.body.end_at}
+
+    event.findOneAndUpdate(query, update, function(err, event){
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
@@ -73,13 +74,30 @@ router.put('/events', (request, response) => {
         }
         else {
             response.status(200).send(JSON.stringify({
-                message: "Successful"
+                message: "Successful",
+                event: event
             }));
         }
-    }) 
+    }); 
 })
 
 //DELETE AN EVENT
+router.delete('/events', (request, response) => {
+    var query = { _id: request.body.id };
+    event.findByIdAndRemove(query, function(err){
+        if(err){
+            console.log(err);
+            response.status(400).send(JSON.stringify({
+                message: "Error deleting event"
+            }));
+        }
+        else {
+            response.status(200).send(JSON.stringify({
+                message: "Successful"
+            }));
+        }
+    })
+}); 
 
 //GET AN EVENT
 router.get('/events', (request, response) => {

@@ -35,7 +35,7 @@ router.post('/comment', (request, response) => {
 
 //edit comment
 router.put('/comment', (request, response) => {
-    var query = { idEvent: request.body.idEvent };
+    var query = { _id: request.body.id };
     // console.log(query);
     var update = {
         description: request.body.description};
@@ -57,7 +57,7 @@ router.put('/comment', (request, response) => {
 
 //delete comment
 router.delete('/comment', (request, response) => {
-    let param = request.query.idEvent;
+    let param = request.query.id;
     comment.findByIdAndRemove(param, function(err){
         if(err){
             console.log(err);

@@ -42,10 +42,12 @@ app.use(bodyParser.json());
 let usersRouter = require('./Routes/users');
 let categoryRouter = require('./Routes/category');
 let commentRouter = require('./Routes/comment');
+let eventRouter = require('./Routes/event');
 
 app.use('/', usersRouter);
 app.use('/', categoryRouter);
 app.use('/', commentRouter);
+app.use('/', eventRouter);
 
 app.listen(4242);
 module.exports = app;
