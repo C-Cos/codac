@@ -50,6 +50,10 @@ function myHour(){
         return (hours + ":" + min)
     }
 }
+function mySplit(date){
+    //var str = JSON.stringify(date);
+    return date.split('-');
+}
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -88,23 +92,58 @@ export default class AddEvent extends React.Component {
     }
 
     onChangeEndDate(e) {
-        this.setState({
-            endDate : e.target.value
-        });
+        var newD = mySplit(e.target.value);
+        var start = mySplit(this.state.startDate);
+        if (newD[0] >= start[0]) {
+            if(newD[1] > start[1]) {
+                if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
+                    this.setState({
+                        endDate : e.target.value
+                    });
+                }
+                else {
+                    alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+                    this.setState({
+                        endDate : myDate()
+                    });
+                }   
+            }
+            else if(newD[1] === start[1]) {
+                if(newD[2] >= start[2]) {
+                    this.setState({
+                        endDate : e.target.value
+                    });
+                } 
+                else {
+                    alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+                    this.setState({
+                        endDate : myDate()
+                    });
+                }    
+            }
+            else  {
+                alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+                this.setState({
+                    endDate : myDate()
+                });
+            }
+        }
+        else  {
+            alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+            this.setState({
+                endDate : myDate()
+            });
+        }
+        
     }
-    onChangeStartDate(e) {
+    onChangeHrStart(e) {
         this.setState({
-            startDate : e.target.value
+            HourStart: e.target.value
         });
     }
     onChangeHrEnd(e) {
         this.setState({
             HourEnd: e.target.value
-        });
-    }
-    onChangeHrStart(e) {
-        this.setState({
-            HourStart: e.target.value
         });
     }
     onChangeNameEvent(e) {
