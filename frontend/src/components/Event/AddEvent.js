@@ -228,8 +228,11 @@ export default class AddEvent extends React.Component {
 
       render() {
         return (
-            <div className="container formregister" style={{paddingTop: 30, width: "40%", paddingBottom: 60}}>
-                <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un évènement :</h3>
+<div className="traitnoir">
+
+
+            <div className="container formregister" style={{paddingTop: 30, width: 400, paddingBottom: 60}}>
+                <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un évènement :</h3><br/>
                 <div style={{marginTop: 50}}>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
@@ -257,36 +260,65 @@ export default class AddEvent extends React.Component {
                                 required
                                 ></input>
                             <br/>
+                        <br/>
+
+
+                        <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
+                            
+                            <div>
+                             <label>Date de début: </label>
+                             <br/>
+                             <input type="date" id="startDate" name="startDate"
+                                    value={this.state.startDate}
+                                 onChange={this.onChangeStartDate}
+                                    required
+                                    ></input>
+                            </div>
+
+                            <div>
+                               <label>Date de fin: </label>
+                               <br/>
+                              <input type="date" id="endDate" name="endDate"
+                                    value={this.state.endDate}
+                                    onChange={this.onChangeEndDate}
+                                    required
+                                   ></input>
+                            </div>
+                        </div>
+
+
+                        <div className="form-group inputheure"  style={{display: 'flex', height: 80 }}>
+                            <div>
                             <label>Heure de début: </label>
-                            <br/>
-                            <input type="time" id="HrStart" name="HrStart"
-                                value={this.state.HourStart} onChange={this.onChangeHrStart} required></input>
+                               <br/>
+                              <input type="time" id="HrStart" name="HrStart"
+                                  value={this.state.HourStart} onChange={this.onChangeHrStart} required></input>
+                            </div>
+                            <div>
+                              <label>Heure de Fin: </label>
+                                 <br/>
+                                 <input type="time" id="HrEnd" name="HrEnd"
+                                 value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required></input>
+                            </div> 
                         </div>
-                        <div className="form-group">
-                            <label>Date de Fin: </label>
-                            <br/>
-                            <input type="date" id="endDate" name="endDate"
-                                value={this.state.endDate}
-                                onChange={this.onChangeEndDate}
-                                required
-                                ></input>
-                            <br/>
-                            <label>Heure de Fin: </label>
-                            <br/>
-                            <input type="time" id="HrEnd" name="HrEnd"
-                               value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required></input>
-                        </div>
-                        <div>
+
+
+                        <div className="categorie">
                             <Select value={this.state.sport} onChangeSport={this.onChangeSport}></Select>
                         </div>
-                        
-                        <div className="form-group">
-                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark"/>
+                        <br/><br/>
+
+                        <div className="form-group" style={{ textAlign: 'center',  }}>
+                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark" style={{width: 150}}/>
                         </div>
+
+
                     </form>
                 </div>
                 {this.state.fireRedirect && <Redirect to='/login' push={true} />}
             </div>
+
+</div>
         )
     }
 }
