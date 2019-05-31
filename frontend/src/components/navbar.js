@@ -47,7 +47,6 @@ class Navbar extends Component {
                 </li>
                 <li className="navbar-item">
                     <Link to="/register" className="nav-link typologinregister">Register</Link>
->>>>>>> logo
                 </li>
             </ul>
         );
