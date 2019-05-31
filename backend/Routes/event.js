@@ -117,8 +117,8 @@ router.get('/events/findAll', (request, response) => {
     }); 
 })
 
-router.get('/event', (request, response) => {
-    let param = request.query.id;
+router.get('/event/:id', (request, response) => {
+    let param = request.params.id;
     event.findById(param, function(err, article){
         if(err) 
             {response.send(JSON.stringify({
