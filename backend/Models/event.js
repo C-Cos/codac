@@ -19,17 +19,21 @@ let event = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        required: false
+    },
     address: {
         type: String,
-        required: true
+        required: false
     },
     zipcode: {
         type: String,
-        required: true
+        required: false
     },
     city: {
         type: String,
-        required: true
+        required: false
     },
     start_date: {
         type: String,

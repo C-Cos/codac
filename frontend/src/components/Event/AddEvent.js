@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import jwt_decode from 'jwt-decode';
-import Select from "./SelectSport"
-//import Select from 'react-select';
+import Select from "./SelectSport";
+import axios from 'axios';
 
 function myDate(){
     var date = new Date().getDate(); //Current Date
@@ -61,6 +61,7 @@ export default class AddEvent extends React.Component {
         this.onChangeHrStart = this.onChangeHrStart.bind(this);
         this.onChangeHrEnd = this.onChangeHrEnd.bind(this);
         this.onChangeSport = this.onChangeSport.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -75,10 +76,17 @@ export default class AddEvent extends React.Component {
             fulldate: "",
             curdate: "",
             curHour:"",
-            help:"",
-            participant: ""
+            file: null
         }
+
     }
+
+    onChangeImage(e) {
+        this.setState({
+            file: e.target.files[0]
+        })
+    }
+
     onChangeEndDate(e) {
         this.setState({
             endDate : e.target.value
@@ -141,39 +149,40 @@ export default class AddEvent extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        const data = new FormData();
+
+        data.append('file', this.state.file);
+        data.append('username', this.state.username);
+        data.append('name', this.state.nameEvent);
+        data.append('desc', this.state.descEvent);
+        data.append('sport', this.state.sport);
+        data.append('startDate', this.state.startDate);
+        data.append('endDate', this.state.endDate);
+        data.append('startHr', this.state.HourStart);
+        data.append('endHr', this.state.HourEnd);
+
+        // const newEvent = {
+        //     username: this.state.username,
+        //     name: this.state.nameEvent,
+        //     desc: this.state.descEvent,
+        //     sport: this.state.sport,
+        //     startDate: this.state.startDate,
+        //     endDate: this.state.endDate,
+        //     startHr: this.state.HourStart,
+        //     endHr: this.state.HourEnd,
+        // }
+
+        // console.log(newEvent);
         
-        const newEvent = {
-            username: this.state.username,
-            name: this.state.nameEvent,
-            desc: this.state.descEvent,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            startHr: this.state.HourStart,
-            endHr: this.state.HourEnd,
-            participants: this.state.participant
-        }
-        console.log(newEvent);
-        /* axios.post('http://localhost:4242/article/add', newEvent)
+        axios.post('http://localhost:4242/events/addevent', data)
         .then((response) => {
-            console.log(response.data)
-            if(response.data.message === "Successful")
-            {
-                this.setState({
-                    wrong: '',
-                    fireRedirect: true
-                });
-            }
-            else
-            {
-                this.setState({
-                    wrong: response.data.message
-                });
-                console.log(response.data);
-            }
+            console.log("OK");    
+               
         })
         .catch((error) => {
-            console.error(error);
-        }); */
+            console.error("Failed");
+        });
     }
 
 
@@ -195,6 +204,10 @@ export default class AddEvent extends React.Component {
                         <div className="form-group">
                             <label>Description de l'évènement : </label>
                             <input id="descEvent" type="textarea" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Image :  </label>
+                            <input type="file" className="form-control" onChange={this.onChangeImage}/>
                         </div>
                         <div className="form-group">
                             <label>Date de début: </label>

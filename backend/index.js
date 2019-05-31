@@ -5,6 +5,9 @@ let bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const session = require('express-session');
 var cors = require('cors');
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 
 // Bypass CORS security
 app.use(cors());
