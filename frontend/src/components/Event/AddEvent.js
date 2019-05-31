@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Redirect } from 'react-router';
 import jwt_decode from 'jwt-decode';
 import Select from "./SelectSport"
