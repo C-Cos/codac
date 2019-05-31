@@ -117,6 +117,19 @@ router.get('/events', (request, response) => {
     }); 
 })
 
-
+router.get('/event', (request, response) => {
+    let param = request.query.id;
+    event.findById(param, function(err, article){
+        if(err) 
+            {response.send(JSON.stringify({
+            message: 'Oops, Something went wrong.'
+            }));
+            console.log(err)}
+        else 
+        {
+            response.json(article);   
+        }
+    }); 
+});
 
 module.exports = router;
