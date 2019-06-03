@@ -8,6 +8,8 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "express-fileupload": "^1.1.4",
+    "file": "^0.2.2",
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.5.1",
     "mdbreact": "^4.15.0",

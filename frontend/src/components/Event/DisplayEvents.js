@@ -32,12 +32,13 @@ export default class DisplayEvents extends Component{
                 <h3 className="welcomehome mb-5 text-center">Liste des évènements</h3>
                 <hr />
                     <div className="row">
-                    {
+                    {  
                             this.state.events.map(function(currentEvent, i){
                                 return(<EventContent events={currentEvent} key={i} />)
                             })
-                        }
-
+                       
+                    }
+                      
                     </div>
             </div>
         )
