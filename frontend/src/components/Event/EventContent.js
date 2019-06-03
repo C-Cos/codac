@@ -16,10 +16,11 @@ class EventContent extends Component {
         return (
             <div className="col-lg-12 mb-3">
                 <div className="card p-3">
-                    <div>
-                        <img style={{height: 150, width:"auto"}} src="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80" className="card-img-top mr-3" alt="..."/>
+                <div className="row">
+                    <div className="col-lg-3 mb3">
+                        <img style={{height: 150, width:"auto",marginTop:"40px"}} src="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80" className="card-img-top mr-3" alt="..."/>
                     </div>
-                    <div className="">
+                    <div className="col-lg-9 mb9">
                         <div className="usercardname mb-2 mt-4 p-2 font-weight-bold">{this.props.events.name}</div>
                         <hr />
                         <div>{this.props.events.desc}</div>
@@ -29,6 +30,8 @@ class EventContent extends Component {
                     </div>
                     
                 </div>
+                </div>
+
             </div>
         );
     }
