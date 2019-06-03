@@ -1,4 +1,4 @@
-.modal {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -28,6 +28,7 @@
 }
 
 textarea{
+    border-radius: 10px;
     border-radius: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
