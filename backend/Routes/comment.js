@@ -35,11 +35,8 @@ router.post('/comment', (request, response) => {
 
 //edit comment
 router.put('/comment', (request, response) => {
-    var query = { _id: request.body.id };
-    // console.log(query);
-    var update = {
-        description: request.body.description};
-
+    var query = { _id: request.body.data.id };
+    var update = {description: request.body.data.description};
     comment.findOneAndUpdate(query, update, function(err, comment){
         if(err){
             console.log(err);
@@ -57,7 +54,8 @@ router.put('/comment', (request, response) => {
 
 //delete comment
 router.delete('/comment', (request, response) => {
-    let param = request.query.id;
+    //console.log(request.body.id);
+    let param = request.body.id;
     comment.findByIdAndRemove(param, function(err){
         if(err){
             console.log(err);
@@ -76,7 +74,9 @@ router.delete('/comment', (request, response) => {
 //get comments linked to an event
 router.get('/comment', (request, response) => {
     let param = request.query.idEvent;
-    comment.find({idEvent: param}, function(err, comments){
+    comment.find({idEvent: param})
+            .sort({created_date: -1})
+            .exec(function(err, comments){
         if(err) console.log(err);
         else{
             response.status(200).json(comments);
