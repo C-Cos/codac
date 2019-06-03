@@ -13,6 +13,7 @@ import userProfile from "./components/Profile/UserProfile";
 import addEvent from "./components/Event/AddEvent";
 import events from "./components/Event/DisplayEvents";
 import event from "./components/Event/DisplayOneEvent";
+import comment from "./components/Comments/tempcomment"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/addevent" component={addEvent}/>
         <Route path="/events" component={events}/>
         <Route path="/event/:id" component={event}/>
+        <Route path="/comment" component={comment}/>
         <Footer/>
     </Router>
   )

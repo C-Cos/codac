@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './Comment.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class DisplayComments extends Component{
@@ -77,16 +77,14 @@ export default class DisplayComments extends Component{
         return(
             <div className="container" style={{marginBottom: "30px"}}>
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                    <form onSubmit={this.onSubmit} style={{paddingLeft: 100}}>
-                        <label>Modifier votre commentaire :</label>
+                    <form onSubmit={this.onSubmit} style={{textAlign: "center"}}>
+                        <p style={{textAlign: "center"}}>Modifiez votre commentaire</p>
                         <br/>
                         <div className="form-group">
-                            <textarea rows = "5" cols = "50" name = "NewComment" value={this.state.newComment} onChange={this.onChangeNewComment}> </textarea>
+                            <textarea name = "NewComment" value={this.state.newComment} onChange={this.onChangeNewComment}> </textarea>
                         </div>
                         <br/>
-                        <div className="form-group">
-                            <input id="commentSubmit" type="submit" value="Modifier"/>
-                        </div>
+                        <button type="button" className="btn btn-outline-dark edit" >Modifier</button>
                     </form>
                 </Modal>
                 <hr />
@@ -121,8 +119,18 @@ const Modal = ({ handleClose, show, children }) => {
     return (
       <div className={showHideClassName}>
         <section className="modal-main">
-            <button type="button" className="btn btn-outline-dark" onClick={handleClose}>close</button>
-            {children}
+            <button onClick={handleClose} className="exit">
+                <FontAwesomeIcon icon={faTimes} style={{fontSize:"20px", color:"black", margin:"10px"}}/>
+            </button>
+            <div className="container">
+                <div className="row">
+                    <div className="col-2">
+                    </div>
+                    <div className="col-8">
+                        {children}
+                    </div>
+                </div>
+            </div>
         </section>
       </div>
     );

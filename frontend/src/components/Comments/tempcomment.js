@@ -99,7 +99,7 @@ export default class Comments extends Component{
                         <div className="col">
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
-                                    <label>Entrer un commentaire : </label>
+                                    <label>Entrez un commentaire : </label>
                                     <br/>
                                     <textarea rows = "5" cols = "70" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
                                     <br/>
