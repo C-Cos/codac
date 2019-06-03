@@ -10,21 +10,22 @@ process.env.SECRET_KEY = 'secret';
 router.post('/events/addevent',(request, response) => {
 
     console.log(request.files.file);
-
-   request.files.file.mv('../Public/'+request.files.file.name)
-   .then(res=>{
-       console.log("success "+res)
-   })
-   .catch(err=>{
-       console.log("failed "+err)
-   });
-
+    if(request.files!==undefined){
+        request.files.file.mv('../Public/'+request.files.file.name)
+        .then(res => {
+            console.log("Upload successfull")
+        })
+        .catch(err => {
+            console.log("Upload failed")
+        });
+    }
+    
     var newEvent = new event({
         username: request.body.username,
         name: request.body.name,
         desc: request.body.desc,
         category: request.body.sport,
-        image: request.files.file.name,
+        //image: request.files.file.name,
         //address: request.body.address,
         //zipcode: request.body.zipcode,
         //city: request.body.city,
