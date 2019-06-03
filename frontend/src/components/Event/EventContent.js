@@ -17,7 +17,7 @@ class EventContent extends Component {
             <div className="col-lg-12 mb-3">
                 <div className="card p-3">
                     <div>
-                        <img style={{height: 150, width:"auto"}} src="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80" className="card-img-top mr-3" alt="..."/>
+                        <img style={{height: 150, width:"auto"}} src={"http://localhost:4242"+this.props.events.image} className="card-img-top mr-3" alt={this.props.events.name}/>
                     </div>
                     <div className="">
                         <div className="usercardname mb-2 mt-4 p-2 font-weight-bold">{this.props.events.name}</div>

@@ -1,4 +1,5 @@
 const config = require('./Config/config.js');
+var express = require('express');
 let app = require('express')();
 const path = require('path');
 let bodyParser = require("body-parser");
@@ -11,6 +12,8 @@ app.use(fileUpload());
 
 // Bypass CORS security
 app.use(cors());
+
+app.use(express.static('public'));
 
 // Mongoose DB connection
 mongoose.connect("mongodb://localhost:27042/sportDB",{useCreateIndex: true,useNewUrlParser:true});

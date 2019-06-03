@@ -9,15 +9,23 @@ process.env.SECRET_KEY = 'secret';
 //ADD AN EVENT
 router.post('/events/addevent',(request, response) => {
 
-    console.log(request.files.file);
-    if(request.files!==undefined){
-        request.files.file.mv('../Public/'+request.files.file.name)
+    //console.log(request.files.file);
+    //console.log(request.files);
+
+    let image;
+
+    if(request.files!==null){
+        request.files.file.mv('./public/images/'+request.files.file.name)
         .then(res => {
-            console.log("Upload successfull")
+            console.log("Upload successfull");
         })
         .catch(err => {
-            console.log("Upload failed")
+            console.log("Upload failed");
         });
+        image= "/images/"+request.files.file.name;
+    }
+    else {
+        image="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80";
     }
     
     var newEvent = new event({
@@ -25,7 +33,7 @@ router.post('/events/addevent',(request, response) => {
         name: request.body.name,
         desc: request.body.desc,
         category: request.body.sport,
-        //image: request.files.file.name,
+        image: image,
         //address: request.body.address,
         //zipcode: request.body.zipcode,
         //city: request.body.city,
