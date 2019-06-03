@@ -260,11 +260,14 @@ export default class AddEvent extends React.Component {
         
         axios.post('http://localhost:4242/events/addevent', data)
         .then((response) => {
-            console.log("OK");    
+            //console.log("OK"); 
+            this.setState({
+                fireRedirect: true
+            });   
                
         })
         .catch((error) => {
-            console.error("Failed");
+            console.log(error);
         });
     }
       render() {
@@ -290,18 +293,6 @@ export default class AddEvent extends React.Component {
                             <label>Image :  </label>
                             <input type="file" className="form-control" onChange={this.onChangeImage}/>
                         </div>
-                        <div className="form-group">
-                            <label>Date de début: </label>
-                            <br/>
-                            <input type="date" id="startDate" name="startDate"
-                                value={this.state.startDate}
-                                onChange={this.onChangeStartDate}
-                                required
-                                ></input>
-                            <br/>
-                        <br/>
-
-
                         <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
                             
                             <div>
@@ -351,10 +342,9 @@ export default class AddEvent extends React.Component {
                             <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark" style={{width: 150}}/>
                         </div>
 
-                    </div>
                     </form>
                 </div>
-                {this.state.fireRedirect && <Redirect to='/login' push={true} />}
+                {this.state.fireRedirect && <Redirect to='/events' push={true} />}
             </div>
         </div>
         )
