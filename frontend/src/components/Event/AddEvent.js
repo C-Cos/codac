@@ -50,10 +50,10 @@ function myHour(){
         return (hours + ":" + min)
     }
 }
-function mySplit(date){
-    //var str = JSON.stringify(date);
-    return date.split('-');
-}
+// function mySplit(date){
+//     //var str = JSON.stringify(date);
+//     return date.split('-');
+// }
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -90,96 +90,108 @@ export default class AddEvent extends React.Component {
             file: e.target.files[0]
         })
     }
+
     onChangeStartDate(e) {
-        var newD = mySplit(e.target.value);
-        var start = mySplit(this.state.startDate);
-        if (newD[0] >= start[0]) {
-            if(newD[1] > start[1]) {
-                if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-                    this.setState({
-                        startDate : e.target.value
-                    });
-                }
-                else {
-                    alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-                    this.setState({
-                        startDate : myDate()
-                    });
-                }   
-            }
-            else if(newD[1] === start[1]) {
-                if(newD[2] >= start[2]) {
-                    this.setState({
-                        startDate : e.target.value
-                    });
-                } 
-                else {
-                    alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-                    this.setState({
-                        startDate : myDate()
-                    });
-                }    
-            }
-            else  {
-                alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-                this.setState({
-                    startDate : myDate()
-                });
-            }
-        }
-        else  {
-            alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-            this.setState({
-                startDate : myDate()
-            });
-        }
+        this.setState({
+            startDate : e.target.value
+        });
     }
 
     onChangeEndDate(e) {
-        var newD = mySplit(e.target.value);
-        var start = mySplit(this.state.startDate);
-        if (newD[0] >= start[0]) {
-            if(newD[1] > start[1]) {
-                if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-                    this.setState({
-                        endDate : e.target.value
-                    });
-                }
-                else {
-                    alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-                    this.setState({
-                        endDate : myDate()
-                    });
-                }   
-            }
-            else if(newD[1] === start[1]) {
-                if(newD[2] >= start[2]) {
-                    this.setState({
-                        endDate : e.target.value
-                    });
-                } 
-                else {
-                    alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-                    this.setState({
-                        endDate : myDate()
-                    });
-                }    
-            }
-            else  {
-                alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-                this.setState({
-                    endDate : myDate()
-                });
-            }
-        }
-        else  {
-            alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-            this.setState({
-                endDate : myDate()
-            });
-        }
-        
+        this.setState({
+            endDate: e.target.value
+        });
     }
+    // onChangeStartDate(e) {
+    //     var newD = mySplit(e.target.value);
+    //     var start = mySplit(this.state.startDate);
+    //     if (newD[0] >= start[0]) {
+    //         if(newD[1] > start[1]) {
+    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
+    //                 this.setState({
+    //                     startDate : e.target.value
+    //                 });
+    //             }
+    //             else {
+    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+    //                 this.setState({
+    //                     startDate : myDate()
+    //                 });
+    //             }   
+    //         }
+    //         else if(newD[1] === start[1]) {
+    //             if(newD[2] >= start[2]) {
+    //                 this.setState({
+    //                     startDate : e.target.value
+    //                 });
+    //             } 
+    //             else {
+    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+    //                 this.setState({
+    //                     startDate : myDate()
+    //                 });
+    //             }    
+    //         }
+    //         else  {
+    //             alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+    //             this.setState({
+    //                 startDate : myDate()
+    //             });
+    //         }
+    //     }
+    //     else  {
+    //         alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
+    //         this.setState({
+    //             startDate : myDate()
+    //         });
+    //     }
+    // }
+
+    // onChangeEndDate(e) {
+    //     var newD = mySplit(e.target.value);
+    //     var start = mySplit(this.state.startDate);
+    //     if (newD[0] >= start[0]) {
+    //         if(newD[1] > start[1]) {
+    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
+    //                 this.setState({
+    //                     endDate : e.target.value
+    //                 });
+    //             }
+    //             else {
+    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+    //                 this.setState({
+    //                     endDate : myDate()
+    //                 });
+    //             }   
+    //         }
+    //         else if(newD[1] === start[1]) {
+    //             if(newD[2] >= start[2]) {
+    //                 this.setState({
+    //                     endDate : e.target.value
+    //                 });
+    //             } 
+    //             else {
+    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+    //                 this.setState({
+    //                     endDate : myDate()
+    //                 });
+    //             }    
+    //         }
+    //         else  {
+    //             alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+    //             this.setState({
+    //                 endDate : myDate()
+    //             });
+    //         }
+    //     }
+    //     else  {
+    //         alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
+    //         this.setState({
+    //             endDate : myDate()
+    //         });
+    //     }
+        
+    // }
     onChangeHrStart(e) {
         this.setState({
             HourStart: e.target.value
@@ -244,23 +256,10 @@ export default class AddEvent extends React.Component {
         data.append('endDate', this.state.endDate);
         data.append('startHr', this.state.HourStart);
         data.append('endHr', this.state.HourEnd);
-
-        // const newEvent = {
-        //     username: this.state.username,
-        //     name: this.state.nameEvent,
-        //     desc: this.state.descEvent,
-        //     sport: this.state.sport,
-        //     startDate: this.state.startDate,
-        //     endDate: this.state.endDate,
-        //     startHr: this.state.HourStart,
-        //     endHr: this.state.HourEnd,
-        // }
-
-        // console.log(newEvent);
         
         axios.post('http://localhost:4242/events/addevent', data)
         .then((response) => {
-            //console.log("OK"); 
+            console.log(response); 
             this.setState({
                 fireRedirect: true
             });   
@@ -268,6 +267,7 @@ export default class AddEvent extends React.Component {
         })
         .catch((error) => {
             console.log(error);
+
         });
     }
       render() {
@@ -283,11 +283,11 @@ export default class AddEvent extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Nom de l'évènement :  </label>
-                            <input id="nameEvent" type="text" className="form-control" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
+                            <input id="nameEvent" type="text" className="form-control" minlength="3" maxlength="20" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
                         </div>
                         <div className="form-group">
                             <label>Description de l'évènement : </label>
-                            <input id="descEvent" type="textarea" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent} required/>
+                            <input id="descEvent" min="100" max="1000" type="textarea" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent} required/>
                         </div>
                         <div className="form-group">
                             <label>Image :  </label>
@@ -299,18 +299,20 @@ export default class AddEvent extends React.Component {
                              <label>Date de début: </label>
                              <br/>
                              <input type="date" id="startDate" name="startDate"
-                                    value={this.state.startDate}
-                                 onChange={this.onChangeStartDate}
-                                    required
-                                    ></input>
+                                defaultValue={myDate()}
+                                onChange={this.onChangeStartDate}
+                                min={myDate()}
+                                required
+                            ></input>
                             </div>
 
                             <div>
                                <label>Date de fin: </label>
                                <br/>
                               <input type="date" id="endDate" name="endDate"
-                                    value={this.state.endDate}
+                                    defaultValue={this.state.startDate}
                                     onChange={this.onChangeEndDate}
+                                    min={this.state.startDate}
                                     required
                                    ></input>
                             </div>

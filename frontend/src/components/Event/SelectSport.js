@@ -23,10 +23,10 @@ export default class SelectSport extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>Choisir la category "Sport" de l'évènement : </label>
+                <label>Choisir la categorie "Sport" de l'évènement : </label>
                 <br/>
-                <select value={this.props.value} onChange={this.props.onChangeSport}>
-                    <option value="null"> Sélectionner un sport </option>
+                <select value={this.props.value} onChange={this.props.onChangeSport} required>
+                    <option value=""> Sélectionner un sport </option>
                     {this.state.sports.map(function(opt){
                         return <option key={opt._id}
                         value={opt.name}>{opt.name}</option>;
