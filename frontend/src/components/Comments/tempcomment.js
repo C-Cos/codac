@@ -101,7 +101,7 @@ export default class Comments extends Component{
                                 <div className="form-group">
                                     <label>Entrez un commentaire : </label>
                                     <br/>
-                                    <textarea rows = "5" cols = "70" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
+                                    <textarea rows = "3" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
                                     <br/>
                                 </div>   
                                 <div className="form-group">
