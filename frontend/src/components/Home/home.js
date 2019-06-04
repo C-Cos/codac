@@ -34,9 +34,6 @@ export default class Home extends React.Component {
                         </p>
                         <p className="paragraphe2" style={{textAlign: "center", color: "white", fontSize:"20px", justifyContent: "center"}}>Lorem ipsum dolor sit amet 
                         </p>
-                        <p className="paragraphe2" style={{textAlign: "center", color: "white", fontSize:"20px", justifyContent: "center"}}>Lorem ipsum dolor sit amet 
->>>>>>> logo
-                        </p>
                     </div>
                 </div>
 
