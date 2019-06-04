@@ -218,6 +218,10 @@ export default class AddEvent extends React.Component {
         });
     }
     componentDidMount(){
+        if(localStorage.usertoken===undefined) {
+            this.props.history.push("/");
+        };
+
         const token = localStorage.usertoken;
         if(!token){
             this.props.history.push('/login')
@@ -283,7 +287,7 @@ export default class AddEvent extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Nom de l'évènement :  </label>
-                            <input id="nameEvent" type="text" className="form-control" minlength="3" maxlength="20" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
+                            <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="20" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
                         </div>
                         <div className="form-group">
                             <label>Description de l'évènement : </label>

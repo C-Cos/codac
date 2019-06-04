@@ -37,7 +37,6 @@ export default class Login extends React.Component {
         login(user)
         .then((response) => {
                 localStorage.setItem('usertoken', response.data.token)
-                alert('Connection réussie !')
                 this.setState({
                     wrong: '',
                     fireRedirect: true

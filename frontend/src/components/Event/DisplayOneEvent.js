@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import '../Profile/Profile.css';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 

@@ -25,6 +25,10 @@ export default class UserProfile extends React.Component {
     }
 
     componentDidMount(){
+        if(localStorage.usertoken===undefined) {
+            this.props.history.push("/");
+        };
+
         const token = localStorage.usertoken;
         if(token){
             const decoded = jwt_decode(token);
@@ -121,7 +125,7 @@ export default class UserProfile extends React.Component {
                         <div className="col-lg-6">
                             <div className="card">
                                 <div className="p-4 encart-img">
-                                    <img className="card-img-top" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="Card image cap"/>
+                                    <img className="card-img-top" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="Card cap"/>
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">Informations de profil</h5>
@@ -139,8 +143,8 @@ export default class UserProfile extends React.Component {
                                     <li className="list-group-item">Vestibulum at eros</li>
                                 </ul>
                                 <div className="card-body">
-                                    <a href="#" class="card-link">Card link</a>
-                                    <a href="#" class="card-link">Another link</a>
+                                    <a href="/" className="card-link">Card link</a>
+                                    <a href="/" className="card-link">Another link</a>
                                 </div>
                             </div> 
                         </div>
@@ -150,11 +154,11 @@ export default class UserProfile extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Adresse :  </label>
-                            <input type="text" className="form-control" autocomplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
+                            <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
                         </div>
                         <div className="form-group">
                             <label>Code postal: </label>
-                            <input type="text" maxlength="5" className="form-control" autocomplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
+                            <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
                         </div>
                         <div className="form-group">
                             <label>Ville : </label>
