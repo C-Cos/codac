@@ -66,6 +66,9 @@ export default class AddEvent extends React.Component {
         this.onChangeHrEnd = this.onChangeHrEnd.bind(this);
         this.onChangeSport = this.onChangeSport.bind(this);
         this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.onChangeZipcode = this.onChangeZipcode.bind(this);
+        this.onChangeCity = this.onChangeCity.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -73,6 +76,9 @@ export default class AddEvent extends React.Component {
             nameEvent: "",
             descEvent: "",
             sport: "",
+            address: "",
+            zipcode: "",
+            city:"",
             HourEnd: "",
             HourStart: "",
             startDate: "",
@@ -89,6 +95,46 @@ export default class AddEvent extends React.Component {
         this.setState({
             file: e.target.files[0]
         })
+    }
+
+    onChangeAddress(e) {
+        this.setState({
+            address: e.target.value
+        });
+    }
+
+    onChangeZipcode(e) {
+        this.setState({
+            zipcode: e.target.value
+        });
+
+        if (e.target.value.length === 5) {
+
+            fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
+                {
+                    "method": "GET",
+                
+                })
+            .then(response => response.json())
+            .then(responseData => {
+                this.setState({city : responseData.cities[0].city});
+            
+                })
+            .catch(function(err) {
+                alert("Aucun ville ne correspond à votre recherche");
+                console.log(err);
+            });
+    }
+    else
+    {
+        this.setState({city : ''});
+    }
+    }
+
+    onChangeCity(e) {
+        this.setState({
+            city: e.target.value
+        });
     }
 
     onChangeStartDate(e) {
@@ -260,6 +306,9 @@ export default class AddEvent extends React.Component {
         data.append('endDate', this.state.endDate);
         data.append('startHr', this.state.HourStart);
         data.append('endHr', this.state.HourEnd);
+        data.append('address', this.state.address);
+        data.append('zipcode', this.state.zipcode);
+        data.append('city', this.state.city);
         
         axios.post('http://localhost:4242/events/addevent', data)
         .then((response) => {
@@ -293,15 +342,33 @@ export default class AddEvent extends React.Component {
                             <label for="descEvent">Description de l'évènement : </label>
                             <textarea id="descEvent" rows="2" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent}></textarea>
                         </div>
-                        <div class="form-row inputdate">
-                            <div class="form-group col-md-6">
-                                <label for="startDate">Date de début:</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate"
-                                    defaultValue={myDate()}
-                                    onChange={this.onChangeStartDate}
-                                    min={myDate()}
-                                    required
-                                />
+                        <div className="form-group">
+                            <label>Image :  </label>
+                            <input type="file" className="form-control" onChange={this.onChangeImage}/>
+                        </div>
+                        <div className="form-group">
+                            <label>Adresse :  </label>
+                            <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Code postal: </label>
+                            <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
+                        </div>
+                        <div className="form-group">
+                            <label>Ville : </label>
+                            <input type="text" className="form-control" value={this.state.city} onChange={this.onChangeCity} required/>
+                        </div>
+                        <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
+                            
+                            <div>
+                             <label>Date de début: </label>
+                             <br/>
+                             <input type="date" id="startDate" name="startDate"
+                                defaultValue={myDate()}
+                                onChange={this.onChangeStartDate}
+                                min={myDate()}
+                                required
+                            ></input>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="endDate">Date de fin:</label>

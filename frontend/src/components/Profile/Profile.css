@@ -390,7 +390,7 @@
 
 /* Default icon URLs */
 .leaflet-default-icon-path {
-	background-image: url(https://image.flaticon.com/icons/svg/447/447031.svg);
+	background-image: url("https://image.flaticon.com/icons/svg/447/447031.svg");
 	}
 
 
