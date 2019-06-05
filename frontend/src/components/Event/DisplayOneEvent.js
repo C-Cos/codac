@@ -9,7 +9,7 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 import MediaQuery from 'react-responsive';
 import L from 'leaflet';
 import jwt_decode from 'jwt-decode';
-
+import Comment from '../Comments/tempcomment';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import jwt_decode from 'jwt-decode';
 import './Profile.css';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import axios from 'axios';
 
 
 export default class UserProfile extends React.Component {
