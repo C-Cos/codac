@@ -175,7 +175,7 @@ export default class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Email : </label>
-                            <input id="emailRegister" type="email" className="form-control"value={this.state.email} onChange={this.onChangeEmail} required/>
+                            <input id="emailRegister" type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} required/>
                         </div>
                         <div className="form-group">
                             <label>Code postal: </label>

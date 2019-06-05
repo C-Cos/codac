@@ -13,7 +13,9 @@ export default class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            cred: ''
+            cred: '',
+            errorUser: false,
+            errorPassword: false
         }
     }
     onChangeEmail(e) {
@@ -43,7 +45,19 @@ export default class Login extends React.Component {
                 });
         })
         .catch((error) => {
-            alert(error.response.data.message);
+            //alert(error.response.data.message);
+            if(error.response.data.message==="User error") {
+                this.setState({
+                    errorUser: true,
+                    errorPassword: false
+                });
+            }
+            else if(error.response.data.message==="Password error") {
+                this.setState({
+                    errorPassword: true,
+                    errorUser: false
+                });
+            }
         });
 
 
@@ -59,6 +73,12 @@ export default class Login extends React.Component {
             <div id="form" className="container">
                 <h3 style={{marginTop: 30, textAlign: "center"}} > Connection</h3>
                 <div style={{marginTop: 50}}>
+                    {this.state.errorUser===true ? <div className="alert alert-danger" role="alert">
+                    Ce nom d'utilisateur n'existe pas
+                    </div> : <div></div>}
+                    {this.state.errorPassword===true ? <div className="alert alert-danger" role="alert">
+                    Le password entré est incorrect
+                    </div> : <div></div>}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Email: </label>

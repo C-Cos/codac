@@ -8,6 +8,8 @@ const session = require('express-session');
 var cors = require('cors');
 const fileUpload = require('express-fileupload');
 
+mongoose.set('useFindAndModify', false);
+
 app.use(fileUpload());
 
 // Bypass CORS security

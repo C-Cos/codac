@@ -6,6 +6,7 @@ const user = require('../Models/user');
 //const hashPassword = require('../Functions/usersfunctions.js');
 const createUser = require('../Functions/usersfunctions.js');
 const verifyPassword = require('../Functions/usersfunctions.js');
+var ObjectId = require('mongodb').ObjectID
 
 process.env.SECRET_KEY = 'secret';
 
@@ -47,14 +48,14 @@ router.post('/users/login', (request, response) => {
         else if (user === null) 
         {
             response.status(401).send(JSON.stringify({
-                message: "Cet utilisateur n'existe pas"
+                message: "User error"
             }));
         }
         else
         {
             if(!verifyPassword.verifyPassword(request.body.password,user.password)){
                 response.status(401).send(JSON.stringify({
-                    message: "Le mot de passe ne correspond pas"
+                    message: "Password error"
                 }));
             }
             else{
@@ -87,25 +88,44 @@ router.get('/users/findAllUsers', (request, response) => {
     });
 })
 
-/* //DELETE USER
-router.delete('/users/delete', (request, response) => {
-     let param = request.query.email;
-     user.findByIdAndRemove(param, function(err){
-         if(err) 
-         {   
-            response.status(401).send(JSON.stringify({
-                message: "Nous n'avons pas pu supprimer votre compte."
+//DELETE A USER
+router.delete('/users/:id', (request, response) => {
+    user.findByIdAndRemove(request.params.id, function(err){
+        if(err){
+            console.log(err);
+            response.status(400).send(JSON.stringify({
+                message: "Error deleting user"
             }));
-         }
+        }
+        else {
+            console.log(response);
+            response.status(200).send(JSON.stringify({
+                message: "Successful delete"
+            }));
+        }
+    })
+}); 
 
-         else {
-            response.status(200).send(
-                JSON.stringify({
-                    message: 'Successful',
-            }));
-         }
-     }); 
- }) */
+//DELETE USER
+router.delete('/users/delete', (request, response) => {
+     let token=localStorage.usertoken;
+     console.log(token);
+    //  user.findByIdAndRemove(param, function(err){
+    //      if(err) 
+    //      {   
+    //         response.status(401).send(JSON.stringify({
+    //             message: "Nous n'avons pas pu supprimer votre compte."
+    //         }));
+    //      }
+
+    //      else {
+    //         response.status(200).send(
+    //             JSON.stringify({
+    //                 message: 'Successful',
+    //         }));
+    //      }
+    //  }); 
+ })
 
 // //FIND USER BY EMAIL
 // router.get('/users/findUsers', (request, response) => {

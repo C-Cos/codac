@@ -3,14 +3,12 @@ const router = express.Router();
 let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 event = require('../Models/event');
+var ObjectId = require('mongodb').ObjectID
 
 process.env.SECRET_KEY = 'secret';
 
 //ADD AN EVENT
 router.post('/events/addevent',(request, response) => {
-
-    //console.log(request.files.file);
-    //console.log(request.files);
 
     let image;
 
@@ -22,7 +20,7 @@ router.post('/events/addevent',(request, response) => {
         .catch(err => {
             console.log("Upload failed");
         });
-        image= "/images/"+request.files.file.name;
+        image= "http://localhost:4242/images/"+request.files.file.name;
     }
     else {
         image="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80";
@@ -61,20 +59,43 @@ router.post('/events/addevent',(request, response) => {
 })
 
 //EDIT AN EVENT
-router.put('/events', (request, response) => {
-    var query = { _id: request.body.id };
+router.put('/event/:id', (request, response) => {
+    let image;
 
-    var update = {
-        title: request.body.title,
-        description: request.body.description,
-        category: request.body.category,
-        address: request.body.address,
-        zipcode: request.body.zipcode,
-        city: request.body.city,
-        start_at: request.body.start_at,
-        end_at: request.body.end_at}
+    if(request.files!==null){
+        request.files.file.mv('./public/images/'+request.files.file.name)
+        .then(res => {
+            console.log("Upload successfull");
+        })
+        .catch(err => {
+            console.log("Upload failed");
+        });
+        image= "/images/"+request.files.file.name;
+    }
+    else {
+        image=request.body.image;
+    }
+    
+    const updatedEvent = {
+        username: request.body.username,
+        name: request.body.name,
+        desc: request.body.desc,
+        category: request.body.sport,
+        image: image,
+        // address: request.body.address,
+        // zipcode: request.body.zipcode,
+        // city: request.body.city,
+        start_time: request.body.startHr,
+        end_time: request.body.endHr,
+        start_date: request.body.startDate,
+        end_date: request.body.endDate
+        // need_help: request.body.help,
+        // need_players: request.body.participants
+        };
+        
+        let id = new ObjectId(request.params.id);
 
-    event.findOneAndUpdate(query, update, function(err, event){
+    event.updateOne({_id:id}, updatedEvent, function(err, event){
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
@@ -91,9 +112,8 @@ router.put('/events', (request, response) => {
 })
 
 //DELETE AN EVENT
-router.delete('/events', (request, response) => {
-    var query = { _id: request.body.id };
-    event.findByIdAndRemove(query, function(err){
+router.delete('/event/:id', (request, response) => {
+    event.findByIdAndRemove(request.params.id, function(err){
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
@@ -108,7 +128,7 @@ router.delete('/events', (request, response) => {
     })
 }); 
 
-//GET AN EVENT
+//GET ALL EVENTS
 router.get('/events/findAll', (request, response) => {
     event.find(function(err, events){
         if(err){
@@ -126,17 +146,17 @@ router.get('/events/findAll', (request, response) => {
     }); 
 })
 
+//GET AN EVENT
 router.get('/event/:id', (request, response) => {
-    let param = request.params.id;
-    event.findById(param, function(err, article){
-        if(err) 
-            {response.send(JSON.stringify({
-            message: 'Oops, Something went wrong.'
-            }));
-            console.log(err)}
-        else 
-        {
-            response.json(article);   
+    event.findById(request.params.id, function(err, event){
+        if(err) {
+            response.status(400).send(JSON.stringify({
+                message: 'Oops, Something went wrong.'
+                }));
+                console.log(err)
+        }
+        else {
+            response.status(200).json(event);   
         }
     }); 
 });

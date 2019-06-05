@@ -25,16 +25,25 @@ export default class DisplayOneEvent extends Component {
         
         super(props);
         this.state = {
+            username:"",
             event: [],
             lon:'', 
             lat:'',
             zoom : 17
         };
 
+        this.deleteEvent = this.deleteEvent.bind(this);
+        this.editEvent = this.editEvent.bind(this);
+
     }
 
   componentDidMount(){
 
+        if(localStorage.usertoken!==undefined){
+            const decoded = jwt_decode(localStorage.usertoken);
+            this.setState({username: decoded.username});
+        }
+        
         axios.get('http://localhost:4242/event/'+this.props.match.params.id)
             .then(response => {
                 this.setState({event: response.data});
@@ -63,7 +72,21 @@ export default class DisplayOneEvent extends Component {
         
     }
 
+    deleteEvent(e) {
 
+        axios.delete('http://localhost:4242/event/'+this.state.event._id)
+            .then(response => {
+                console.log(response);
+                this.props.history.push("/events");
+            })
+            .catch(function(error){
+                console.log(error);
+        })
+    }
+
+    editEvent(e) {
+        this.props.history.push("/editevent/"+this.state.event._id);
+    }
 
     render() {
         const position = [this.state.lat, this.state.lon]
@@ -71,6 +94,7 @@ export default class DisplayOneEvent extends Component {
             <div className="container">
                 <div className="jumbotron mt-3">
                     <div className="row">
+                                <button type="button" className="btn btn-primary mr-3">Soutenir</button><button type="button" className="btn btn-success">Participer</button>{this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} className="btn btn-danger mr-3">Effacer</button><button type="button" onClick={this.editEvent} className="btn btn-secondary mr-3">Editer</button></div> : <div></div>}
                         <div className="col-lg-4">
                             <div className="card">
                                 <div class="card-header">

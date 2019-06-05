@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 import Select from "./SelectSport";
 import axios from 'axios';
 
+
+
 function myDate(){
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
@@ -50,10 +52,6 @@ function myHour(){
         return (hours + ":" + min)
     }
 }
-// function mySplit(date){
-//     //var str = JSON.stringify(date);
-//     return date.split('-');
-// }
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -89,6 +87,33 @@ export default class AddEvent extends React.Component {
             file: null
         }
 
+    }
+
+    componentDidMount(){
+
+        const token = localStorage.usertoken;
+        console.log('token: ', token);
+        if(!token){
+            this.props.history.push('/login')
+        }
+        else {
+            const decoded = jwt_decode(token);
+            this.setState({
+                username : decoded.username,
+            })
+        }
+        this.setState({
+            endDate: myDate()
+        })
+        this.setState({
+            startDate: myDate()
+        })
+        this.setState({
+            HourEnd: myHour()
+        })
+        this.setState({
+            HourStart: myHour()
+        })
     }
 
     onChangeImage(e) {
@@ -148,96 +173,7 @@ export default class AddEvent extends React.Component {
             endDate: e.target.value
         });
     }
-    // onChangeStartDate(e) {
-    //     var newD = mySplit(e.target.value);
-    //     var start = mySplit(this.state.startDate);
-    //     if (newD[0] >= start[0]) {
-    //         if(newD[1] > start[1]) {
-    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     startDate : e.target.value
-    //                 });
-    //             }
-    //             else {
-    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //                 this.setState({
-    //                     startDate : myDate()
-    //                 });
-    //             }   
-    //         }
-    //         else if(newD[1] === start[1]) {
-    //             if(newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     startDate : e.target.value
-    //                 });
-    //             } 
-    //             else {
-    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //                 this.setState({
-    //                     startDate : myDate()
-    //                 });
-    //             }    
-    //         }
-    //         else  {
-    //             alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //             this.setState({
-    //                 startDate : myDate()
-    //             });
-    //         }
-    //     }
-    //     else  {
-    //         alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //         this.setState({
-    //             startDate : myDate()
-    //         });
-    //     }
-    // }
-
-    // onChangeEndDate(e) {
-    //     var newD = mySplit(e.target.value);
-    //     var start = mySplit(this.state.startDate);
-    //     if (newD[0] >= start[0]) {
-    //         if(newD[1] > start[1]) {
-    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     endDate : e.target.value
-    //                 });
-    //             }
-    //             else {
-    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //                 this.setState({
-    //                     endDate : myDate()
-    //                 });
-    //             }   
-    //         }
-    //         else if(newD[1] === start[1]) {
-    //             if(newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     endDate : e.target.value
-    //                 });
-    //             } 
-    //             else {
-    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //                 this.setState({
-    //                     endDate : myDate()
-    //                 });
-    //             }    
-    //         }
-    //         else  {
-    //             alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //             this.setState({
-    //                 endDate : myDate()
-    //             });
-    //         }
-    //     }
-    //     else  {
-    //         alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //         this.setState({
-    //             endDate : myDate()
-    //         });
-    //     }
-        
-    // }
+    
     onChangeHrStart(e) {
         this.setState({
             HourStart: e.target.value
@@ -263,34 +199,6 @@ export default class AddEvent extends React.Component {
             sport: e.target.value
         });
     }
-    componentDidMount(){
-        if(localStorage.usertoken===undefined) {
-            this.props.history.push("/");
-        };
-
-        const token = localStorage.usertoken;
-        if(!token){
-            this.props.history.push('/login')
-        }
-        else {
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-            })
-        }
-        this.setState({
-            endDate: myDate()
-        })
-        this.setState({
-            startDate: myDate()
-        })
-        this.setState({
-            HourEnd: myHour()
-        })
-        this.setState({
-            HourStart: myHour()
-        })
-    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -315,14 +223,13 @@ export default class AddEvent extends React.Component {
             console.log(response); 
             this.setState({
                 fireRedirect: true
-            });   
-               
+            });               
         })
         .catch((error) => {
             console.log(error);
-
         });
     }
+    
       render() {
         return (
         <div className="traitnoir">

@@ -10,31 +10,31 @@ export default class UserProfile extends React.Component {
         this.onChangeAddress = this.onChangeAddress.bind(this);
         this.onChangeZipcode = this.onChangeZipcode.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
+        this.editUser = this.editUser.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username:'',
+            id:'',
             email:'',
             address:'',
             zipcode:'',
             city:'',
             lon:2.363152, 
             lat:48.815580,
-            zoom: 17,
+            zoom: 17
         }
     }
 
     componentDidMount(){
-        if(localStorage.usertoken===undefined) {
-            this.props.history.push("/");
-        };
-
         const token = localStorage.usertoken;
         if(token){
             const decoded = jwt_decode(token);
             this.setState({
                 username : decoded.username,
                 email : decoded.email,
+                id: decoded._id
             })
             console.log(decoded.username);
         }
@@ -83,6 +83,28 @@ export default class UserProfile extends React.Component {
         });
     }
 
+    deleteUser(e) {
+        if(window.confirm("Etes-vous sûr de vouloir supprimer ce compte ?")) {
+            console.log("Suppression du compte de l'utilisateur");
+            console.log(this.state.id);
+            axios.delete('http://localhost:4242/users/'+this.state.id)
+            .then(response => {
+                console.log(response);
+                localStorage.clear();
+                this.props.history.push("/");
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+        else {
+            console.log("Abandon de la suppression");
+        }
+    }
+
+    editUser(e) {
+        this.props.history.push("/edituser");
+    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -105,9 +127,6 @@ export default class UserProfile extends React.Component {
                     //alert("Aucun ville ne correspond à votre recherche");
                     console.log(err);
                 });
-       
-      
-        
     }
 
 
@@ -145,8 +164,8 @@ export default class UserProfile extends React.Component {
                                     <li className="list-group-item">Vestibulum at eros</li>
                                 </ul>
                                 <div className="card-body">
-                                    <a href="/" className="card-link">Card link</a>
-                                    <a href="/" className="card-link">Another link</a>
+                                <button type="button" onClick={this.deleteUser} className="btn btn-danger mr-3">Supprimer mon compte</button>
+                                <button type="button" onClick={this.editUser} className="btn btn-secondary mr-3">Editer mon compte</button>
                                 </div>
                             </div> 
                         </div>
