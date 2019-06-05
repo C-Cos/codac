@@ -23,7 +23,7 @@ export default class SelectSport extends React.Component {
     render(){
         return(
             <div className="form-group">
-                <label>Choisir la categorie "Sport" de l'évènement : </label>
+                <label for="categorySelect">Choisir la categorie "Sport" : </label>
                 <br/>
                 <select id="categorySelect" className="form-control" value={this.props.value} onChange={this.props.onChangeSport} required>
                     <option value=""> Sélectionner un sport </option>
