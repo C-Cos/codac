@@ -19,7 +19,7 @@ class CarouselContent extends Component {
         return (
             <div className="card">
                 <div className="container-img-card">
-                    <img className="card-img-top img-responsive" src={"http://localhost:4242"+this.props.events.image} alt=""/>
+                    <img className="card-img-top img-responsive" src={this.props.events.image} alt=""/>
                 </div>
                 <div className="card-body">
                     <h5 className="card-title font-weight-bold">{this.props.events.name}</h5>

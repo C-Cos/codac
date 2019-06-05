@@ -116,6 +116,7 @@ export default class DisplayOneEvent extends Component {
                                 {this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} style={{width:"100px"}} className="btn btn-danger mr-3 mt-3">Effacer</button><button type="button" onClick={this.editEvent} style={{width:"100px"}} className="btn btn-secondary mr-3 mt-3">Editer</button></div> : <div></div>}
                             </div>
                         </div>
+                        </div>
 
                         <div className="col-lg-8">
                         
@@ -144,42 +145,9 @@ export default class DisplayOneEvent extends Component {
                                     </Popup>
                                     </Marker>
                                 </Map>
-                            </MediaQuery>
-
-
-                        
-                        
+                            </MediaQuery>  
                         </div>
-                    </div>
-                    <div className="col-lg-8">
                     
-                        <MediaQuery query="(max-width: 991px)">
-                            <Map className="map mt-3" style={{width:'100%',height: '500px'}} center={position} zoom={this.state.zoom}>
-                                <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                                />
-                                <Marker position={position}>
-                                <Popup>
-                                    <span>Votre point de RDV Sport E-vent</span>
-                                </Popup>
-                                </Marker>
-                            </Map>
-                        </MediaQuery>
-                        <MediaQuery query="(min-width: 992px)">
-                            <Map className="map" style={{width:'100%',height: '100%'}} center={position} zoom={this.state.zoom}>
-                                <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                                />
-                                <Marker position={position}>
-                                <Popup>
-                                    <span>Votre point de RDV Sport E-vent</span>
-                                </Popup>
-                                </Marker>
-                            </Map>
-                        </MediaQuery>      
-                    </div>
                 </div>
                 <Comment id = {this.props.match.params.id}></Comment>
             </div>

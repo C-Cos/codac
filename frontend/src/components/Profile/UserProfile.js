@@ -6,14 +6,12 @@ import axios from 'axios';
 
 
 export default class UserProfile extends React.Component {
+
     constructor (props) {
+
         super(props);
-        this.onChangeAddress = this.onChangeAddress.bind(this);
-        this.onChangeZipcode = this.onChangeZipcode.bind(this);
-        this.onChangeCity = this.onChangeCity.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.editUser = this.editUser.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username:'',
@@ -22,9 +20,7 @@ export default class UserProfile extends React.Component {
             address:'',
             zipcode:'',
             city:'',
-            lon:2.363152, 
-            lat:48.815580,
-            zoom: 17
+    
         }
     }
 
@@ -42,46 +38,6 @@ export default class UserProfile extends React.Component {
 
         
         
-    }
-
-    onChangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        });
-    }
-
-    onChangeZipcode(e) {
-        this.setState({
-            zipcode: e.target.value
-        });
-
-        if (e.target.value.length === 5) {
-
-            fetch('https://vicopo.selfbuild.fr/cherche/'+ this.state.zipcode,
-                {
-                    "method": "GET",
-                
-                })
-            .then(response => response.json())
-            .then(responseData => {
-                this.setState({city : responseData.cities[0].city});
-            
-                })
-            .catch(function(err) {
-                alert("Aucun ville ne correspond à votre recherche");
-                console.log(err);
-            });
-    }
-    else
-    {
-        this.setState({city : ''});
-    }
-    }
-
-    onChangeCity(e) {
-        this.setState({
-            city: e.target.value
-        });
     }
 
     deleteUser(e) {
@@ -107,33 +63,8 @@ export default class UserProfile extends React.Component {
         this.props.history.push("/edituser");
     }
 
-    onSubmit(e) {
-        e.preventDefault();
-        console.log(this.state.address);
-        fetch('https://nominatim.openstreetmap.org/search?q='+(this.state.address).replace(' ','+')+',+'+(this.state.city).replace(' ','+')+'&format=json',
-                    {
-                        "method": "GET",
-                    
-                    })
-                .then(response => response.json())
-                .then(responseData => {
-                    //this.setState({city : responseData.cities[0].city});
-                    console.log(responseData);
-                    console.log(responseData[0].lon);
-                    this.setState({lon : responseData[0].lon});
-                    this.setState({lat : responseData[0].lat});
-                })
-
-                .catch(function(err) {
-                    //alert("Aucun ville ne correspond à votre recherche");
-                    console.log(err);
-                });
-    }
-
 
     render () {
-        const position = [this.state.lat, this.state.lon]
-        //const position = [48.8378941,2.4999783]
 
         return (
             
@@ -170,40 +101,7 @@ export default class UserProfile extends React.Component {
                                 </div>
                             </div> 
                         </div>
-                    </div>
-
-
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <label>Adresse :  </label>
-                            <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
-                        </div>
-                        <div className="form-group">
-                            <label>Code postal: </label>
-                            <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
-                        </div>
-                        <div className="form-group">
-                            <label>Ville : </label>
-                            <input type="text" className="form-control" value={this.state.city} onChange={this.onChangeCity} required/>
-                        </div>
-                        <div className="form-group">
-                            <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark"/>
-                        </div>
-                    </form>
-                    <div>{this.state.lon}</div>
-
-                    <Map style={{width:'100%',height: '500px'}} center={position} zoom={this.state.zoom}>
-                        <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                        />
-                        <Marker position={position}>
-                        <Popup>
-                            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-                        </Popup>
-                        </Marker>
-                    </Map>
-                    
+                    </div>                
 
                 </div>
             </div>
