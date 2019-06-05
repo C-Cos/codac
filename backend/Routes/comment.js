@@ -18,7 +18,8 @@ router.post('/comment', (request, response) => {
         edited_date: new Date()
         });
 
-    newComment.save((err)=> {
+    newComment.save((err, newDoc)=> {
+        console.log(newDoc);
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
@@ -26,9 +27,7 @@ router.post('/comment', (request, response) => {
             }));
         }
         else {
-            response.status(200).send(JSON.stringify({
-                message: "Successful"
-            }));
+            response.status(200).json(newDoc)
         }
     }); 
 })

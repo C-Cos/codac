@@ -12,6 +12,7 @@ export default class Comments extends Component{
         this.onChangeComment = this.onChangeComment.bind(this);
         this.updateList = this.updateList.bind(this);
         this.dynamicList = this.dynamicList.bind(this);
+        this.addComment = this.addComment.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             username:'',
@@ -51,7 +52,8 @@ export default class Comments extends Component{
         })
     }
 
-    onSubmit(){
+    onSubmit(e){
+        e.preventDefault();
         var params = {
             idEvent: this.props.id,
             username: this.state.username,
@@ -59,11 +61,24 @@ export default class Comments extends Component{
         }
         axios.post('http://localhost:4242/comment', params)
         .then(response => {
-            console.log("added ok");
+            console.log("ok");
+            console.log(response.data);
+            this.addComment(response.data);            
         })
         .catch(function(err){
             console.log(err);
         })
+    }
+
+    addComment(data){
+        var newArray = [...this.state.result];    
+        newArray.unshift(data);   
+        this.setState({
+            result : newArray
+        })
+        this.setState({
+            comment: ''
+        });
     }
 
     tab(){
