@@ -14,7 +14,7 @@ export default class DisplayComments extends Component{
         this.Delete = this.Delete.bind(this);
         this.Edit = this.Edit.bind(this);
         this.onChangeNewComment = this.onChangeNewComment.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.modify = this.modify.bind(this);
 
         this.state = {
             show: false,
@@ -79,8 +79,9 @@ export default class DisplayComments extends Component{
     hideModal = () => {
         this.setState({ show: false });
     };
-    onSubmit(e){
+    modify(e){
         e.preventDefault();
+        console.log("TEST");
         axios.put('http://localhost:4242/comment', {data : {id: this.props.obj._id, description: this.state.newComment}})
             .then(response => {
                 console.log("ok");
@@ -108,15 +109,13 @@ export default class DisplayComments extends Component{
         return(
             <div className="container" style={{marginBottom: "30px"}}>
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                    <form onSubmit={this.onSubmit} style={{textAlign: "center"}}>
                         <p style={{textAlign: "center"}}>Modifiez votre commentaire</p>
                         <br/>
                         <div className="form-group">
                             <textarea name = "NewComment" value={this.state.newComment} onChange={this.onChangeNewComment}> </textarea>
                         </div>
                         <br/>
-                        <button type="button" className="btn btn-outline-dark edit" >Modifier</button>
-                    </form>
+                        <button type="button" onClick={this.modify} className="btn btn-outline-dark edit" >Modifier</button>
                 </Modal>
                 <hr />
                 <div className="row">

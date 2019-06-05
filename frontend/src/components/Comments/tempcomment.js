@@ -82,20 +82,21 @@ export default class Comments extends Component{
         });
     }
 
-    tab(){
-        let self = this;
-        return this.state.result.map(function(object, i){
-            return <TableComment obj={object} key={i} var={i} delete={self.updateList} update={self.dynamicList}/>;
-        });
-    }
-
     updateList(key){
         //console.log(this.state.result)
         var array = [...this.state.result]; // make a separate copy of the arra
         if (key !== -1) {
           array.splice(key, 1);
+          //console.log(array);
           this.setState({result: array});
-        } 
+        }
+    }
+
+    tab(){
+        let self = this;
+        return this.state.result.map(function(object, i){
+            return <TableComment obj={object} key={i} var={i} delete={self.updateList} update={self.dynamicList}/>;
+        });
     }
 
     dynamicList(key, value){
