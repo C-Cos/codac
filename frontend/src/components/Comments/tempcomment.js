@@ -68,6 +68,7 @@ export default class Comments extends Component{
         .catch(function(err){
             console.log(err);
         })
+
     }
 
     addComment(data){

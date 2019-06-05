@@ -328,11 +328,9 @@ export default class AddEvent extends React.Component {
                             </div>
                         </div>
                         <br/>
-
                         <div className="form-group" style={{ textAlign: 'center',  }}>
                             <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark" style={{width: 150}}/>
                         </div> 
-
                     </form> 
                 </div>
                 {this.state.fireRedirect && <Redirect to='/events' push={true} />}

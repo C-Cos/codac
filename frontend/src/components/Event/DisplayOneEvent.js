@@ -8,6 +8,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import MediaQuery from 'react-responsive';
 import L from 'leaflet';
+import jwt_decode from 'jwt-decode';
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -94,32 +95,25 @@ export default class DisplayOneEvent extends Component {
             <div className="container">
                 <div className="jumbotron mt-3">
                     <div className="row">
-                                <button type="button" className="btn btn-primary mr-3">Soutenir</button><button type="button" className="btn btn-success">Participer</button>{this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} className="btn btn-danger mr-3">Effacer</button><button type="button" onClick={this.editEvent} className="btn btn-secondary mr-3">Editer</button></div> : <div></div>}
-                        <div className="col-lg-4">
-                            <div className="card">
-                                <div class="card-header">
-                                    <FontAwesomeIcon className="mr-2" style={{color: "#000000", fontSize: "35px"}} icon={ faUserCircle }/>
-                                    <span className="card-text text-bold">Publié par : {this.state.event.username}</span>
+                    <div className="col-lg-4">
+                        <div className="card">
+                            <div class="card-header">
+                                <FontAwesomeIcon className="mr-2" style={{color: "#000000", fontSize: "35px"}} icon={ faUserCircle }/>
+                                <span className="card-text text-bold">Publié par : {this.state.event.username}</span>
+                            </div>
+                            <img style={{height: "auto", width:"100%"}} src={this.state.event.image} className="card-image" alt="event" />
+                            <div className="card-body">
+                                <h5 className="card-text font-weight-bold mb-4">{this.state.event.name}</h5>
+                                <p className="card-text">{this.state.event.desc}</p>
+                                <div class="card card-header mb-4" style={{borderBottom: "none!important"}}>
+                                    <div><FontAwesomeIcon className="mr-2" style={{fontSize: "25px"}} icon={ faMapMarkerAlt }/> {this.state.event.address}</div>
+                                    <div>{this.state.event.zipcode} {this.state.event.city}</div>
+                                    <hr />
+                                    <div><FontAwesomeIcon className="mr-2" style={{color: "#000000", fontSize: "25px"}} icon={ faClock }/> Du {this.state.event.start_date} à {this.state.event.start_time} </div>
+                                    <div>au {this.state.event.end_date} à {this.state.event.end_time}</div>
                                 </div>
-                                <img style={{height: "auto", width:"100%"}} src={"http://localhost:4242"+this.state.event.image} className="card-image" width="300" alt="event" />
-                                <div className="card-body">
-                                    
-                                    <h5 className="card-text font-weight-bold mb-4">{this.state.event.name}</h5>
-                                    <p className="card-text">{this.state.event.desc}</p>
-                                    <div class="card card-header mb-4" style={{borderBottom: "none!important"}}>
-                                        
-                                        <div><FontAwesomeIcon className="mr-2" style={{fontSize: "25px"}} icon={ faMapMarkerAlt }/> {this.state.event.address}</div>
-                                        <div>{this.state.event.zipcode} {this.state.event.city}</div>
-                                        
-                                        <hr />
-                                        
-                                        <div><FontAwesomeIcon className="mr-2" style={{color: "#000000", fontSize: "25px"}} icon={ faClock }/> Du {this.state.event.start_date} à {this.state.event.start_time} </div>
-                                        <div>au {this.state.event.end_date} à {this.state.event.end_time}</div>
-                                    </div>
-                                    
-                                    <button type="button" class="btn btn-info mr-3">Soutenir</button><button type="button" class="btn btn-primary">Participer</button>
-                                </div>
-                                <button type="button" className="btn btn-primary mr-3">Soutenir</button><button type="button" className="btn btn-success">Participer</button>{this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} className="btn btn-danger mr-3">Effacer</button><button type="button" onClick={this.editEvent} className="btn btn-secondary mr-3">Editer</button></div> : <div></div>}
+                                <button type="button" style={{width:"100px"}} className="btn btn-info mr-3">Soutenir</button><button type="button" style={{width:"100px"}} className="btn btn-primary">Participer</button>
+                                {this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} style={{width:"100px"}} className="btn btn-danger mr-3 mt-3">Effacer</button><button type="button" onClick={this.editEvent} style={{width:"100px"}} className="btn btn-secondary mr-3 mt-3">Editer</button></div> : <div></div>}
                             </div>
                         </div>
 
@@ -151,13 +145,45 @@ export default class DisplayOneEvent extends Component {
                                     </Marker>
                                 </Map>
                             </MediaQuery>
+
+
+                        
                         
                         </div>
                     </div>
-                        {/* commentaire section */}
-                    <Comment id = {this.props.match.params.id}></Comment>
+                    <div className="col-lg-8">
+                    
+                        <MediaQuery query="(max-width: 991px)">
+                            <Map className="map mt-3" style={{width:'100%',height: '500px'}} center={position} zoom={this.state.zoom}>
+                                <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                                />
+                                <Marker position={position}>
+                                <Popup>
+                                    <span>Votre point de RDV Sport E-vent</span>
+                                </Popup>
+                                </Marker>
+                            </Map>
+                        </MediaQuery>
+                        <MediaQuery query="(min-width: 992px)">
+                            <Map className="map" style={{width:'100%',height: '100%'}} center={position} zoom={this.state.zoom}>
+                                <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                                />
+                                <Marker position={position}>
+                                <Popup>
+                                    <span>Votre point de RDV Sport E-vent</span>
+                                </Popup>
+                                </Marker>
+                            </Map>
+                        </MediaQuery>      
+                    </div>
                 </div>
+                <Comment id = {this.props.match.params.id}></Comment>
             </div>
+        </div>
         )
     }
 }

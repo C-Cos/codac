@@ -130,6 +130,7 @@ router.delete('/event/:id', (request, response) => {
 
 //GET ALL EVENTS
 router.get('/events/findAll', (request, response) => {
+    console.log("test");
     event.find(function(err, events){
         if(err){
             console.log(err);
@@ -156,7 +157,7 @@ router.get('/event/:id', (request, response) => {
                 console.log(err)
         }
         else {
-            response.status(200).json(event);   
+            response.status(200).json(event);
         }
     }); 
 });

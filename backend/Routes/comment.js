@@ -6,6 +6,7 @@ process.env.SECRET_KEY = 'secret';
 
 //add comment
 router.post('/comment', (request, response) => {
+    console.log("test");
     let idEvent = request.body.idEvent
     let username = request.body.username
     let description = request.body.description
