@@ -119,6 +119,7 @@ export default class DisplayOneEvent extends Component {
                                     
                                     <button type="button" class="btn btn-info mr-3">Soutenir</button><button type="button" class="btn btn-primary">Participer</button>
                                 </div>
+                                <button type="button" className="btn btn-primary mr-3">Soutenir</button><button type="button" className="btn btn-success">Participer</button>{this.state.event.username===this.state.username ? <div><button type="button" onClick={this.deleteEvent} className="btn btn-danger mr-3">Effacer</button><button type="button" onClick={this.editEvent} className="btn btn-secondary mr-3">Editer</button></div> : <div></div>}
                             </div>
                         </div>
 

@@ -14,7 +14,6 @@ import addEvent from "./components/Event/AddEvent";
 import EditEvent from "./components/Event/EditEvent";
 import events from "./components/Event/DisplayEvents";
 import event from "./components/Event/DisplayOneEvent";
-import comment from "./components/Comments/tempcomment"
 import EditUser from "./components/Profile/EditUser";
 
 
@@ -31,7 +30,6 @@ function App() {
         <Route path="/event/:id" component={event}/>
         <Route path="/editevent/:id" component={EditEvent}/>
         <Route path="/edituser" component={EditUser}/>
-        <Route path="/comment" component={comment}/>
         <Footer/>
     </Router>
   )
