@@ -145,7 +145,7 @@ export default class DisplayOneEvent extends Component {
                                     </Popup>
                                     </Marker>
                                 </Map>
-                            </MediaQuery>  
+                            </MediaQuery>
                         </div>
                     
                 </div>
