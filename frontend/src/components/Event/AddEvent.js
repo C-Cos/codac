@@ -343,10 +343,6 @@ export default class AddEvent extends React.Component {
                             <textarea id="descEvent" rows="2" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent}></textarea>
                         </div>
                         <div className="form-group">
-                            <label>Image :  </label>
-                            <input type="file" className="form-control" onChange={this.onChangeImage}/>
-                        </div>
-                        <div className="form-group">
                             <label>Adresse :  </label>
                             <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
                         </div>
@@ -358,17 +354,15 @@ export default class AddEvent extends React.Component {
                             <label>Ville : </label>
                             <input type="text" className="form-control" value={this.state.city} onChange={this.onChangeCity} required/>
                         </div>
-                        <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
-                            
-                            <div>
-                             <label>Date de début: </label>
-                             <br/>
-                             <input type="date" id="startDate" name="startDate"
-                                defaultValue={myDate()}
-                                onChange={this.onChangeStartDate}
-                                min={myDate()}
-                                required
-                            ></input>
+                        <div class="form-row inputdate">
+                            <div class="form-group col-md-6">
+                                <label for="startDate">Date de début:</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate"
+                                    defaultValue={myDate()}
+                                    onChange={this.onChangeStartDate}
+                                    min={myDate()}
+                                    required
+                                />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="endDate">Date de fin:</label>

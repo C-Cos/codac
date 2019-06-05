@@ -272,8 +272,12 @@ button:focus{
   vertical-align: middle;
 }
 .container-img-card{
-  height: 450px!important;
+  height: 350px!important;
   overflow: hidden;
+}
+.container-img-card img{
+  height: 350px;
+  width: auto;
 }
 .slider-control-bottomcenter{
   bottom: -50px!important;
