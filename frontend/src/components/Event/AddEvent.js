@@ -277,78 +277,72 @@ export default class AddEvent extends React.Component {
       render() {
         return (
         <div className="traitnoir">
-            <div className="container formregister" style={{paddingTop: 30, width: 400, paddingBottom: 60}}>
+            <div className="container formregister" style={{paddingTop: 30, width: 700, paddingBottom: 60}}>
                 <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un évènement :</h3><br/>
-                <div style={{marginTop: 50}}>
+                <div style={{marginTop: 30}}>
                     <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <label> Nom de l'organisateur : </label>
+                           <div className="form-group">
+                            <label for="orgaName"> Nom de l'organisateur : </label>
                             <input className="form-control" name="asso" value={this.state.username} id="orgaName" disabled />
                         </div>
                         <div className="form-group">
-                            <label>Nom de l'évènement :  </label>
+                            <label for="nameEvent">Nom de l'évènement :  </label>
                             <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="20" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
                         </div>
                         <div className="form-group">
-                            <label>Description de l'évènement : </label>
-                            <input id="descEvent" min="100" max="1000" type="textarea" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent} required/>
+                            <label for="descEvent">Description de l'évènement : </label>
+                            <textarea id="descEvent" rows="2" className="form-control" value={this.state.descEvent} onChange={this.onChangedescEvent}></textarea>
                         </div>
-                        <div className="form-group">
-                            <label>Image :  </label>
-                            <input type="file" className="form-control" onChange={this.onChangeImage}/>
-                        </div>
-                        <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
-                            
-                            <div>
-                             <label>Date de début: </label>
-                             <br/>
-                             <input type="date" id="startDate" name="startDate"
-                                defaultValue={myDate()}
-                                onChange={this.onChangeStartDate}
-                                min={myDate()}
-                                required
-                            ></input>
+                        <div class="form-row inputdate">
+                            <div class="form-group col-md-6">
+                                <label for="startDate">Date de début:</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate"
+                                    defaultValue={myDate()}
+                                    onChange={this.onChangeStartDate}
+                                    min={myDate()}
+                                    required
+                                />
                             </div>
-
-                            <div>
-                               <label>Date de fin: </label>
-                               <br/>
-                              <input type="date" id="endDate" name="endDate"
+                            <div class="form-group col-md-6">
+                                <label for="endDate">Date de fin:</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate"
                                     defaultValue={this.state.startDate}
                                     onChange={this.onChangeEndDate}
                                     min={this.state.startDate}
-                                    required
-                                   ></input>
+                                    required/>
                             </div>
                         </div>
-
-
-                        <div className="form-group inputheure"  style={{display: 'flex', height: 80 }}>
-                            <div>
-                            <label>Heure de début: </label>
-                               <br/>
-                              <input type="time" id="HrStart" name="HrStart"
-                                  value={this.state.HourStart} onChange={this.onChangeHrStart} required></input>
+                        <div class="form-row inputheure">
+                            <div class="form-group col-md-6">
+                                <label for="HrStart">Heure de début:</label>
+                                <input type="time" class="form-control" id="HrStart" name="HrStart"
+                                 value={this.state.HourStart} onChange={this.onChangeHrStart} required
+                                />
                             </div>
-                            <div>
-                              <label>Heure de Fin: </label>
-                                 <br/>
-                                 <input type="time" id="HrEnd" name="HrEnd"
-                                 value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required></input>
-                            </div> 
+                            <div class="form-group col-md-6">
+                                <label for="HrEnd">Heure de fin:</label>
+                                <input type="time" class="form-control" id="HrEnd" name="HrEnd"
+                                 value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required/>
+                            </div>
                         </div>
-
-
-                        <div className="categorie">
-                            <Select value={this.state.sport} onChangeSport={this.onChangeSport}></Select>
+                        <br/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <Select value={this.state.sport} onChangeSport={this.onChangeSport}></Select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="imgUpload">Image:</label>
+                                <input id="imgUpload" class="form-control-file" type="file" onChange={this.onChangeImage}
+                                />
+                            </div>
                         </div>
-                        <br/><br/>
+                        <br/>
 
                         <div className="form-group" style={{ textAlign: 'center',  }}>
                             <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark" style={{width: 150}}/>
-                        </div>
+                        </div> 
 
-                    </form>
+                    </form> 
                 </div>
                 {this.state.fireRedirect && <Redirect to='/events' push={true} />}
             </div>
