@@ -126,9 +126,6 @@ export default class DisplayOneEvent extends Component {
                                     </Marker>
                                 </Map>
                             </MediaQuery>
-
-
-                        
                         
                         </div>
                     </div>
