@@ -129,7 +129,8 @@ export default class DisplayOneEvent extends Component {
                         
                         </div>
                     </div>
-
+                        {/* commentaire section */}
+                    <Comment id = {this.props.match.params.id}></Comment>
                 </div>
             </div>
         )

@@ -38,7 +38,8 @@ export default class Comments extends Component{
                 username : decoded.username,
             })
         }
-        axios.get('http://localhost:4242/comment', {params : {idEvent: "5cf165edd19835214b4658dd"}})  //this.props.match.params.id
+        //console.log(this.props.id);
+        axios.get('http://localhost:4242/comment', {params : {idEvent: this.props.id}})
         .then(response => {
             //console.log(response.data);
             this.setState({
@@ -52,7 +53,7 @@ export default class Comments extends Component{
 
     onSubmit(){
         var params = {
-            idEvent: "5cf165edd19835214b4658dd",  //this.props.match.params.id
+            idEvent: this.props.id,
             username: this.state.username,
             description: this.state.comment
         }
@@ -94,11 +95,10 @@ export default class Comments extends Component{
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col">
-                    </div>
+
                         <div className="col">
                             <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
+                                <div className="form-group comAjout">
                                     <label>Entrez un commentaire : </label>
                                     <br/>
                                     <textarea rows = "3" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
@@ -109,8 +109,6 @@ export default class Comments extends Component{
                                 </div>
                             </form>
                         </div>
-                    <div className="col">
-                    </div>
                     {this.tab()}
                 </div>
             </div>

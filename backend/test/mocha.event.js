@@ -11,7 +11,7 @@ describe("Event", () => {
 
         before(function(done) {
             //Clean db
-            Event.deleteOne({"username": "marie"})
+            Event.deleteOne({"name": "test"})
                 .then(res => {
                     console.log('MongoDB cleaned before starting the tests.')
                     done();
@@ -20,7 +20,7 @@ describe("Event", () => {
 
         after(function(done) {
             //Clean db
-            Event.deleteOne({"username": "marie"})
+            Event.deleteOne({"name": "test"})
                 .then(res => {
                     console.log('MongoDB cleaned before starting the tests.')
                     done();
@@ -30,17 +30,19 @@ describe("Event", () => {
 
         it("should add an event", (done) => {
             chai.request(server)
-                .post('/events')
+                .post('/events/addevent')
                 .send({
-                creator_name:"Marie",
-                title: "mon event",
-                description: "description de mon event",
+                username:"Marie",
+                name: "test",
+                desc: "description de mon event",
                 category: "Boxe",
                 address: "84, rue Carves",
                 zipcode: "92120",
                 city: "Montrouge",
-                start_at: "2019-06-13",
-                end_at: "2019-06-15",
+                start_time: "2019-06-13",
+                end_time: "10:03",
+                start_date: "2019-06-13",
+                end_date: "19:15"
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -49,7 +51,7 @@ describe("Event", () => {
                 });
         });
 
-        it("should edit an event", (done) => {
+        /* it("should edit an event", (done) => {
             chai.request(server)
                 .put('/events')
                 .send({
@@ -93,4 +95,15 @@ describe("Event", () => {
                     done();
                 });
         });
+
+        it("should get one event", (done) => {
+            chai.request(server)
+                .get('/events')
+                .send()
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    //res.body.should.be.a('object');
+                    done();
+                });
+        }); */
 });

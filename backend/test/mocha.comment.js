@@ -47,7 +47,7 @@ describe("Comment", () => {
             chai.request(server)
                 .put('/comment')
                 .send({
-                idEvent: "890349823492384720398",
+                id: "890349823492384720398",
                 description: "Mon premier article a été édité pour un nouveau contenu.",
                 })
                 .end((err, res) => {

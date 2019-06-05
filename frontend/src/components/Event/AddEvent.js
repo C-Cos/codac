@@ -347,6 +347,29 @@ export default class AddEvent extends React.Component {
                             <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
                         </div>
                         <div className="form-group">
+                            <label>Adresse :  </label>
+                            <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
+                        </div>
+                        <div className="form-group">
+                            <label>Code postal: </label>
+                            <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
+                        </div>
+                        <div className="form-group">
+                            <label>Ville : </label>
+                            <input type="text" className="form-control" value={this.state.city} onChange={this.onChangeCity} required/>
+                        </div>
+                        <div className="form-group inputdate"  style={{display: 'flex', height: 80 }}>
+                            
+                            <div>
+                             <label>Date de début: </label>
+                             <br/>
+                             <input type="date" id="startDate" name="startDate"
+                                defaultValue={myDate()}
+                                onChange={this.onChangeStartDate}
+                                min={myDate()}
+                                required
+                            ></input>
+                        <div className="form-group">
                             <label>Code postal: </label>
                             <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
                         </div>

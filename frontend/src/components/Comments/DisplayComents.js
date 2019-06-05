@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import jwt_decode from 'jwt-decode';
+
 import './Comment.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class DisplayComments extends Component{
@@ -44,14 +46,33 @@ export default class DisplayComments extends Component{
         this.setState({ show: true });
     }
     componentDidMount(){
+        const token = localStorage.usertoken;
+        if(!token){
+            this.props.history.push('/login')
+        }
+        else {
+            const decoded = jwt_decode(token);
+            this.setState({
+                username : decoded.username,
+            })
+        }
+        // Date en STR
         var first = JSON.stringify(this.props.obj.created_date);
+
+        // Split Hour and Date
         var sec =  first.split("T");
-        console.log(sec[0]);
+        
+        // Date 
+        var mydate = sec[0];
+        var date = mydate.split('"');
+        
+        // Hour
         var time = sec[1];
         var thr = time.split('.');
-        console.log(thr[0]);
+        //console.log(thr[0]);
+
         this.setState({
-            date: sec[0],
+            date: date[1],
             hour: thr[0]
         })
     }
@@ -74,6 +95,16 @@ export default class DisplayComments extends Component{
 
 
     render() {
+        const controls = (
+            <div>
+                <button onClick = {this.Delete} style={{backgroundColor: "transparent", border: "none"}}>
+                    <FontAwesomeIcon icon={faTrashAlt} style={{fontSize:"20px", color:"black", margin:"10px"}}/>
+                </button>
+                <button onClick = {this.Edit} style={{backgroundColor: "transparent", border: "none"}}>
+                    <FontAwesomeIcon icon={faEdit} style={{fontSize:"20px", color:"black", margin:"10px"}}/>
+                </button>
+            </div>
+        );
         return(
             <div className="container" style={{marginBottom: "30px"}}>
                 <Modal show={this.state.show} handleClose={this.hideModal}>
@@ -89,23 +120,16 @@ export default class DisplayComments extends Component{
                 </Modal>
                 <hr />
                 <div className="row">
-                    <div className="col">
+                    <div className="col infoTypo">
                         De : {this.props.obj.username}
                         <br/>
-                        Posté le : {this.state.date}
-                        <br/>
-                        A : {this.state.hour}
+                        Le : {this.state.date}
                     </div>
-                    <div className="col-9">
+                    <div className="col-8 ">
                         "{this.props.obj.description}"
                     </div>
                     <div className="col">
-                        <button onClick = {this.Delete} style={{backgroundColor: "transparent", border: "none"}}>
-                            <FontAwesomeIcon icon={faTrashAlt} style={{fontSize:"20px", color:"black", margin:"10px"}}/>
-                        </button>
-                        <button onClick = {this.Edit} style={{backgroundColor: "transparent", border: "none"}}>
-                            <FontAwesomeIcon icon={faEdit} style={{fontSize:"20px", color:"black", margin:"10px"}}/>
-                        </button>
+                        {this.props.obj.username === this.state.username ? controls : null}
                     </div>
                 </div>
             </div>
