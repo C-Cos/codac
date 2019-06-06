@@ -5,18 +5,6 @@ import Zipinput from './Zipinput';
 import axios from 'axios';
 require('vicopo');
 
-function validate(user) {
-    if (user.name.length < 5 || user.name.length > 20) {
-      alert("Votre nom ou le nom de votre Association doit contenir entre 5 et 20 caractère.");
-      return true;
-    }
-  
-    if (user.password !== user.confpass) {
-      alert("Le mot de passe entré ne correspond pas à la confirmation.");
-      return true
-    }
-  }
-
 
 export default class Register extends React.Component {
 
@@ -39,9 +27,26 @@ export default class Register extends React.Component {
             confPass: '',
             asso: false,
             errors: [], 
-            wrong: ''
+            wrong: '',
+            errorPassword: false,
+            errorRegister: false
         }
     }
+
+    validate(user) {
+        if (user.password !== user.confpass) {
+          //alert("Le mot de passe entré ne correspond pas à la confirmation.");
+          this.setState({
+              errorPassword: true,
+              errorRegister: false
+          })
+          return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     onChangeAsso(e){
         if(this.state.asso === false){
             this.setState({
@@ -105,9 +110,6 @@ export default class Register extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        //console.log(`name is ${this.state.name} , email is ${this.state.email}, password is ${this.state.password}, confpass is ${this.state.confPass}`);
-        //console.log("city: " + this.state.city);
-        //console.log("zipcode : " + this.state.zipcode);
 
         const user = {
             name: this.state.name,
@@ -119,7 +121,7 @@ export default class Register extends React.Component {
             association: this.state.asso
         }
        
-        if(validate(user) === true)
+        if(this.validate(user) === true)
         {
             return true
         }
@@ -133,8 +135,11 @@ export default class Register extends React.Component {
                 });
             })
             .catch((error) => {
-                alert("Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants.");
                 console.error(error);
+                this.setState({
+                    errorPassword: false,
+                    errorRegister: true
+                })
             });
 
 
@@ -155,6 +160,14 @@ export default class Register extends React.Component {
             <div className="container formregister" style={{paddingTop: 30, width: "40%", paddingBottom: 60}}>
                 <h3 style={{marginTop: 30, textAlign: "center"}} >Créer un compte Sport E-vents</h3>
                 <div style={{marginTop: 50}}>
+                {this.state.errorPassword===true ? <div className="alert alert-danger" role="alert">
+                    Les mots de passe doivent être identiques
+                    </div> : <div></div>}
+                    {this.state.errorRegister===true ? <div className="alert alert-danger" role="alert">
+                    Oops, nous n'avons pas pu vous enregistrer. Merci de réessayer dans quelques instants
+                    </div> : <div></div>}
+
+                    
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                                 <label>
@@ -171,7 +184,7 @@ export default class Register extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Nom d'utilisateur / Nom de l'Association :  </label>
-                            <input id="nameRegister" type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
+                            <input id="nameRegister" type="text" minLength="5" maxLength="20" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
                         </div>
                         <div className="form-group">
                             <label>Email : </label>

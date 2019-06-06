@@ -1,7 +1,6 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
 import './Profile.css';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import axios from 'axios';
 
 
@@ -20,31 +19,37 @@ export default class UserProfile extends React.Component {
             address:'',
             zipcode:'',
             city:'',
+            association: false
     
         }
     }
 
     componentDidMount(){
         const token = localStorage.usertoken;
-        if(token){
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-                email : decoded.email,
-                id: decoded._id
+        const decoded = jwt_decode(token);
+      
+        axios.get('http://localhost:4242/users/'+decoded._id)
+            .then(response => {
+                console.log(response);
+                this.setState({
+                    username: response.data.username,
+                    email: response.data.email,
+                    association: response.data.association,
+                    city: response.data.city,
+                    zipcode: response.data.postcode
+                })
             })
-            console.log(decoded.username);
-        }
-
-        
-        
+            .catch(function(error){
+                console.log(error);
+            })   
     }
 
     deleteUser(e) {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
         if(window.confirm("Etes-vous sûr de vouloir supprimer ce compte ?")) {
             console.log("Suppression du compte de l'utilisateur");
-            console.log(this.state.id);
-            axios.delete('http://localhost:4242/users/'+this.state.id)
+            axios.delete('http://localhost:4242/users/'+decoded._id)
             .then(response => {
                 console.log(response);
                 localStorage.clear();
@@ -91,9 +96,10 @@ export default class UserProfile extends React.Component {
                             <div className="card">
                                 
                                 <ul className="list-group list-group-flush">
+                                    {this.state.association===true ? <li className="list-group-item">Association</li> : <div></div>}
                                     <li className="list-group-item">Email : {this.state.email}</li>
-                                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                                    <li className="list-group-item">Vestibulum at eros</li>
+                                    <li className="list-group-item">Code postal: {this.state.zipcode}</li>
+                                    <li className="list-group-item">Ville: {this.state.city}</li>
                                 </ul>
                                 <div className="card-body">
                                 <button type="button" onClick={this.deleteUser} className="btn btn-danger mr-3">Supprimer mon compte</button>

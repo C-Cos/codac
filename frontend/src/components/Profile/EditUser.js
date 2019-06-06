@@ -3,14 +3,14 @@ import jwt_decode from 'jwt-decode';
 import './Profile.css';
 import Zipinput from '../Home/Zipinput';
 import axios from 'axios';
-//import "leaflet/dist/leaflet.css"
 
 export default class EditUser extends React.Component {
     constructor (props) {
         super(props);
-        this.onChangeAddress = this.onChangeAddress.bind(this);
         this.onChangeZipcode = this.onChangeZipcode.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -25,20 +25,28 @@ export default class EditUser extends React.Component {
 
     componentDidMount(){
         const token = localStorage.usertoken;
-        if(token){
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-                email : decoded.email,
-                id: decoded._id
+        const decoded = jwt_decode(token);
+        // if(token){  
+        //     this.setState({
+        //         username : decoded.username,
+        //         email : decoded.email,
+        //         id: decoded._id
+        //     })
+        // }   
+        axios.get('http://localhost:4242/users/'+decoded._id)
+            .then(response => {
+                console.log(response);
+                this.setState({
+                    username: response.data.username,
+                    email: response.data.email,
+                    zipcode: response.data.postcode,
+                    city: response.data.city
+                })
             })
-        }        
-    }
+            .catch(function(error){
+                console.log(error);
+            })  
 
-    onChangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        });
     }
 
     onChangeZipcode(e) {
@@ -69,21 +77,47 @@ export default class EditUser extends React.Component {
     }
     }
 
+    onChangeName(e) {
+        this.setState({
+            username: e.target.value
+        });
+    }
+
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
     onChangeCity(e) {
         this.setState({
             city: e.target.value
         });
     }
 
-    editUser(e) {
-        this.props.history.push("/edituser");
-    }
-
     onSubmit(e) {
         e.preventDefault();
-        
-    }
 
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+
+        const updatedUser = {
+            name: this.state.username,
+            email: this.state.email,
+            postcode: this.state.zipcode,
+            city: this.state.city
+        }
+       
+        axios.put('http://localhost:4242/users/'+decoded._id, updatedUser)
+        .then((response) => {
+            alert("Votre compte a été modifié avec succès !");
+            this.props.history.push("/profile")
+        })
+        .catch((error) => {
+            alert("Oops, nous n'avons pas pu modifier votre compte. Merci de réessayer dans quelques instants.");
+            console.error(error);
+        });
+    }
 
     render () {
 
@@ -100,8 +134,7 @@ export default class EditUser extends React.Component {
                                     <img className="card-img-top" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="Card cap"/>
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">Informations de profil</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h5 className="card-title">Modification du profil</h5>
                                 </div>                             
                             </div>
                         </div>
@@ -110,11 +143,11 @@ export default class EditUser extends React.Component {
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label>Nom d'utilisateur / Nom de l'Association :  </label>
-                                    <input id="nameRegister" type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required/>
+                                    <input id="nameEdit" type="text" minLength="5" maxLength="20" className="form-control" value={this.state.username} onChange={this.onChangeName} required/>
                                 </div>
                                 <div className="form-group">
                                     <label>Email : </label>
-                                    <input id="emailRegister" type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} required/>
+                                    <input id="emailEdit" type="email" className="form-control" value={this.state.email} onChange={this.onChangeEmail} required/>
                                 </div>
                                 <div className="form-group">
                                     <label>Code postal: </label>
@@ -125,15 +158,7 @@ export default class EditUser extends React.Component {
                                     <input className="form-control" value={this.state.city}/>
                                 </div>
                                 <div className="form-group">
-                                    <label>Mot de Passe : </label>
-                                    <input id="passwordRegister" type="password" className="form-control"value={this.state.password} onChange={this.onChangePassword} required/>
-                                </div>
-                                <div className="form-group">
-                                    <label>Confirmation du mot de passe : </label>
-                                    <input id="confPassRegister" type="password" className="form-control"value={this.state.confpass} onChange={this.onChangeConfPass} required/>
-                                </div>
-                                <div className="form-group">
-                                    <input id="SubmitRegister" type="submit" value="Enregistrer" className="btn btn-dark"/>
+                                    <input id="SubmitEdit" type="submit" value="Confirmer" className="btn btn-dark"/>
                                 </div>
                             </form>
                             </div>

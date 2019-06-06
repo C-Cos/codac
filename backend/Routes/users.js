@@ -106,102 +106,42 @@ router.delete('/users/:id', (request, response) => {
     })
 }); 
 
-//DELETE USER
-router.delete('/users/delete', (request, response) => {
-     let token=localStorage.usertoken;
-     console.log(token);
-    //  user.findByIdAndRemove(param, function(err){
-    //      if(err) 
-    //      {   
-    //         response.status(401).send(JSON.stringify({
-    //             message: "Nous n'avons pas pu supprimer votre compte."
-    //         }));
-    //      }
+//FIND USER BY ID
+router.get('/users/:id', (request, response) => {
+    user.findById(request.params.id , function(err, user){
+        if(err) console.log(err);
+        else{
+            response.json(user);
+        }    
+    });
+})
 
-    //      else {
-    //         response.status(200).send(
-    //             JSON.stringify({
-    //                 message: 'Successful',
-    //         }));
-    //      }
-    //  }); 
- })
+//EDIT USER
+router.put('/users/:id', (request, response) => {
 
-// //FIND USER BY EMAIL
-// router.get('/users/findUsers', (request, response) => {
-//     let param = request.query.email;
-//     console.log(param);
-//     //param= "fabien.oren@coding.com";
-//     user.find({ email:  param }, function(err, users){
-//         console.log(users);
-//         if(users.length===0) {
-//             response.status(204).send('No result found');
-//         }
-//         else{
-//             response.status(200).json(users);
-//         }    
-//     });
-// })
+    console.log(request.params.id);
 
-// //FIND USER BY ID
-// router.get('/users/findOneByIdCreator', (request, response) => {
-//     let param = {_id: request.query.id};
-//     //console.log(param);
-//     user.findById(param , function(err, user){
-//         //console.log(users);
-//         if(err) console.log(err);
-//         else{
-//             response.json(user);
-//         }    
-//     });
-// })
+    var update = { 
+        username: request.body.name,
+        email: request.body.email,
+        postcode: request.body.postcode,
+        city: request.body.city
+    };
+    
+    user.findOneAndUpdate(ObjectId(request.params.id), update, {new:true}, function(err, user){
+        if(err) 
+        {   
+            response.status(400).send(JSON.stringify({
+            message: 'Oops, Something went wrong.'
+            }));
+        }
 
-
-
-// //EDIT USER
-// router.post('/users/edit', (request, response) => {
-//     /// create hash password
-//     const hash = crypto.createHash('sha1');
-//     let pass_hash = hash.update(request.body.password, 'utf-8');
-//     gen_hash= pass_hash.digest('hex');
-
-//     var query = { _id: request.body.id };
-//     var update = { 
-//         login: request.body.name,
-//         email: request.body.email,
-//         password: gen_hash
-//     };
-//     //////// Insert params into mongo ///////////
-//     user.findOneAndUpdate(query, update, {new: true}, function(err, user){
-//         console.log(user);
-//         if(err) 
-//         {   
-//             response.send(JSON.stringify({
-//             message: 'Oops, Something went wrong.'
-//             }));
-//             console.log(err)
-//         }
-
-//         else {
-//             const payload = {
-//                 _id: user._id,
-//                 login: user.login,
-//                 email: user.email
-//             }
-//             let token = jwt.sign(payload, process.env.SECRET_KEY, {
-//                 expiresIn:1440
-//             })
-//             response.send(JSON.stringify({
-//             message: 'Successful',
-//             token: token,
-//             editName: user.login
-//             }));
-//         }
-//     }); 
-// })
-
-// 
-
-
+        else {
+            response.status(200).send(JSON.stringify({
+            message: 'Successful'
+            }));
+        }
+    }); 
+})
 
 module.exports = router;

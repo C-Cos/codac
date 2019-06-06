@@ -74,10 +74,10 @@ export default class Login extends React.Component {
                 <h3 style={{marginTop: 30, textAlign: "center"}} > Connection</h3>
                 <div style={{marginTop: 50}}>
                     {this.state.errorUser===true ? <div className="alert alert-danger" role="alert">
-                    Ce nom d'utilisateur n'existe pas
+                    Cet email n'existe pas
                     </div> : <div></div>}
                     {this.state.errorPassword===true ? <div className="alert alert-danger" role="alert">
-                    Le password entré est incorrect
+                    Le mot de passe entré est incorrect
                     </div> : <div></div>}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">

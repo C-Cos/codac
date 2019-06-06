@@ -336,7 +336,7 @@ export default class AddEvent extends React.Component {
                         </div>
                         <div className="form-group">
                             <label for="nameEvent">Nom de l'évènement :  </label>
-                            <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="20" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
+                            <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="100" value={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
                         </div>
                         <div className="form-group">
                             <label for="descEvent">Description de l'évènement : </label>
