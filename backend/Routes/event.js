@@ -70,7 +70,7 @@ router.put('/event/:id', (request, response) => {
         .catch(err => {
             console.log("Upload failed");
         });
-        image= "/images/"+request.files.file.name;
+        image= "http://localhost:4242/images/"+request.files.file.name;
     }
     else {
         image=request.body.image;

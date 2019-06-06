@@ -1,8 +1,15 @@
 @font-face{
   font-family:"Ubuntu-M";
-  src: url('/components/font/Ubuntu-M.tff') format("truetype");
+  src: url('./font/Ubuntu-M.ttf') format("truetype");
 }
-
+@font-face{
+  font-family:"Ubuntu-B";
+  src: url('./font/Ubuntu-B.ttf') format("truetype");
+}
+@font-face{
+  font-family:"Ubuntu-Regular";
+  src: url('./font/Ubuntu-Regular.ttf') format("truetype");
+}
 body{
   box-sizing: border-box; 
 }
@@ -324,4 +331,26 @@ button:focus{
 
 .categorie{
   text-align: center;
+}
+h3{
+  font-family: "Ubuntu-M";
+  letter-spacing: 2px;
+}
+.typofooter{
+  font-family: "Ubuntu-Regular"!important;
+  font-size: 15px;
+}
+
+.card-title{
+  font-family: "Ubuntu-B";
+  letter-spacing: 2px;
+}
+.card-text{
+  font-family: "Ubuntu-Regular";
+  letter-spacing: 0px;
+}
+
+.btn{
+  font-family: "Ubuntu-M";
+
 }

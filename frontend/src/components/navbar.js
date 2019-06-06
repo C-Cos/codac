@@ -32,9 +32,7 @@ class Navbar extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/addevent">Créer un évènement <ion-icon name="add-circle-outline"></ion-icon></NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#" onClick={this.logOut}><img alt="Logo"
-                        src={require('../img/logout.jpg')}
-                        width="80"/></Nav.Link>
+                <Nav.Link href="#" onClick={this.logOut}>Logout</Nav.Link>
             </Nav>
         );
         const loginRegLink = (
@@ -45,16 +43,13 @@ class Navbar extends Component {
                 <li className="navbar-item">
                     <Link to="/register" className="nav-link typologinregister">Register</Link>
                 </li>
-                <li className="navbar-item">
-                    <Link to="/register" className="nav-link typologinregister">Register</Link>
-                </li>
             </ul>
         );
         return (
             <nav id="navContainer" className="navbar navbar-expand-lg navbar-light bg-light flexnav">
                 <Link to="/" className="navbar-brand">
                     <img alt="Sportevent"
-                        src={require('../img/sportevent.jpg')}
+                        src={require('../img/sportevent.png')}
                         width="230"
 
                         // height="30"
