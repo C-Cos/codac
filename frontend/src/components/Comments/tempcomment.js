@@ -29,16 +29,6 @@ export default class Comments extends Component{
     }
 
     componentDidMount(){
-        const token = localStorage.usertoken;
-        if(!token){
-            this.props.history.push('/login')
-        }
-        else {
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-            })
-        }
         //console.log(this.props.id);
         axios.get('http://localhost:4242/comment', {params : {idEvent: this.props.id}})
         .then(response => {

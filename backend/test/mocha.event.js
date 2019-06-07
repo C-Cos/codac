@@ -3,6 +3,7 @@ let server = require('../index');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 const Event = require('../Models/event');
+ObjectId = require('mongodb').ObjectID;
 
 chai.use(chaiHttp);
 chai.should();
@@ -30,19 +31,20 @@ describe("Event", () => {
 
         it("should add an event", (done) => {
             chai.request(server)
-                .post('/events/addevent')
+                .post('events/addevent')
                 .send({
-                username:"Marie",
-                name: "test",
-                desc: "description de mon event",
-                category: "Boxe",
-                address: "84, rue Carves",
-                zipcode: "92120",
-                city: "Montrouge",
-                start_time: "2019-06-13",
-                end_time: "10:03",
-                start_date: "2019-06-13",
-                end_date: "19:15"
+                    username: "Titi",
+                    name: "test",
+                    desc: "Tournoi de Baseball",
+                    sport: "Baseball",
+                    image: "https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80",
+                    address: "84 rue Carves",
+                    zipcode: "92120",
+                    city: "Montrouge",
+                    startHr: "10:00",
+                    endHr: "10:00",
+                    startDate: "2019-06-04",
+                    endDate: "2019-06-05"
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -51,19 +53,21 @@ describe("Event", () => {
                 });
         });
 
-        /* it("should edit an event", (done) => {
+        it("should edit an event", (done) => {
             chai.request(server)
-                .put('/events')
+                .put('/event/5cf7f963f1e23673b4f178f8')
                 .send({
-                id: "",
-                title: "mon event modifié",
-                description: "description de mon event modifié",
-                category: "Boxe",
-                address: "84, rue Carves",
-                zipcode: "92120",
-                city: "Montrouge",
-                start_at: "2019-06-13",
-                end_at: "2019-06-15",
+                    id: ObjectId("5cf7f963f1e23673b4f178f8")},
+                {
+                    username: "Tata",
+                    name: "test",
+                    desc: "Tournoi de Baseball",
+                    sport: "Baseball",
+                    image: "https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80",
+                    startHr: "06:00",
+                    endHr: "10:00",
+                    startDate: "2019-06-04",
+                    endDate: "2019-06-06"
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -74,9 +78,9 @@ describe("Event", () => {
 
         it("should delete an event", (done) => {
             chai.request(server)
-                .delete('/events')
+                .delete('/event/5cf7f963f1e23673b4f178f8')
                 .send({
-                id: "890349823492384720398",
+                    id: ObjectId("5cf7f963f1e23673b4f178f8"),
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -87,7 +91,7 @@ describe("Event", () => {
 
         it("should get all events", (done) => {
             chai.request(server)
-                .get('/events')
+                .get('/events/findAll')
                 .send()
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -98,12 +102,14 @@ describe("Event", () => {
 
         it("should get one event", (done) => {
             chai.request(server)
-                .get('/events')
-                .send()
+                .get('/event/5cf7f963f1e23673b4f178f8')
+                .send({
+                    id: ObjectId("5cf7f963f1e23673b4f178f8")
+                })
                 .end((err, res) => {
                     res.should.have.status(200);
                     //res.body.should.be.a('object');
                     done();
                 });
-        }); */
+        });
 });

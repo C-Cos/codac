@@ -81,7 +81,6 @@ export default class DisplayComments extends Component{
     };
     modify(e){
         e.preventDefault();
-        console.log("TEST");
         axios.put('http://localhost:4242/comment', {data : {id: this.props.obj._id, description: this.state.newComment}})
             .then(response => {
                 console.log("ok");
