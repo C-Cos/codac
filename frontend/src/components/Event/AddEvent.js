@@ -344,20 +344,20 @@ export default class AddEvent extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Adresse :  </label>
-                            <input type="text" className="form-control" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
+                            <input type="text" className="form-control adresse" autoComplete="nope" value={this.state.address} onChange={this.onChangeAddress} required/>
                         </div>
                         <div className="form-group">
                             <label>Code postal: </label>
-                            <input type="text" maxLength="5" className="form-control" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
+                            <input type="text" maxLength="5" className="form-control code" autoComplete="nope" value={this.state.zipcode} onChange={this.onChangeZipcode} required/>                       
                         </div>
                         <div className="form-group">
                             <label>Ville : </label>
-                            <input type="text" className="form-control" value={this.state.city} onChange={this.onChangeCity} required/>
+                            <input type="text" className="form-control ville" value={this.state.city} onChange={this.onChangeCity} required/>
                         </div>
                         <div class="form-row inputdate">
                             <div class="form-group col-md-6">
                                 <label for="startDate">Date de début:</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate"
+                                <input type="date" className="form-control datedebut" id="startDate" name="startDate"
                                     defaultValue={myDate()}
                                     onChange={this.onChangeStartDate}
                                     min={myDate()}
@@ -366,7 +366,7 @@ export default class AddEvent extends React.Component {
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="endDate">Date de fin:</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate"
+                                <input type="date" className="form-control datefin" id="endDate" name="endDate"
                                     defaultValue={this.state.startDate}
                                     onChange={this.onChangeEndDate}
                                     min={this.state.startDate}
@@ -376,13 +376,13 @@ export default class AddEvent extends React.Component {
                         <div class="form-row inputheure">
                             <div class="form-group col-md-6">
                                 <label for="HrStart">Heure de début:</label>
-                                <input type="time" class="form-control" id="HrStart" name="HrStart"
+                                <input type="time" className="form-control heuredebut" id="HrStart" name="HrStart"
                                  value={this.state.HourStart} onChange={this.onChangeHrStart} required
                                 />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="HrEnd">Heure de fin:</label>
-                                <input type="time" class="form-control" id="HrEnd" name="HrEnd"
+                                <input type="time" className="form-control heurefin" id="HrEnd" name="HrEnd"
                                  value= {this.state.HourEnd} onChange={this.onChangeHrEnd} required/>
                             </div>
                         </div>

@@ -38,7 +38,7 @@ class Navbar extends Component {
         const loginRegLink = (
             <ul id="flex-container" className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                    <Link id="login" to="/login" className="nav-link typologinregister">Login</Link>
+                    <Link to="/login" className="nav-link typologinregister">Login</Link>
                 </li>
                 <li className="navbar-item">
                     <Link to="/register" className="nav-link typologinregister">Register</Link>

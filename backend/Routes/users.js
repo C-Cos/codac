@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
-//let crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const user = require('../Models/user');
-//const hashPassword = require('../Functions/usersfunctions.js');
 const createUser = require('../Functions/usersfunctions.js');
 const verifyPassword = require('../Functions/usersfunctions.js');
-var ObjectId = require('mongodb').ObjectID
 
 process.env.SECRET_KEY = 'secret';
 
@@ -119,8 +116,6 @@ router.get('/users/:id', (request, response) => {
 //EDIT USER
 router.put('/users/:id', (request, response) => {
 
-    console.log(request.params.id);
-
     var update = { 
         username: request.body.name,
         email: request.body.email,
@@ -128,9 +123,9 @@ router.put('/users/:id', (request, response) => {
         city: request.body.city
     };
     
-    user.findOneAndUpdate(ObjectId(request.params.id), update, {new:true}, function(err, user){
+    user.findOneAndUpdate({_id:request.params.id}, update, {new:true}, function(err, user){
         if(err) 
-        {   
+        {   console.log(err);
             response.status(400).send(JSON.stringify({
             message: 'Oops, Something went wrong.'
             }));

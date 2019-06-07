@@ -134,14 +134,15 @@ export default class EditUser extends React.Component {
                                     <img className="card-img-top" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="Card cap"/>
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">Modification du profil</h5>
+                                    <h5 className="card-title text-center">Modification du profil</h5>
                                 </div>                             
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="card">
                             <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
+                                <div className="container">
+                                <div className="form-group mt-3">
                                     <label>Nom d'utilisateur / Nom de l'Association :  </label>
                                     <input id="nameEdit" type="text" minLength="5" maxLength="20" className="form-control" value={this.state.username} onChange={this.onChangeName} required/>
                                 </div>
@@ -160,6 +161,8 @@ export default class EditUser extends React.Component {
                                 <div className="form-group">
                                     <input id="SubmitEdit" type="submit" value="Confirmer" className="btn btn-dark"/>
                                 </div>
+                                </div>
+                                
                             </form>
                             </div>
                         </div>
