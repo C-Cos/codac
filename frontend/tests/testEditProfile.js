@@ -1,6 +1,7 @@
 import { Selector } from 'testcafe';
 
 /////*** IMPORTANT, NE PAS OUBLIER DE CREER L'UTILISATEUR POUR QUE LE LOGIN FONCTIONNE ***/////
+//// username: Roger/email: roger.federer@tennis.com/password: kikoo/postcode: 69000 ////
 
 fixture `Getting Started`
     .page `http://localhost:3000/`;
