@@ -2,7 +2,6 @@ import React from 'react';
 import jwt_decode from 'jwt-decode';
 import './Profile.css';
 import Zipinput from '../Home/Zipinput';
-import axios from 'axios';
 
 export default class EditUser extends React.Component {
     constructor (props) {

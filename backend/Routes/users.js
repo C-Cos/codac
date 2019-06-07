@@ -77,7 +77,6 @@ router.post('/users/login', (request, response) => {
 //FIND ALL USERS
 router.get('/users/findAllUsers', (request, response) => {
     user.find( function(err, users){
-        //console.log(users);
         if(err) console.log(err);
         else{
             response.status(200).json(users);
