@@ -50,10 +50,6 @@ function myHour(){
         return (hours + ":" + min)
     }
 }
-// function mySplit(date){
-//     //var str = JSON.stringify(date);
-//     return date.split('-');
-// }
 
 export default class AddEvent extends React.Component {
     constructor(props) {
@@ -148,96 +144,6 @@ export default class AddEvent extends React.Component {
             endDate: e.target.value
         });
     }
-    // onChangeStartDate(e) {
-    //     var newD = mySplit(e.target.value);
-    //     var start = mySplit(this.state.startDate);
-    //     if (newD[0] >= start[0]) {
-    //         if(newD[1] > start[1]) {
-    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     startDate : e.target.value
-    //                 });
-    //             }
-    //             else {
-    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //                 this.setState({
-    //                     startDate : myDate()
-    //                 });
-    //             }   
-    //         }
-    //         else if(newD[1] === start[1]) {
-    //             if(newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     startDate : e.target.value
-    //                 });
-    //             } 
-    //             else {
-    //                 alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //                 this.setState({
-    //                     startDate : myDate()
-    //                 });
-    //             }    
-    //         }
-    //         else  {
-    //             alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //             this.setState({
-    //                 startDate : myDate()
-    //             });
-    //         }
-    //     }
-    //     else  {
-    //         alert("Votre évènement ne peut pas commencer avant aujourd'hui.")
-    //         this.setState({
-    //             startDate : myDate()
-    //         });
-    //     }
-    // }
-
-    // onChangeEndDate(e) {
-    //     var newD = mySplit(e.target.value);
-    //     var start = mySplit(this.state.startDate);
-    //     if (newD[0] >= start[0]) {
-    //         if(newD[1] > start[1]) {
-    //             if(newD[2] <= start[2] || newD[2] === start[2] || newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     endDate : e.target.value
-    //                 });
-    //             }
-    //             else {
-    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //                 this.setState({
-    //                     endDate : myDate()
-    //                 });
-    //             }   
-    //         }
-    //         else if(newD[1] === start[1]) {
-    //             if(newD[2] >= start[2]) {
-    //                 this.setState({
-    //                     endDate : e.target.value
-    //                 });
-    //             } 
-    //             else {
-    //                 alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //                 this.setState({
-    //                     endDate : myDate()
-    //                 });
-    //             }    
-    //         }
-    //         else  {
-    //             alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //             this.setState({
-    //                 endDate : myDate()
-    //             });
-    //         }
-    //     }
-    //     else  {
-    //         alert("La date de fin de l'évènement ne peut pas être inférieure à la date de départ.")
-    //         this.setState({
-    //             endDate : myDate()
-    //         });
-    //     }
-        
-    // }
     onChangeHrStart(e) {
         this.setState({
             HourStart: e.target.value
@@ -311,8 +217,7 @@ export default class AddEvent extends React.Component {
         data.append('city', this.state.city);
         
         axios.post('http://localhost:4242/events/addevent', data)
-        .then((response) => {
-            console.log(response); 
+        .then((response) => { 
             this.setState({
                 fireRedirect: true
             });   

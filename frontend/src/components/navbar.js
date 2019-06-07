@@ -63,8 +63,6 @@ class Navbar extends Component {
 
                         src={require('../img/logo.jpg')}
                         width="60"
-
-                        /* className="d-inline-block align-top" */
                     />
                 </Link>
 

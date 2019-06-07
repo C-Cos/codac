@@ -12,7 +12,6 @@ export default class SelectSport extends React.Component {
     componentDidMount(){
         axios.get('http://localhost:4242/category')
         .then((response) => {
-            //console.log(response.data);
             this.setState({sports: response.data});
         })
         .catch((error) => {

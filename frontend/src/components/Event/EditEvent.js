@@ -4,30 +4,6 @@ import { Redirect } from 'react-router';
 import Select from "./SelectSport";
 import axios from 'axios';
 
-function myDate(){
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var strM = JSON.stringify(month);
-    var strD = JSON.stringify(date);
-    if(strM.length < 2 && strD.length < 2)
-    {
-        return (year + "-0" + month + "-0" + date);
-    }
-    else if(strD.length < 2)
-    {
-        return(year + "-" + month + "-0" + date);
-    }
-    else if(strM.length < 2)
-    {
-        return(year + "-0" + month + "-" + date);
-    }
-    else
-    {
-        return(year + "-" + month + "-" + date);
-    }
-}
-
 export default class EditEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -71,7 +47,6 @@ export default class EditEvent extends React.Component {
 
         axios.get('http://localhost:4242/event/'+eventid)
             .then(response => {
-                console.log(response.data);
                 this.setState({
                     eventid: eventid,
                     username: response.data.username,
@@ -83,9 +58,6 @@ export default class EditEvent extends React.Component {
                     startDate: response.data.start_date,
                     endDate: response.data.end_date,
                     image: response.data.image
-                    // fulldate: "",
-                    // curdate: "",
-                    // curHour:""
                 });   
             })
             .catch(function(error){
@@ -155,7 +127,6 @@ export default class EditEvent extends React.Component {
         
         axios.put('http://localhost:4242/event/'+this.state.eventid, data)
         .then((response) => {
-            console.log(response);
             this.props.history.push("/events");              
         })
         .catch((error) => {

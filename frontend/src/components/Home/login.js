@@ -45,7 +45,6 @@ export default class Login extends React.Component {
                 });
         })
         .catch((error) => {
-            //alert(error.response.data.message);
             if(error.response.data.message==="User error") {
                 this.setState({
                     errorUser: true,

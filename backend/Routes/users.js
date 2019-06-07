@@ -95,7 +95,6 @@ router.delete('/users/:id', (request, response) => {
             }));
         }
         else {
-            console.log(response);
             response.status(200).send(JSON.stringify({
                 message: "Successful delete"
             }));

@@ -46,16 +46,6 @@ export default class DisplayComments extends Component{
         this.setState({ show: true });
     }
     componentDidMount(){
-        const token = localStorage.usertoken;
-        if(!token){
-            this.props.history.push('/login')
-        }
-        else {
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-            })
-        }
         // Date en STR
         var first = JSON.stringify(this.props.obj.created_date);
 
@@ -83,7 +73,6 @@ export default class DisplayComments extends Component{
         e.preventDefault();
         axios.put('http://localhost:4242/comment', {data : {id: this.props.obj._id, description: this.state.newComment}})
             .then(response => {
-                console.log("ok");
                 this.props.update(this.props.var, this.state.newComment);
             })
             .catch(function(err){
@@ -119,7 +108,7 @@ export default class DisplayComments extends Component{
                 <hr />
                 <div className="row">
                     <div className="col infoTypo">
-                        De : {this.props.obj.username}
+                        De : {this.props.NameUser}
                         <br/>
                         Le : {this.state.date}
                     </div>

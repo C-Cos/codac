@@ -7,7 +7,6 @@ import TableComment from "./DisplayComents";
 export default class Comments extends Component{
 
     constructor(props){
-        
         super(props);
         this.onChangeComment = this.onChangeComment.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -29,10 +28,8 @@ export default class Comments extends Component{
     }
 
     componentDidMount(){
-        //console.log(this.props.id);
         axios.get('http://localhost:4242/comment', {params : {idEvent: this.props.id}})
         .then(response => {
-            //console.log(response.data);
             this.setState({
                 result: response.data
             })
@@ -51,8 +48,6 @@ export default class Comments extends Component{
         }
         axios.post('http://localhost:4242/comment', params)
         .then(response => {
-            console.log("ok");
-            console.log(response.data);
             this.addComment(response.data);            
         })
         .catch(function(err){
@@ -73,49 +68,50 @@ export default class Comments extends Component{
     }
 
     updateList(key){
-        //console.log(this.state.result)
         var array = [...this.state.result]; // make a separate copy of the arra
         if (key !== -1) {
           array.splice(key, 1);
-          //console.log(array);
           this.setState({result: array});
         }
     }
 
     tab(){
         let self = this;
+        let nameUser = this.props.eventUsername
+        //console.log(this.props.eventUsername);
         return this.state.result.map(function(object, i){
-            return <TableComment obj={object} key={i} var={i} delete={self.updateList} update={self.dynamicList}/>;
+            return <TableComment obj={object} key={i} var={i} delete={self.updateList} update={self.dynamicList} NameUser = {nameUser} />;
         });
     }
 
     dynamicList(key, value){
         var array = [...this.state.result]
         array[key].description = value 
-        //console.log(array[key]);
         this.setState({
             result: array
         })
     }
 
     render() {
+        const inputComment = (
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group comAjout">
+                    <label>Entrez un commentaire : </label>
+                    <br/>
+                    <textarea rows = "3" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
+                    <br/>
+                </div>   
+                <div className="form-group">
+                    <input id="commentSubmit" type="submit" value="Ajouter" className="btn btn-dark"/>
+                </div>
+            </form>
+        )
         return(
             <div className="container">
                 <div className="row">
-
-                        <div className="col">
-                            <form onSubmit={this.onSubmit}>
-                                <div className="form-group comAjout">
-                                    <label>Entrez un commentaire : </label>
-                                    <br/>
-                                    <textarea rows = "3" name = "comment" value={this.state.comment} onChange={this.onChangeComment} required> </textarea>
-                                    <br/>
-                                </div>   
-                                <div className="form-group">
-                                    <input id="commentSubmit" type="submit" value="Ajouter" className="btn btn-dark"/>
-                                </div>
-                            </form>
-                        </div>
+                    <div className="col">
+                        {localStorage.usertoken ? inputComment : null} 
+                    </div>
                     {this.tab()}
                 </div>
             </div>
