@@ -98,7 +98,6 @@ router.delete('/users/:id', (request, response) => {
             }));
         }
         else {
-            console.log(response);
             response.status(200).send(JSON.stringify({
                 message: "Successful delete"
             }));
@@ -109,7 +108,6 @@ router.delete('/users/:id', (request, response) => {
 //DELETE USER
 router.delete('/users/delete', (request, response) => {
      let token=localStorage.usertoken;
-     console.log(token);
     //  user.findByIdAndRemove(param, function(err){
     //      if(err) 
     //      {   

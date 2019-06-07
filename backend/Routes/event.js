@@ -12,7 +12,7 @@ router.post('/events/addevent',(request, response) => {
 
     let image;
     // Handle image upload. If field if null, set a default image
-    if(request.files!==null){
+    if(request.files !== undefined || request.files !== null){
         request.files.file.mv('./public/images/'+request.files.file.name)
         .then(res => {
             console.log("Upload successfull");
@@ -131,8 +131,9 @@ router.delete('/event/:id', (request, response) => {
 
 //GET ALL EVENTS
 router.get('/events/findAll', (request, response) => {
-    console.log("test");
-    event.find(function(err, events){
+    event.find({})
+        .sort({start_date: -1})
+        .exec(function(err, events){
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({

@@ -15,7 +15,6 @@ export default class DisplayEvents extends Component{
         
         axios.get('http://localhost:4242/events/findAll')
         .then(response => {
-            console.log(response.data.events);
             this.setState({events: response.data.events});
             
 
