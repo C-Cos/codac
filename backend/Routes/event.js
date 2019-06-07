@@ -43,7 +43,6 @@ router.post('/events/addevent',(request, response) => {
         // need_help: request.body.help,
         // need_players: request.body.participants
         });
-        console.log(newEvent);
     newEvent.save((err)=> {
         if(err){
             console.log(err);

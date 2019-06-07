@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
-import jwt_decode from 'jwt-decode';
 
 import './Comment.css';
 
