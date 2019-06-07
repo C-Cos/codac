@@ -10,6 +10,8 @@ fixture `Getting Started`
     const CreateEventMenu  = Selector('.dropdown-item').withText('Créer un évènement');
     const sportSelect = Selector('#categorySelect');
     const sportOption = sportSelect.find('option');
+    const EventCard = Selector('.usercardname').withText("Finale de Roland Garros").parent('div');
+    const EventDetail = Selector(EventCard).child('a');
 
 test('Test Add Event', async t => {
     await t
@@ -30,6 +32,7 @@ test('Test Add Event', async t => {
     .click(sportOption.withText('Tennis'))
     .setFilesToUpload('#imgUpload','./roland.jpeg')
     .click('#SubmitRegister')
-    .wait(5000)
+    .click(EventDetail,{ speed: 1 })
+    .wait(10000)
 });
 
