@@ -11,7 +11,7 @@ process.env.SECRET_KEY = 'secret';
 router.post('/events/addevent',(request, response) => {
 
     let image;
-
+    // Handle image upload. If field if null, set a default image
     if(request.files!==null){
         request.files.file.mv('./public/images/'+request.files.file.name)
         .then(res => {
@@ -26,6 +26,7 @@ router.post('/events/addevent',(request, response) => {
         image="https://images.unsplash.com/photo-1557766131-dca3a8acae87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1491&q=80";
     }
     
+    // DB insertion of the new event
     var newEvent = new event({
         username: request.body.username,
         name: request.body.name,
@@ -42,7 +43,7 @@ router.post('/events/addevent',(request, response) => {
         // need_help: request.body.help,
         // need_players: request.body.participants
         });
-
+        console.log(newEvent);
     newEvent.save((err)=> {
         if(err){
             console.log(err);

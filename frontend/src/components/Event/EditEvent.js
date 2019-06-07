@@ -28,29 +28,6 @@ function myDate(){
     }
 }
 
-// function myHour(){
-//     var hours = new Date().getHours(); //Current Hours
-//     var min = new Date().getMinutes(); //Current Minutes
-//     var strH = JSON.stringify(hours);
-//     var strM = JSON.stringify(min);
-//     if(strH < 2 && strM <2)
-//     {
-//         return ("0" + hours + ":0" + min)
-//     }
-//     else if(strH < 2)
-//     {
-//         return ("0" + hours + ":" + min)
-//     }
-//     else if(strM < 2)
-//     {
-//         return (hours + ":0" + min)
-//     }
-//     else
-//     {
-//         return (hours + ":" + min)
-//     }
-// }
-
 export default class EditEvent extends React.Component {
     constructor(props) {
         super(props);
@@ -199,7 +176,7 @@ export default class EditEvent extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Nom de l'évènement :  </label>
-                            <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="20" defaultValue={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
+                            <input id="nameEvent" type="text" className="form-control" minLength="3" maxLength="100" defaultValue={this.state.nameEvent} onChange={this.onChangeNameEvent} required/>
                         </div>
                         <div className="form-group">
                             <label>Description de l'évènement : </label>

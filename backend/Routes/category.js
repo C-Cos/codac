@@ -5,6 +5,8 @@ const category = require('../Models/category');
 
 process.env.SECRET_KEY = 'secret';
 
+
+//Get all the sport category to choose from when adding an event
 router.get('/category', (request, response) => {
     category.find(function(err, category){
         //console.log(category);

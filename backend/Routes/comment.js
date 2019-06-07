@@ -4,13 +4,18 @@ const comment = require('../Models/comments');
 
 process.env.SECRET_KEY = 'secret';
 
-//add comment
+
+//ADD A COMMENT
 router.post('/comment', (request, response) => {
-    console.log("test");
     let idEvent = request.body.idEvent
     let username = request.body.username
     let description = request.body.description
 
+    //Request : id of Event which the comment is linked to
+    // name of user that post the comment
+    // content of the comment
+    // created date
+    // edited date
     var newComment = new comment({
         idEvent: idEvent,
         username: username,
@@ -19,8 +24,8 @@ router.post('/comment', (request, response) => {
         edited_date: new Date()
         });
 
+    //Save new comment in DB and send to front
     newComment.save((err, newDoc)=> {
-        console.log(newDoc);
         if(err){
             console.log(err);
             response.status(400).send(JSON.stringify({
@@ -33,8 +38,12 @@ router.post('/comment', (request, response) => {
     }); 
 })
 
-//edit comment
+
+
+//EDIT COMMENT
 router.put('/comment', (request, response) => {
+    // Request : id of the comment to update
+    //  New content to insert in field description
     var query = { _id: request.body.data.id };
     var update = {description: request.body.data.description};
     comment.findOneAndUpdate(query, update, function(err, comment){
@@ -52,9 +61,9 @@ router.put('/comment', (request, response) => {
     }); 
 })
 
-//delete comment
+//DELETE COMMENT
 router.delete('/comment', (request, response) => {
-    //console.log(request.body.id);
+    //Request : Id of the comment to delete
     let param = request.body.id;
     comment.findByIdAndRemove(param, function(err){
         if(err){
@@ -71,8 +80,9 @@ router.delete('/comment', (request, response) => {
     }); 
 })
 
-//get comments linked to an event
+//GET ALL COMMENTS
 router.get('/comment', (request, response) => {
+    // Request all comment linked to an Event id
     let param = request.query.idEvent;
     comment.find({idEvent: param})
             .sort({created_date: -1})
