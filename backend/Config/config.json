@@ -1,8 +1,0 @@
-{
-    "development": {
-        "config_id": "development",
-        "node_port": 4242,
-        "node_host": "localhost",
-        "json_indentation": 4
-    }
-}
