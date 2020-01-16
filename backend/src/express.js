@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
-//import routes from './api';
+import routes from './api';
 import expressWinston from 'express-winston';
 import winston from 'winston';
 
@@ -56,14 +56,8 @@ export default (app = express()) => {
     // Maybe not needed anymore ?
     //app.use(require('method-override')());
 
-    /// Routes
-    // let usersRouter = require('./Routes/users');
-    // let categoryRouter = require('./Routes/category');
-    // let commentRouter = require('./Routes/comment');
-    // let eventRouter = require('./Routes/event');
-
-    // app.use('/', usersRouter);
-    // app.use('/', categoryRouter);
-    // app.use('/', commentRouter);
-    // app.use('/', eventRouter);
+    app.use('/', routes.routeUser);
+    app.use('/', routes.routeEvent);
+    app.use('/', routes.routeCategory);
+    app.use('/', routes.routeComment);
 }  

@@ -1,19 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const category = require('../Models/category');
-//user = require('../Models/user');
-
-process.env.SECRET_KEY = 'secret';
-
+const categoryController = require("../controllers/category");
 
 //Get all the sport category to choose from when adding an event
 router.get('/category', (request, response) => {
-    category.find(function(err, category){
-        if(err) console.log(err);
-        else{
-            response.status(200).json(category);
-        }    
-    });
+    categoryController.getCategories(request, response);
 })
 
 module.exports = router;
