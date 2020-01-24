@@ -1,5 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,9 +18,8 @@ import events from "./components/Event/DisplayEvents";
 import event from "./components/Event/DisplayOneEvent";
 import EditUser from "./components/Profile/EditUser";
 
-
-function App() {
-  return (
+const Root = ({ store }) => (
+  <Provider store={store}>
     <Router>
         <Navbar/>
         <Route exact path="/" component={home}/>
@@ -32,7 +33,31 @@ function App() {
         <Route path="/edituser" component={EditUser}/>
         <Footer/>
     </Router>
-  )
+  </Provider>
+)
+
+Root.propTypes = {
+store: PropTypes.object.isRequired
 }
 
-export default App;
+export default Root;
+
+// function App() {
+//   return (
+//     <Router>
+//         <Navbar/>
+//         <Route exact path="/" component={home}/>
+//         <Route path="/login" component={login}/>
+//         <Route path="/register" component={register}/>
+//         <Route path="/profile" component={userProfile}/>
+//         <Route path="/addevent" component={addEvent}/>
+//         <Route path="/events" component={events}/>
+//         <Route path="/event/:id" component={event}/>
+//         <Route path="/editevent/:id" component={EditEvent}/>
+//         <Route path="/edituser" component={EditUser}/>
+//         <Footer/>
+//     </Router>
+//   )
+// }
+
+// export default App;

@@ -1,49 +1,26 @@
 import React from 'react';
-import jwt_decode from 'jwt-decode';
 import './Profile.css';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+import { getUser } from '../../Reducer/rootReducer';
+// import { useSelector } from "react-redux";
 
-export default class UserProfile extends React.Component {
+
+
+class UserProfile extends React.Component {
 
     constructor (props) {
 
         super(props);
         this.deleteUser = this.deleteUser.bind(this);
         this.editUser = this.editUser.bind(this);
-
-        this.state = {
-            username:'',
-            id:'',
-            email:'',
-            address:'',
-            zipcode:'',
-            city:'',
-    
-        }
     }
-
-    componentDidMount(){
-        const token = localStorage.usertoken;
-        if(token){
-            const decoded = jwt_decode(token);
-            this.setState({
-                username : decoded.username,
-                email : decoded.email,
-                id: decoded._id
-            })
-            console.log(decoded.username);
-        }
-
-        
-        
-    }
-
     deleteUser(e) {
         if(window.confirm("Etes-vous sûr de vouloir supprimer ce compte ?")) {
             console.log("Suppression du compte de l'utilisateur");
-            console.log(this.state.id);
-            axios.delete('http://localhost:4242/users/'+this.state.id)
+            console.log(this.props.user.id);
+            axios.delete('http://localhost:4242/users/' + this.props.user.id)
             .then(response => {
                 console.log(response);
                 localStorage.clear();
@@ -57,20 +34,15 @@ export default class UserProfile extends React.Component {
             console.log("Abandon de la suppression");
         }
     }
-
     editUser(e) {
         this.props.history.push("/edituser");
     }
-
-
     render () {
-
+        console.log('user', this.props.user);
         return (
-            
-        
             <div className="container mt-4">
                 <div className="jumbotron">
-                    <h1 className="display-5">Bienvenue sur votre profil, <span className="username">{this.state.username}</span></h1>
+                    <h1 className="display-5">Bienvenue sur votre profil, <span className="username">{this.props.user.username}</span></h1>
                     <hr className="my-4"/>
 
                     <div className="row">
@@ -90,7 +62,7 @@ export default class UserProfile extends React.Component {
                             <div className="card">
                                 
                                 <ul className="list-group list-group-flush">
-                                    <li className="list-group-item">Email : {this.state.email}</li>
+                                    <li className="list-group-item">Email : {this.props.user.email}</li>
                                     <li className="list-group-item">Dapibus ac facilisis in</li>
                                     <li className="list-group-item">Vestibulum at eros</li>
                                 </ul>
@@ -107,5 +79,21 @@ export default class UserProfile extends React.Component {
                  
         )
     }
-
 }
+
+const mapStateToProps = (state) => {
+    console.log('state', state)
+    return {
+        user: state.user
+    }
+}
+
+// const mapDispatchToProps = function(dispatch) {
+//     return {
+//         user_login: (user) => { dispatch(user_login_action(user)) }
+//     }
+// }
+
+export default connect(mapStateToProps, 
+    //mapDispatchToProps
+    )(UserProfile)

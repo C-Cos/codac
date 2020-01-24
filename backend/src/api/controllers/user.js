@@ -97,11 +97,10 @@ exports.authUser = async (request, response) => {
                 let token = jwt.sign(payload, config.mySecret, {
                     expiresIn:1440
                 })
-                response.status(200).send(
-                    JSON.stringify({
-                        message: 'Successful', 
-                        token: token
-                }));
+                response.status(200).send({
+                        token: token,
+                        user: user
+                });
             }
         }
     });

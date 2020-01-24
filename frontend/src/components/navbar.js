@@ -4,7 +4,8 @@ import React, {Component} from 'react';
 import {Link, withRouter} from "react-router-dom";
 import {Nav, NavDropdown  } from 'react-bootstrap';
 
-//import Logo from "../Home/components/LOGO2.png";
+import { connect } from 'react-redux';
+import { getUser } from '../../Reducer/rootReducer';
 
 class Navbar extends Component {
     constructor(props) {
@@ -32,9 +33,11 @@ class Navbar extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/addevent">Créer un évènement <ion-icon name="add-circle-outline"></ion-icon></NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#" onClick={this.logOut}><img alt="Logo"
+                <Nav.Link href="#" onClick={this.logOut}>
+                    <img alt="Logo"
                         src={require('../img/logout.jpg')}
-                        width="80"/></Nav.Link>
+                        width="80"/>
+                </Nav.Link>
             </Nav>
         );
         const loginRegLink = (
@@ -79,9 +82,22 @@ class Navbar extends Component {
             </nav>
         )
     }
-
-  
-
 }
 
-export default withRouter(Navbar)
+const mapStateToProps = (state) => {
+    console.log('state', state)
+    return {
+        user: state.user
+    }
+}
+
+// const mapDispatchToProps = function(dispatch) {
+//     return {
+//         user_login: (user) => { dispatch(user_login_action(user)) }
+//     }
+// }
+
+export default connect(mapStateToProps, 
+    //mapDispatchToProps
+    )(Navbar)
+

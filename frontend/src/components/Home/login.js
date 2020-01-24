@@ -1,8 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import {login} from './UserFunctions';
 
-export default class Login extends React.Component {
+import { connect } from 'react-redux';
+import { user_login_action } from '../../actions/mainActions';
+import { getAuthError, getAuthRedirection } from '../../Reducer/rootReducer';
+
+
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,10 +16,7 @@ export default class Login extends React.Component {
 
         this.state = {
             email: '',
-            password: '',
-            cred: '',
-            errorUser: false,
-            errorPassword: false
+            password: ''
         }
     }
     onChangeEmail(e) {
@@ -36,29 +37,7 @@ export default class Login extends React.Component {
             password: this.state.password,
         }
 
-        login(user)
-        .then((response) => {
-                localStorage.setItem('usertoken', response.data.token)
-                this.setState({
-                    wrong: '',
-                    fireRedirect: true
-                });
-        })
-        .catch((error) => {
-            if(error.response.data.message==="User error") {
-                this.setState({
-                    errorUser: true,
-                    errorPassword: false
-                });
-            }
-            else if(error.response.data.message==="Password error") {
-                this.setState({
-                    errorPassword: true,
-                    errorUser: false
-                });
-            }
-        });
-
+        this.props.user_login(user)
 
         this.setState({
             email: '',
@@ -72,11 +51,8 @@ export default class Login extends React.Component {
             <div id="form" className="container">
                 <h3 style={{marginTop: 30, textAlign: "center"}} > Connection</h3>
                 <div style={{marginTop: 50}}>
-                    {this.state.errorUser===true ? <div className="alert alert-danger" role="alert">
-                    Ce nom d'utilisateur n'existe pas
-                    </div> : <div></div>}
-                    {this.state.errorPassword===true ? <div className="alert alert-danger" role="alert">
-                    Le password entré est incorrect
+                    {this.props.error === true ? <div className="alert alert-danger" role="alert">
+                    Le nom d'utilisateur ou le mot de passe est incorrect.
                     </div> : <div></div>}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
@@ -92,8 +68,23 @@ export default class Login extends React.Component {
                         </div>
                     </form>
                 </div>
-                {this.state.fireRedirect && <Redirect to={'/'} push={true} />}
+                {this.props.fireRedirect && <Redirect to={'/'} push={true} />}
             </div>
         )
     }
 }
+
+const mapStateToProps = function(state) {
+    return {
+        error: getAuthError(state),
+        fireRedirect: getAuthRedirection(state)
+    }
+  }
+
+const mapDispatchToProps = function(dispatch) {
+    return {
+        user_login: (user) => { dispatch(user_login_action(user)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

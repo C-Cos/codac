@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getUser } from '../../Reducer/rootReducer';
 
 import Carousel from 'nuka-carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,7 +9,7 @@ import axios from 'axios';
 import CarouselContent from './carouselContent';
 import MediaQuery from 'react-responsive';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     constructor (props) {
         super(props);
 
@@ -23,7 +25,6 @@ export default class Home extends React.Component {
         
         axios.get('http://localhost:4242/events/findAll')
         .then(response => {
-            console.log(response.data.events);
             this.setState({events: response.data.events});
             
 
@@ -35,6 +36,7 @@ export default class Home extends React.Component {
     }
 
     render () {
+        console.log('user', this.props.user);
         return (
             <div>
                 <div className="mb-4" style={{width: '100%', height: '500px', overflow: 'hidden', position: "relative", zindex:0, display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -142,3 +144,20 @@ export default class Home extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log('state', state)
+    return {
+        user: state.user
+    }
+}
+
+// const mapDispatchToProps = function(dispatch) {
+//     return {
+//         user_login: (user) => { dispatch(user_login_action(user)) }
+//     }
+// }
+
+export default connect(mapStateToProps, 
+    //mapDispatchToProps
+    )(Home)
